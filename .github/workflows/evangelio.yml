@@ -1,0 +1,26 @@
+name: Evangelio del día
+
+on:
+  schedule:
+    - cron: "23 7 * * *"   # todos los días a las 4:23 de Buenos Aires
+  workflow_dispatch:         # y cuando lo corras a mano desde la pestaña Actions
+
+permissions:
+  contents: write
+
+jobs:
+  traer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Traer las lecturas de los próximos días
+        env:
+          TZ: America/Argentina/Buenos_Aires
+        run: node herramientas/evangelio.mjs
+      - name: Guardar en el repositorio
+        run: |
+          git config user.name "scala-bot"
+          git config user.email "scala-bot@users.noreply.github.com"
+          git add evangelio
+          git diff --cached --quiet || git commit -m "Evangelio: lecturas de los próximos días"
+          git push
