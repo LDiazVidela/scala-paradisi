@@ -39,6 +39,22 @@ y la app las muestra con su propio diseño, sin depender de Claude.
 - Si algún día no hay archivo (por ejemplo, porque falló la tarea), la app ofrece abrir el Evangelio
   en Vatican News y pegarlo, como antes.
 
+## La Liturgia de las Horas
+
+En **Oratorio → Horas** están las siete horas de cada día (Oficio de lectura, Laudes, Tercia, Sexta, Nona,
+Vísperas y Completas) con el texto oficial. La app lo trae sola de
+[liturgiadelashoras.github.io](https://liturgiadelashoras.github.io), un sitio libre y gratuito que publica
+el texto de cada día, y lo muestra con su propio diseño. No hace falta configurar nada.
+
+- Hace falta internet la primera vez que se abre cada hora del día; después queda guardada en el teléfono.
+- Con internet, la app deja descargadas solas las horas del día para poder rezarlas sin señal.
+- Si no hay conexión, Completas igual se puede rezar: la app trae guardadas las de cada día de la semana.
+
+## El servidor (opcional)
+
+Para que cada chico pueda guardar su progreso en la nube y seguir en otro dispositivo, está el primer paso
+del servidor. Es opcional: sin él la app funciona igual. Cómo prenderlo, en `LEEME-SERVIDOR.md`.
+
 ## En el celular
 
 Abrí el link en Safari (iPhone) o Chrome (Android) y elegí **Agregar a pantalla de inicio**.
@@ -54,7 +70,8 @@ hace lo que dice el botón y la M abre el mapa.
 ## Para actualizar la app
 
 Cuando te pase una versión nueva, subí de nuevo los archivos que cambiaron (sobre todo `index.html`
-y `sw.js`) con **Add file → Upload files**. La carpeta `evangelio` no hace falta tocarla.
+y `sw.js`) con **Add file → Upload files**. En esta versión hay además archivos nuevos: `servidor.json`,
+`LEEME-SERVIDOR.md` y la carpeta `servidor`; subilos también (el `servidor.json` dejalo como viene hasta prender el servidor). La carpeta `evangelio` no hace falta tocarla.
 Al abrirla con internet, la app se actualiza sola.
 
 ## Sobre los textos
