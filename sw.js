@@ -1,4 +1,4 @@
-const V="scala-v57";
+const V="scala-v60";
 const BASE=["./","index.html","manifest.webmanifest","icono-192.png","icono-512.png","icono-180.png"];
 self.addEventListener("install",e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(BASE)).then(()=>self.skipWaiting()));});
 self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==V).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
