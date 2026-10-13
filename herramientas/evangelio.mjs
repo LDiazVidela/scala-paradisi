@@ -4,7 +4,7 @@
 import { mkdir, writeFile, readdir, unlink, access } from "node:fs/promises";
 
 const BASE = process.env.EVANGELIZO_URL || "https://feed.evangelizo.org/v2/reader.php";
-const DIAS = Math.min(29, Number(process.env.DIAS || 28)); // Evangelizo da hasta 30 días hacia adelante
+const DIAS = Math.min(31, Number(process.env.DIAS || 30)); // Evangelizo publica hasta un mes hacia adelante; lo que todavía no está, se reintenta al otro día
 const GUARDAR_DIAS_VIEJOS = 7;
 const CARPETA = new URL("../evangelio/", import.meta.url);
 const pad = n => String(n).padStart(2, "0");
@@ -85,5 +85,8 @@ for (let i = 0; i < DIAS; i++) {
 // borrar los días viejos
 const limite = fechaISO(new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate() - GUARDAR_DIAS_VIEJOS));
 for (const n of await readdir(CARPETA)) if (/^\d{4}-\d{2}-\d{2}\.json$/.test(n) && n.slice(0, 10) < limite) await unlink(new URL(n, CARPETA));
-console.log("Días nuevos o actualizados:", nuevos, "· sin datos:", fallas);
-if (nuevos === 0 && fallas > 0) process.exit(1);
+// un índice cortito para que la app sepa hasta qué día hay lecturas
+const dias = (await readdir(CARPETA)).filter(n => /^\d{4}-\d{2}-\d{2}\.json$/.test(n)).map(n => n.slice(0, 10)).sort();
+await writeFile(new URL("indice.json", CARPETA), JSON.stringify({ desde: dias[0] || null, hasta: dias[dias.length - 1] || null, dias, actualizado: new Date().toISOString() }) + "\n");
+console.log("Días nuevos o actualizados:", nuevos, "· sin datos:", fallas, "· hay lecturas hasta", dias[dias.length - 1] || "—");
+if (nuevos === 0 && fallas >= DIAS) process.exit(1);
