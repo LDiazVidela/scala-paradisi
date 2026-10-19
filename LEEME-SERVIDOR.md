@@ -1,4 +1,4 @@
-# El servidor de Scala · paso 1: tu progreso en la nube
+# El servidor de Scaeli · paso 1: tu progreso en la nube
 
 Este primer paso del servidor sirve para una sola cosa: **guardar el progreso en la nube**.
 Así cada chico puede seguir jugando y rezando desde otro teléfono o desde la compu, sin perder nada.

@@ -1,14 +1,14 @@
 {
- "name": "Scala Paradisi",
- "short_name": "Scala",
- "description": "Hábitos y virtudes para la vida cristiana.",
+ "name": "Scaeli",
+ "short_name": "Scaeli",
+ "description": "Tu fe, a otro nivel: un juego católico para crecer en virtudes y rezar cada día.",
  "lang": "es-AR",
  "start_url": "./",
  "scope": "./",
  "display": "standalone",
  "orientation": "any",
- "background_color": "#1A0752",
- "theme_color": "#F4EFE6",
+ "background_color": "#0E2A3F",
+ "theme_color": "#0E2A3F",
  "icons": [
   {
    "src": "icono-192.png",
@@ -23,7 +23,13 @@
    "purpose": "any"
   },
   {
-   "src": "icono-512.png",
+   "src": "icono-1024.png",
+   "sizes": "1024x1024",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "icono-512-maskable.png",
    "sizes": "512x512",
    "type": "image/png",
    "purpose": "maskable"
