@@ -1,4 +1,4 @@
-# El servidor de Scaeli · paso 1: tu progreso en la nube
+# El servidor de Scaeli · paso 1: tu progreso en la nube · paso 2: el gremio
 
 Este primer paso del servidor sirve para una sola cosa: **guardar el progreso en la nube**.
 Así cada chico puede seguir jugando y rezando desde otro teléfono o desde la compu, sin perder nada.
@@ -50,3 +50,32 @@ diarios ni oraciones. Solo quien tiene el código puede abrir ese progreso.
 
 Por eso mismo, **si alguien pierde su código, no hay forma de recuperarlo**: conviene que lo anoten
 en un lugar seguro (y que no lo compartan).
+
+## Paso 2: el gremio (versión 10.2)
+
+Desde la 10.2 el jefe del mes tiene **cinco veces más vida** y solo se le gana **con el gremio**: un grupo
+de hasta 12 amigos que suman el daño que cada uno le hace. El que lo arma recibe un **código de 6 letras**
+(por ejemplo `8XRRFU`) y se lo pasa a sus amigos; ellos lo escriben en **Jugar → Jefe → Unirme**.
+Cuando entre todos le sacan toda la vida, cada uno se lleva el premio y un **arma exclusiva** de ese jefe
+(un trofeo que no se forja ni se compra).
+
+El gremio usa **el mismo servidor** del paso 1. Si ya lo prendiste, alcanza con actualizar el código:
+
+1. En Cloudflare abrí el Worker `scala-servidor` → **Edit code**.
+2. Borrá todo, pegá el contenido nuevo de `servidor/worker.js` (dice `VERSION = 3` arriba) y tocá **Deploy**.
+3. Probalo: la dirección del Worker con `/salud` al final tiene que decir `"version":3`.
+
+No hace falta tocar la base de datos ni el `servidor.json`: las tablas nuevas se crean solas, con la
+misma conexión `DB`. Si todavía no prendiste el servidor, hacé el paso 1 con este `worker.js` y listo.
+
+Mientras el servidor no esté prendido, la app avisa en la tarjeta del gremio que todavía no se puede
+armar uno (y el jefe no se puede vencer solo). En la versión de prueba que abrís desde Claude (el
+Artifact), el gremio anda sin este servidor: se guarda en la página misma y lo pueden usar quienes
+tengan acceso a esa página.
+
+**Qué guarda del gremio:** el nombre del gremio, un número al azar que identifica a cada jugador
+(no es su código de la nube), el nombre que puso en la app y cuánto daño le hizo al jefe este mes.
+Eso lo ven los demás del mismo gremio. Nada más: ni diarios, ni oraciones, ni progreso.
+El servidor no deja anotar más daño del que se puede hacer en un día, y el último que sale de un
+gremio lo borra.
+
