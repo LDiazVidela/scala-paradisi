@@ -37,11 +37,13 @@ function limpiar(html) {
     .replace(/[ \t]+/g, " ").split("\n").map(x => x.trim()).join("\n").replace(/\n{3,}/g, "\n\n").trim();
 }
 
-// Las últimas líneas con derechos o el nombre de la fuente se guardan aparte.
+// Las líneas con derechos, «extraído de…», «para recibir cada mañana…» o el nombre de la fuente
+// se sacan del texto (en la app no se muestran) y se guardan aparte, solo como dato.
+const FUENTE = /(copyright|©|evangelizo|evangeliodeldia|libro del pueblo|derechos|extra[ií]d[oa]s? de|para recibir cada|^fuente:)/i;
 function separarFuente(t) {
-  const ls = t.split("\n"), f = [];
-  while (ls.length && /(copyright|©|evangelizo|libro del pueblo|derechos)/i.test(ls[ls.length - 1])) f.unshift(ls.pop());
-  return [ls.join("\n").trim(), f.join(" ").trim()];
+  const ls = t.split("\n"), f = [], quedan = [];
+  for (const l of ls) (FUENTE.test(l.trim()) ? f : quedan).push(l);
+  return [quedan.join("\n").replace(/\n{3,}/g, "\n\n").trim(), f.join(" ").trim()];
 }
 
 async function lectura(fecha, content) {
@@ -51,6 +53,7 @@ async function lectura(fecha, content) {
   const titulo = await pedir({ date, type: "reading_lt", lang: "SP", content });
   const cita = await pedir({ date, type: "reading_st", lang: "SP", content });
   const [t, fuente] = separarFuente(limpiar(texto));
+  if (t.length < 12) return null; // si después de limpiar no queda lectura, es que no hay
   return { titulo: limpiar(titulo), cita: limpiar(cita) || limpiar(titulo), texto: t, fuente };
 }
 
