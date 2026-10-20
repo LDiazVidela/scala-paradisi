@@ -4500,6 +4500,135 @@ html.horiz .sk13-info{grid-column:2;grid-row:2;margin:0;overflow:auto;border-rad
 @keyframes sk13Brillo{0%,62%{transform:translateX(-120%)}82%,100%{transform:translateX(120%)}}
 .sv13-t:nth-child(5){grid-column:1/-1}
 
+/* ───────── v10.3 · controles prolijos, avisos que no tapan el juego, el modo ancho, la ayuda del teclado, Supervivencia,
+   el usuario, la tarjeta de nombre y la forja de la armadura ───────── */
+
+/* ── los avisos del juego: chiquitos, arriba a la izquierda, debajo de tu vida; no se tocan y se van solos ── */
+#f13{position:fixed;z-index:30;left:calc(env(safe-area-inset-left,0px) + 10px);top:calc(env(safe-area-inset-top,0px) + 148px);width:min(260px,62vw);display:flex;flex-direction:column;gap:5px;pointer-events:none}
+#f13:empty{display:none}
+.f13-i{display:flex;flex-direction:column;gap:1px;padding:6px 10px 7px;border-radius:11px;background:rgba(8,20,32,.66);box-shadow:inset 0 0 0 1px rgba(242,196,106,.22),0 6px 14px rgba(0,0,0,.25);
+  -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);color:#FFF8E6;font:600 11.5px/1.35 var(--f-ui);animation:f13e .26s cubic-bezier(.2,.9,.3,1.2) both;transition:opacity .4s,transform .4s}
+.f13-i b{font:800 9.5px/1.2 var(--f-ui);letter-spacing:.12em;text-transform:uppercase;color:#F6D27E}
+.f13-i span{overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+.f13-i.va{opacity:0;transform:translateX(-14px)}
+@keyframes f13e{from{opacity:0;transform:translateX(-16px) scale(.96)}to{opacity:1;transform:none}}
+@media (min-width:900px){ #f13{top:calc(env(safe-area-inset-top,0px) + 176px);left:18px;width:340px} .f13-i{font-size:13px} }
+@media (max-height:520px) and (orientation:landscape){ #f13{top:calc(env(safe-area-inset-top,0px) + 112px);width:min(280px,36vw)} }
+body:not(.en-juego) #f13{display:none}
+
+/* ── los botones de la Historia: sin las etiquetas de teclas pegadas en las esquinas ── */
+html.inm body.en-juego .ac-k{display:none!important}
+html.inm body.en-juego .ac-b.v71 .ac-atk.ac-atk{--ring:#F07A62;animation:atk13 1.6s ease-in-out infinite}
+@keyframes atk13{0%,100%{filter:none}50%{filter:drop-shadow(0 0 10px rgba(240,122,98,.55))}}
+html.inm body.en-juego .ac-b.v71 .ac-atk.ac-nada{opacity:.78}
+html.inm body.en-juego .ac-b.v71 .ac-atk.ac-nada .ac-ico{opacity:.7}
+html.inm body.en-juego .ac-b.v71 .ac-atk .ac-l{letter-spacing:.01em}
+html.inm body.en-juego .ac-b.v71 #acRez.espera,html.inm body.en-juego .ac-b.v71 #acRez[aria-disabled="true"]{filter:saturate(.55) brightness(.85)}
+
+/* ── la ayuda del teclado en la compu (se esconde con H) ── */
+@media (pointer:fine) and (min-width:900px){
+  html.inm.inm-ancho13 body.en-juego .inm-ayuda{display:flex!important;position:fixed;left:18px;bottom:18px;max-width:268px;z-index:25;gap:5px;padding:10px 13px;border-radius:13px;
+    background:rgba(8,20,32,.62);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);box-shadow:inset 0 0 0 1px rgba(242,196,106,.22);color:rgba(255,248,230,.86);font:600 11.5px/1.45 var(--f-ui)}
+  html.inm.inm-ancho13 body.en-juego .inm-ayuda::after{content:"H: esconder esta ayuda";font:700 10px var(--f-ui);color:rgba(246,210,126,.7);margin-top:2px}
+  html.inm.inm-ancho13.ayu13-off body.en-juego .inm-ayuda{padding:5px 10px;gap:0}
+  html.inm.inm-ancho13.ayu13-off body.en-juego .inm-ayuda>*{display:none}
+  html.inm.inm-ancho13.ayu13-off body.en-juego .inm-ayuda::after{content:"H: ayuda del teclado";margin:0}
+}
+
+/* ── modo ancho: la sala de alto completo, sin marco ── */
+html.inm-ancho13 body.en-juego .rpg-esc{border-radius:0!important}
+html.inm-ancho13 body.en-juego #rpgCv{image-rendering:pixelated}
+
+/* ── elegir con las flechas en los diálogos ── */
+.sel13{outline:3px solid #F6D27E!important;outline-offset:2px;box-shadow:0 0 0 6px rgba(246,210,126,.25)!important;transform:translateY(-1px)}
+
+/* ── la piedra de teletransporte ── */
+.tp13-ic{display:inline-block;flex:none;width:28px;height:28px;border-radius:44% 56% 50% 50%/56% 50% 50% 44%;background:radial-gradient(circle at 34% 30%,#F4E8FF 0 8%,#B79CF2 22%,#6A4BC8 58%,#2E1E6A 100%);
+  box-shadow:0 0 0 2px #1B1240,0 0 12px rgba(150,120,240,.6),inset -3px -3px 0 rgba(20,10,50,.35);position:relative}
+.tp13-ic::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border:1.5px solid rgba(255,246,210,.8);border-radius:50%;border-left-color:transparent;transform:rotate(-30deg)}
+.tp13-ic.grande{width:40px;height:40px}
+.tp13-ic.grande::after{width:13px;height:13px;margin:-6.5px 0 0 -6.5px}
+.com13-ic{image-rendering:pixelated;flex:none}
+
+/* ── Supervivencia: los botones, como los de la Historia ── */
+#sv.sv13 .sv-a,#sv.sv13 .sv-m{position:relative;color:#FFFFFF;border:0;
+  background:radial-gradient(circle at 50% 28%,#3A6E9C 0,#1C4466 52%,#0C2438 100%);font:700 12.5px/1 var(--f-ui);text-shadow:0 1px 3px rgba(0,0,0,.5);-webkit-tap-highlight-color:transparent}
+#sv.sv13 .sv-a{--ring:#F2C46A;width:100px;height:100px;gap:5px;box-shadow:0 0 0 4px var(--ring),0 0 0 7px rgba(8,26,40,.7),0 0 22px 2px color-mix(in srgb,var(--ring) 40%,transparent),0 12px 22px rgba(0,0,0,.45),inset 0 3px 0 rgba(255,255,255,.22)}
+#sv.sv13 .sv-a:active{transform:translateY(2px) scale(.97);box-shadow:0 0 0 4px var(--ring),0 0 0 7px rgba(8,26,40,.7),0 6px 12px rgba(0,0,0,.4),inset 0 3px 0 rgba(255,255,255,.2)}
+#sv.sv13 .sv-a[data-k="pegar"]{--ring:#F07A62;background:radial-gradient(circle at 50% 28%,#9C4A3A 0,#5C2418 52%,#2A0E08 100%)}
+#sv.sv13 .sv-a[data-k="beber"]{--ring:#8FCBF4}
+#sv.sv13 .sv-a[data-k="comer"],#sv.sv13 .sv-a[data-k="poner"]{--ring:#8FE09A}
+#sv.sv13 .sv-a[data-k="mesa"],#sv.sv13 .sv-a[data-k="cama"]{--ring:#C9A2FF}
+#sv.sv13 .sv-a[data-k="nada"]{--ring:rgba(255,255,255,.45);opacity:.86}
+#sv.sv13 .sv13-ai{display:grid;place-items:center;width:42px;height:42px;color:#F6D27E;filter:drop-shadow(0 2px 2px rgba(0,0,0,.45))}
+#sv.sv13 .sv13-ai img{width:40px;height:40px;image-rendering:pixelated}
+#sv.sv13 .sv13-ai .aci{width:34px;height:34px}
+#sv.sv13 .sv-m{width:66px;height:66px;margin-bottom:20px;gap:3px;font-size:10.5px;overflow:hidden;
+  box-shadow:0 0 0 3px #E9B44C,0 0 0 5px rgba(8,26,40,.7),0 8px 16px rgba(0,0,0,.45),inset 0 2px 0 rgba(255,255,255,.22)}
+#sv.sv13 .sv-m .aci{position:relative;z-index:1;width:26px;height:26px;color:#F6D27E;filter:drop-shadow(0 1px 2px rgba(0,0,0,.45))}
+#sv.sv13 .sv-m>span{position:relative;z-index:1}
+#sv.sv13 .sv-m:active{transform:translateY(2px) scale(.96)}
+#sv.sv13 #svR.espera{filter:none}
+#sv.sv13 .sv13-rz{position:absolute;inset:0;border-radius:50%;pointer-events:none;background:conic-gradient(rgba(4,12,22,.72) calc(var(--rz,0)*360deg),transparent 0);transition:background .4s}
+#sv.sv13 #svR:not(.espera) .sv13-rz{background:none}
+#sv.sv13 #svR:not(.espera){animation:rz13 2.4s ease-in-out infinite}
+@keyframes rz13{0%,100%{box-shadow:0 0 0 3px #E9B44C,0 0 0 5px rgba(8,26,40,.7),0 8px 16px rgba(0,0,0,.45),inset 0 2px 0 rgba(255,255,255,.22)}50%{box-shadow:0 0 0 3px #FFE38A,0 0 0 5px rgba(8,26,40,.7),0 0 18px 3px rgba(255,227,138,.45),0 8px 16px rgba(0,0,0,.45),inset 0 2px 0 rgba(255,255,255,.22)}}
+@media (max-width:380px){ #sv.sv13 .sv-a{width:88px;height:88px} #sv.sv13 .sv13-ai,#sv.sv13 .sv13-ai img{width:36px;height:36px} }
+@media (min-width:700px){ #sv.sv13 .sv-a{width:112px;height:112px} #sv.sv13 .sv-m{width:74px;height:74px} }
+@media (max-height:440px){ #sv.sv13 .sv-a{width:86px;height:86px} #sv.sv13 .sv-m{margin-bottom:12px} }
+
+/* ── el usuario ── */
+.caja-modal.us13-m,.caja-modal.tn13-m{text-align:left}
+.us13-ic{display:grid;place-items:center;width:52px;height:52px;margin:0 auto 8px;border-radius:16px;background:linear-gradient(160deg,#FFE38A,#E2A932);box-shadow:0 0 0 2px #3A2608,0 5px 0 #3A2608;font:900 28px/1 var(--f-ui);color:#3A2608}
+.us13-in{display:flex;align-items:center;gap:2px;margin:12px 0 4px;padding:0 12px;border-radius:14px;background:#FFFCF4;box-shadow:inset 0 0 0 2px #E3B341,0 2px 0 rgba(58,38,8,.12)}
+.us13-in span{font:900 20px/1 var(--f-ui);color:#B8862F}
+.us13-in input{flex:1;min-width:0;border:0!important;background:transparent!important;box-shadow:none!important;outline:0;padding:12px 2px!important;font:800 18px/1.2 var(--f-ui);color:#2B1A0A;letter-spacing:.01em}
+.us13-e{min-height:18px;margin:4px 2px 6px;font:700 12.5px/1.35 var(--f-ui);color:#C0392B}
+.us13-e.ok{color:#2E7D46}
+.us13-sug{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:4px 0 10px}
+.us13-sug small{font:800 10.5px var(--f-ui);letter-spacing:.1em;text-transform:uppercase;color:#8A6A3A;margin-right:2px}
+.us13-sug button{border:0;border-radius:999px;padding:6px 11px;background:#F3EBDA;box-shadow:inset 0 0 0 1px rgba(58,38,8,.14);font:800 12.5px var(--f-ui);color:#3A2608;cursor:pointer}
+.us13-sug button:active{transform:scale(.96)}
+.us13-yo{display:inline-block;margin:0 0 2px;padding:2px 9px;border-radius:999px;background:rgba(255,246,210,.14);box-shadow:inset 0 0 0 1px rgba(246,210,126,.35);font:700 12px/1.4 var(--f-ui);font-style:normal;color:#F6D27E}
+.us13-yo.mal{background:rgba(232,88,74,.25);color:#FFD2CC}
+button.us13-yo.nuevo{border:0;cursor:pointer;background:linear-gradient(180deg,#FFE38A,#E2A932);color:#3A2608;box-shadow:0 2px 0 #8A5A10}
+.us13-g{display:block;font:600 11px/1.2 var(--f-ui);opacity:.7}
+.us13-aj{display:flex;flex-direction:column;gap:10px;margin-bottom:6px}
+.us13-f{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;padding:10px 12px;border-radius:12px;background:var(--surface2,#F6F0E2)}
+.us13-f small{flex-basis:100%;font:800 10.5px var(--f-ui);letter-spacing:.1em;text-transform:uppercase;color:var(--muted,#8A7A6A)}
+.us13-f b{font:800 17px/1.2 var(--f-ui);color:var(--fg,#2B1A0A)}
+.us13-f span{flex-basis:100%;font:600 12px/1.4 var(--f-ui);color:var(--muted,#8A7A6A)}
+.us13-f .lnk{border:0;background:none;padding:0;font:inherit;color:#B8862F;text-decoration:underline;cursor:pointer}
+/* la tarjeta de cambio de nombre */
+.tn13-t{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:96px;margin:0 auto 12px;width:min(240px,100%);border-radius:14px;
+  background:linear-gradient(135deg,#FFF6D2 0%,#F2D07A 45%,#E2A932 55%,#FFF0B8 100%);box-shadow:0 0 0 2px #3A2608,0 6px 0 #3A2608,0 14px 24px rgba(0,0,0,.25);overflow:hidden}
+.tn13-t i{position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.65) 46%,transparent 60%);animation:tn13 2.6s ease-in-out infinite}
+.tn13-t b{position:relative;font:700 22px/1.1 var(--f-titulo,var(--f-ui));color:#3A2608;max-width:90%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tn13-t small{position:relative;font:800 10px var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:#7A4A10}
+@keyframes tn13{0%{transform:translateX(-80%)}60%,100%{transform:translateX(90%)}}
+
+/* ── la forja de la armadura ── */
+.card.eq13{display:flex;flex-direction:column;gap:2px}
+.eq13-f{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(11,31,48,.08)}
+.eq13-f:last-child{border-bottom:0}
+.eq13-f>svg,.eq13-f>img,.eq13-f>.eq-ico{flex:none;width:40px;height:40px}
+.eq13-b{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.eq13-b>b{display:flex;flex-wrap:wrap;align-items:center;gap:5px;font:800 14px/1.25 var(--f-ui)}
+.eq13-b>b i{font-style:normal;opacity:.55}
+.eq13-b>small{font:600 12px/1.35 var(--f-ui);color:var(--muted,#7A6A5A)}
+.eq13-c{display:flex;flex-wrap:wrap;gap:4px;margin-top:2px}
+.eq13-f .btn[aria-disabled="true"]{opacity:.6}
+.eq13-f.forjada{animation:eq13 1s ease-out}
+@keyframes eq13{0%{background:rgba(255,227,138,.75)}100%{background:transparent}}
+.tn13-m .campo input{width:100%;box-sizing:border-box;padding:11px 12px;border-radius:12px;border:0;background:#FFFCF4;box-shadow:inset 0 0 0 2px #E3B341;font:800 17px/1.2 var(--f-ui);color:#2B1A0A}
+.tn13-m .campo label{display:block;margin-bottom:5px;font:800 10.5px var(--f-ui);letter-spacing:.1em;text-transform:uppercase;color:#8A6A3A}
+/* Supervivencia: lo que entra, arriba del joystick (no encima) */
+#sv .sv12-feed{bottom:calc(env(safe-area-inset-bottom,0px) + 222px)}
+@media (max-height:440px){ #sv .sv12-feed{bottom:calc(env(safe-area-inset-bottom,0px) + 150px)} }
+.mochi-pop.v71 .mo-f>span.tp13-ic{flex:0 0 30px;width:30px;height:30px;display:inline-block;margin:0 4px}
+/* con la mochila, el mapa u otra ventana abierta, los avisos no se ven */
+body:has(.mochi-pop,.caja-modal,#herOv,.don-ov,#rpgMapa,.cofre-ov) #f13{visibility:hidden}
+
 </style>
 <style id="cssTema">
 body{--fr1:#1A3A55;--fr2:#0E2A3F;--fr-fg:#FBF3E0;--fr-sub:#CDB9A8;--fr-chip:#24496A;--fr-chipb:#3E6688;--fr-chipfg:#F8E3A0;--fr-on:#F8E3A0;--fr-nav:#BDA79E;--fr-line:#C99A2E;--fr-vac:#2E5476;
@@ -9205,7 +9334,7 @@ function rpgArbol(c,sx,sy,fr,t){ const R=(col,a,b,w,h)=>{ c.fillStyle=col; c.fil
 function rpgDibMundo(c,t){
   const M=rpgMapa(), W=M.t[0].length*RT, H=M.t.length*RT, et=rpgEtapa();
   const px=(RP.x+(RP.mv?RP.mv.dx*RP.mv.p:0))*RT, py=(RP.y+(RP.mv?RP.mv.dy*RP.mv.p:0))*RT;
-  const cx=Math.round(Math.max(0,Math.min(W-RW,px+8-RW/2))), cy=Math.round(Math.max(0,Math.min(H-RH,py+8-RH/2)));
+  const cx=camX13(W,px), cy=camY13(H,py);
   const x0=Math.floor(cx/RT), y0=Math.floor(cy/RT);
   for(let j=y0;j<=y0+RVH;j++) for(let i=x0;i<=x0+RVW;i++) rpgTileDib(c,rpgTile(i,j),i,j,i*RT-cx,j*RT-cy,et,t);
   if(GX.cur) try{ gxPiso(c,M,cx,cy,x0,y0,et,t); }catch(e){ gxErr(e); }
@@ -10833,7 +10962,7 @@ function rpgAccTick(dt){ if(RP.hpM===undefined) rpgAccPrep(); if(RP.sw>0) RP.sw=
       for(const o of ops){ if(!o[0]&&!o[1]) continue; const nx=e.px+o[0], ny=e.py+o[1]; if(!occ(nx,ny,e)){ e.px=nx; e.py=ny; break; } } return; }
     if(e.k==="ene"&&e.ax){ e.tm-=dt; if(e.tm>0) return; e.tm=.55; let n=(e.ax==="x"?e.px:e.py)+e.d; if(n>e.max||n<e.min){ e.d=-e.d; n=(e.ax==="x"?e.px:e.py)+e.d; } const nx=e.ax==="x"?n:e.px, ny=e.ax==="y"?n:e.py; if(!occ(nx,ny,e)){ e.px=nx; e.py=ny; } } }); }
 function rpgVer(e,E){ e.visto=1; if(!S.acTuto){ S.acTuto=1; rpgBan("Acercate a la sombra y tocá el botón rojo para pegarle. Cuando le aparezca un «!» rojo, corréte: está por golpear.",6,"Cómo se pelea"); setTimeout(()=>{ try{ if(RP&&!RP.dlg&&!RP.bt&&e.hp>0) rpgBan(E.intro,4,E.n); }catch(x){} },6200); } else rpgBan(E.intro,4,E.n); }
-function rpgAccDib(c,t){ if(!RP||RP.hpM===undefined) return; const M=rpgMapa(), W=M.t[0].length*RT, H=M.t.length*RT, px=(RP.x+(RP.mv?RP.mv.dx*RP.mv.p:0))*RT, py=(RP.y+(RP.mv?RP.mv.dy*RP.mv.p:0))*RT, cx=Math.round(Math.max(0,Math.min(W-RW,px+8-RW/2))), cy=Math.round(Math.max(0,Math.min(H-RH,py+8-RH/2)));
+function rpgAccDib(c,t){ if(!RP||RP.hpM===undefined) return; const M=rpgMapa(), W=M.t[0].length*RT, H=M.t.length*RT, px=(RP.x+(RP.mv?RP.mv.dx*RP.mv.p:0))*RT, py=(RP.y+(RP.mv?RP.mv.dy*RP.mv.p:0))*RT, cx=camX13(W,px), cy=camY13(H,py);
   const hs=rpgHostiles();
   hs.forEach(e=>{ if(e.hp===undefined) return; const sx=e.px*RT-cx, sy=e.py*RT-cy; if(sx<-20||sy<-30||sx>RW+10||sy>RH+10) return;
     if(e.hit>0){ if(gxOk()) gxImpacto(c,sx,sy,e,t); else { c.fillStyle="rgba(255,255,255,.85)"; c.fillRect(sx+6,sy+2,4,12); c.fillRect(sx+2,sy+6,12,4); } }
@@ -11004,7 +11133,7 @@ RPG_MAPS.n4.fuera="W";
 /* ── luz: de noche se ve lo que alumbra cada luz; y un temblor cuando te pegan ── */
 let RPG_OSC=null;
 function rpgOscuro(c,t,M,k){ if(!RPG_OSC) RPG_OSC=document.createElement("canvas"); const o=RPG_OSC; if(o.width!==RW||o.height!==RH){ o.width=RW; o.height=RH; } const x=o.getContext("2d"); x.globalCompositeOperation="source-over"; x.clearRect(0,0,RW,RH); x.fillStyle="rgba(10,12,44,"+k.toFixed(2)+")"; x.fillRect(0,0,RW,RH);
-  x.globalCompositeOperation="destination-out"; const W=M.t[0].length*RT, H=M.t.length*RT, px=(RP.x+(RP.mv?RP.mv.dx*RP.mv.p:0))*RT, py=(RP.y+(RP.mv?RP.mv.dy*RP.mv.p:0))*RT, cx=Math.round(Math.max(0,Math.min(W-RW,px+8-RW/2))), cy=Math.round(Math.max(0,Math.min(H-RH,py+8-RH/2)));
+  x.globalCompositeOperation="destination-out"; const W=M.t[0].length*RT, H=M.t.length*RT, px=(RP.x+(RP.mv?RP.mv.dx*RP.mv.p:0))*RT, py=(RP.y+(RP.mv?RP.mv.dy*RP.mv.p:0))*RT, cx=camX13(W,px), cy=camY13(H,py);
   const luz=(lx,ly,r,a)=>{ const g=x.createRadialGradient(lx,ly,0,lx,ly,r); g.addColorStop(0,"rgba(0,0,0,"+a+")"); g.addColorStop(.55,"rgba(0,0,0,"+(a*.55).toFixed(2)+")"); g.addColorStop(1,"rgba(0,0,0,0)"); x.fillStyle=g; x.fillRect(lx-r,ly-r,r*2,r*2); };
   luz(px-cx+8,py-cy+8,38+Math.sin(t*3)*1.5,.95);
   rpgEnts().forEach(e=>{ const ex=(e.px===undefined?e.x:e.px)*RT-cx+8, ey=(e.py===undefined?e.y:e.py)*RT-cy+8; if(e.k==="luz") luz(ex,ey,rpgF(e.id)?34:20+Math.sin(t*4+e.x)*2,rpgF(e.id)?.9:.6); else if(e.k==="lucha"||e.brilla) luz(ex,ey,30,.9); else if(e.k==="pers"||e.k==="santo") luz(ex,ey,20,.5); else if(rpgHostil(e)&&e.tel>0) luz(ex,ey,18,.5); });
@@ -11488,7 +11617,7 @@ RPG_MAPS.mz={n:"La Misa",tema:"templo",seco:1,ini:[4,11],dev:()=>{},
  t:["RRRRRRRRR","R.......R","R.......R","R.......R","R...P...R","RXXXPXXXR","R...P...R","RXXXPXXXR","R...P...R","RXXXPXXXR","R...P...R","R...P...R","RRRRPRRRR","RRRRRRRRR"],
  obj:()=>["Recorré la iglesia","1 de 5 · La pila de agua","2 de 5 · El ambón","3 de 5 · El altar","4 de 5 · La comunión","5 de 5 · La puerta"][mzEt()]||"",
  pista:()=>mzEt()?"Seguí el recorrido: mirá arriba a la derecha adónde ir.":"Acercate a cada cosa y tocá el botón para saber qué es.",
- capa:(c,t)=>{ if(!(RP.comFx>0)) return; RP.comFx-=1/60; const M=RPG_MAPS.mz, H=M.t.length*RT, py=RP.y*RT, cy=Math.round(Math.max(0,Math.min(H-RH,py+8-RH/2))), x=RP.x*RT+8, y=py-cy+6, a=Math.min(1,RP.comFx); const g=c.createRadialGradient(x,y,0,x,y,34); g.addColorStop(0,"rgba(255,246,210,"+(.75*a).toFixed(2)+")"); g.addColorStop(1,"rgba(255,246,210,0)"); c.fillStyle=g; c.fillRect(x-34,y-34,68,68); c.fillStyle="rgba(255,246,210,"+(.2*a).toFixed(2)+")"; c.beginPath(); c.moveTo(x-6,0); c.lineTo(x+6,0); c.lineTo(x+16,y); c.lineTo(x-16,y); c.fill(); },
+ capa:(c,t)=>{ if(!(RP.comFx>0)) return; RP.comFx-=1/60; const M=RPG_MAPS.mz, H=M.t.length*RT, py=RP.y*RT, cy=camY13(H,py), x=RP.x*RT+8, y=py-cy+6, a=Math.min(1,RP.comFx); const g=c.createRadialGradient(x,y,0,x,y,34); g.addColorStop(0,"rgba(255,246,210,"+(.75*a).toFixed(2)+")"); g.addColorStop(1,"rgba(255,246,210,0)"); c.fillStyle=g; c.fillRect(x-34,y-34,68,68); c.fillStyle="rgba(255,246,210,"+(.2*a).toFixed(2)+")"; c.beginPath(); c.moveTo(x-6,0); c.lineTo(x+6,0); c.lineTo(x+16,y); c.lineTo(x-16,y); c.fill(); },
  ents:[
   {id:"sagrario",k:"mueble",x:4,y:1,e:"El sagrario",fn:mzSagrario,dib:(c,sx,sy,t)=>{ const R=mzR(c,sx,sy); R("#5C3A18",7,-23,2,15); R("#5C3A18",3,-19,10,2); R("#EBDCC0",7,-19,2,6); R("#EBDCC0",5,-19,6,1); R("#C9C2B2",5,12,6,4); R("#8A5E10",3,0,10,13); R("#E3B341",4,1,8,11); R("#F8E3A0",4,1,8,2); R("#8A5E10",7,4,2,6); R("#8A5E10",6,6,4,1);
      const a=.55+.35*Math.sin(t*3); c.fillStyle="rgba(210,60,50,"+(a*.5).toFixed(2)+")"; c.beginPath(); c.arc(sx+17,sy+3,6,0,7); c.fill(); R("#8A5E10",16,-3,1,4); R("#C0392B",15,1,4,5); R("#FF8A7A",16,2,1,2); }},
@@ -12405,7 +12534,7 @@ function guiaObjetivo(){ try{ const H=hsHechos(); const sig=HS_CAPS.find(c=>!H.i
 function guiaEnMapa(){ const T=guiaObjetivo(); if(!T||!RP) return null; if(T.map===RP.map) return T; const orden=["w0","w1","w2"], a=orden.indexOf(RP.map), b=orden.indexOf(T.map); if(a<0||b<0) return null;
   if(b>a){ if(RP.map==="w0"){ const e=RPG_MAPS.w0.ents.find(x=>x.id==="puerta"); return e?{x:e.x,y:e.y,n:"La puerta del sur"}:null; } const e=RPG_MAPS.w1.ents.find(x=>x.id==="belen"); return e?{x:e.x+1,y:e.y,n:"El paso a Belén"}:null; }
   const s=rpgMapa().ents.find(x=>x.k==="salida"); return s?{x:s.x,y:s.y,n:"Volver"}:null; }
-function guiaFlecha(c,t){ try{ if(!RP||RP.cap!=="mundo"||RP.dlg||RP.bt) return; const T=guiaEnMapa(); if(!T) return; const M=rpgMapa(), W=M.t[0].length*RT, H=M.t.length*RT, px=(RP.x+(RP.mv?RP.mv.dx*RP.mv.p:0))*RT, py=(RP.y+(RP.mv?RP.mv.dy*RP.mv.p:0))*RT, cx=Math.round(Math.max(0,Math.min(W-RW,px+8-RW/2))), cy=Math.round(Math.max(0,Math.min(H-RH,py+8-RH/2)));
+function guiaFlecha(c,t){ try{ if(!RP||RP.cap!=="mundo"||RP.dlg||RP.bt) return; const T=guiaEnMapa(); if(!T) return; const M=rpgMapa(), W=M.t[0].length*RT, H=M.t.length*RT, px=(RP.x+(RP.mv?RP.mv.dx*RP.mv.p:0))*RT, py=(RP.y+(RP.mv?RP.mv.dy*RP.mv.p:0))*RT, cx=camX13(W,px), cy=camY13(H,py);
     const tx=T.x*RT+8-cx, ty=T.y*RT-cy, b=Math.sin(t*5)*2;
     if(tx>8&&tx<RW-8&&ty>20&&ty<RH-6){ c.fillStyle="#2B1A23"; c.beginPath(); c.moveTo(tx-5,ty-14+b); c.lineTo(tx+5,ty-14+b); c.lineTo(tx,ty-7+b); c.fill(); c.fillStyle="#F6D24A"; c.beginPath(); c.moveTo(tx-3,ty-13+b); c.lineTo(tx+3,ty-13+b); c.lineTo(tx,ty-9+b); c.fill(); return; }
     const ox=px+8-cx, oy=py+8-cy, ang=Math.atan2(ty-oy,tx-ox), m=14, ex=Math.max(m,Math.min(RW-m,ox+Math.cos(ang)*200)), ey=Math.max(m+14,Math.min(RH-m,oy+Math.sin(ang)*200));
@@ -12554,7 +12683,7 @@ function otroImg(p){ const a=(p.presence&&p.presence.a)||{}, n=v=>Math.max(0,Mat
   finally{ S.avatar=keep.av; S.skin=keep.sk; S.extra=keep.ex; S.mano=keep.ma; S.gorro=keep.go; if(tieneCl) S.clase=keep.cl; else delete S.clase; }
   return OTROS_IMG[key]=Y; }
 function otrosDib(c,t){ const pe=document.getElementById("rpgPe"), b1=document.getElementById("rpgSb1"), b2=document.getElementById("rpgSb2"); let n=0; if(!ROOM){ if(pe) pe.hidden=true; if(b1) b1.hidden=true; if(b2) b2.hidden=true; return; }
-  const M=rpgMapa(), W=M.t[0].length*RT, H=M.t.length*RT, px=(RP.x+(RP.mv?RP.mv.dx*RP.mv.p:0))*RT, py=(RP.y+(RP.mv?RP.mv.dy*RP.mv.p:0))*RT, cx=Math.round(Math.max(0,Math.min(W-RW,px+8-RW/2))), cy=Math.round(Math.max(0,Math.min(H-RH,py+8-RH/2))), ahora=Date.now();
+  const M=rpgMapa(), W=M.t[0].length*RT, H=M.t.length*RT, px=(RP.x+(RP.mv?RP.mv.dx*RP.mv.p:0))*RT, py=(RP.y+(RP.mv?RP.mv.dy*RP.mv.p:0))*RT, cx=camX13(W,px), cy=camY13(H,py), ahora=Date.now();
   (PEERS||[]).forEach(p=>{ if(p.sameTab||p.kind!=="viewer") return; const q=p.presence||{}; if(q.m!==RP.map||ahora-p.updatedAt>300000) return; const x=+q.x, y=+q.y; if(!isFinite(x)||!isFinite(y)) return; n++;
     const st=OTROS_POS[p.peer]||(OTROS_POS[p.peer]={x:x,y:y}); st.x+=(x-st.x)*.18; st.y+=(y-st.y)*.18;
     const sx=Math.round(st.x*RT-cx), sy=Math.round(st.y*RT-cy); if(sx<-20||sy<-30||sx>RW+20||sy>RH+20) return; const Y=otroImg(p);
@@ -12896,7 +13025,7 @@ setInterval(()=>{ try{ if(ROOM&&S&&S.tab==="inicio"&&!document.getElementById("r
 
 /* ── la luz del mundo sigue la hora del día ── */
 function mundoHora(){ const h=new Date().getHours()+new Date().getMinutes()/60; if(h>=21||h<5) return .42; if(h>=19.5) return .12+(h-19.5)/1.5*.3; if(h<6.5) return .42-(h-5)/1.5*.3; return 0; }
-function mundoCam(M){ const W=M.t[0].length*RT, H=M.t.length*RT, px=(RP.x+(RP.mv?RP.mv.dx*RP.mv.p:0))*RT, py=(RP.y+(RP.mv?RP.mv.dy*RP.mv.p:0))*RT; return [Math.round(Math.max(0,Math.min(W-RW,px+8-RW/2))),Math.round(Math.max(0,Math.min(H-RH,py+8-RH/2)))]; }
+function mundoCam(M){ const W=M.t[0].length*RT, H=M.t.length*RT, px=(RP.x+(RP.mv?RP.mv.dx*RP.mv.p:0))*RT, py=(RP.y+(RP.mv?RP.mv.dy*RP.mv.p:0))*RT; return [camX13(W,px),camY13(H,py)]; }
 ["w0","w1","w2"].forEach(id=>{ const M=RPG_MAPS[id]; if(!M) return; M.osc=()=>mundoHora();
   M.luces=(luz,t)=>{ const [cx,cy]=mundoCam(M); M.ents.forEach(e=>{ if(!["capilla","casa","tienda","lugar","lugarb","portal","portaljefe","pozo"].includes(e.k)) return; const w=(e.w||1)*RT, h=(e.h||1)*RT, x=e.x*RT+w/2-cx, y=e.y*RT+h/2-cy; if(x<-60||y<-60||x>RW+60||y>RH+60) return; luz(x,y,e.k==="casa"?26:e.k==="pozo"?14:34+Math.sin(t*2+e.x)*2,e.k==="casa"?.75:.85); }); }; });
 /* ── nubes que pasan y pájaros en el mundo ── */
@@ -16141,7 +16270,7 @@ herreriaHTML=function(){ if(!S.herreriaReg){ S.herreriaReg=1; if(!S.mat) S.mat={
 arenaRecom=function(id){ return ARMAS.filter(a=>a.contra.includes(id)); };
 /* el arma se ve en el golpe: su sprite gira en el tajo */
 { const _ad9c=rpgAccDib; rpgAccDib=function(c,t){ _ad9c(c,t); try{ if(!RP||RP.hpM===undefined||!(RP.sw>AC_SW-.2)) return; const a=armaPuesta(); if(!a) return; const cv=px9Cv(a.id); if(!cv) return;
-    const M=rpgMapa(), W=M.t[0].length*RT, H=M.t.length*RT, px=(RP.x+(RP.mv?RP.mv.dx*RP.mv.p:0))*RT, py=(RP.y+(RP.mv?RP.mv.dy*RP.mv.p:0))*RT, cx=Math.round(Math.max(0,Math.min(W-RW,px+8-RW/2))), cy=Math.round(Math.max(0,Math.min(H-RH,py+8-RH/2)));
+    const M=rpgMapa(), W=M.t[0].length*RT, H=M.t.length*RT, px=(RP.x+(RP.mv?RP.mv.dx*RP.mv.p:0))*RT, py=(RP.y+(RP.mv?RP.mv.dy*RP.mv.p:0))*RT, cx=camX13(W,px), cy=camY13(H,py);
     const k=(AC_SW-RP.sw)/.2, d={u:[0,-1],d:[0,1],l:[-1,0],r:[1,0]}[RP.swd||RP.dir]||[1,0], ang=Math.atan2(d[1],d[0])+(-.9+k*1.8);
     c.save(); c.translate(Math.round(px-cx+8+d[0]*7),Math.round(py-cy+8+d[1]*7)); c.rotate(ang+Math.PI/4); c.imageSmoothingEnabled=false; c.drawImage(cv,-2,-cv.height+2,cv.width*.72,cv.height*.72); c.restore(); }catch(e){} }; }
 
@@ -16208,7 +16337,7 @@ function hud9(c,t){ if(!RP||RP.hpM===undefined||RP.bt||RP.dlg&&RP.dlg.esc) { HUD
   try{ const cv=document.getElementById("rpgCv"); if(cv&&cv.clientWidth){ const px=Math.round(y*cv.clientWidth/RW); if(px!==HUD9_PX){ HUD9_PX=px; document.documentElement.style.setProperty("--hud9-h",px+"px"); } } }catch(e){} }
 { const _ho9=rpgHudObj; rpgHudObj=function(c,t){ _ho9(c,t); try{ hud9(c,t); }catch(e){ HUD9_B=0; } }; }
 /* el minimapa: debajo de la barra, y se esfuma si tu personaje o una sombra pasan por debajo (en plena pelea no se ve) */
-{ const _mm9=miniMapa; miniMapa=function(c,t){ if(!RP) return; try{ if(enPelea()) return; const dy=Math.max(0,(HUD9_B||17)-15), M=rpgMapa(), W=M.t[0].length*RT, H=M.t.length*RT, px=(RP.x+(RP.mv?RP.mv.dx*RP.mv.p:0))*RT, py=(RP.y+(RP.mv?RP.mv.dy*RP.mv.p:0))*RT, cx=Math.round(Math.max(0,Math.min(W-RW,px+8-RW/2))), cy=Math.round(Math.max(0,Math.min(H-RH,py+8-RH/2)));
+{ const _mm9=miniMapa; miniMapa=function(c,t){ if(!RP) return; try{ if(enPelea()) return; const dy=Math.max(0,(HUD9_B||17)-15), M=rpgMapa(), W=M.t[0].length*RT, H=M.t.length*RT, px=(RP.x+(RP.mv?RP.mv.dx*RP.mv.p:0))*RT, py=(RP.y+(RP.mv?RP.mv.dy*RP.mv.p:0))*RT, cx=camX13(W,px), cy=camY13(H,py);
     const x0=4, y0=17+dy, x1=48, y1=45+dy, dentro=(X,Y)=>X+14>x0&&X<x1&&Y+16>y0&&Y<y1; let tapa=dentro(px-cx,py-cy); if(!tapa) tapa=rpgHostiles().some(e=>e.px!==undefined&&e.hp>0&&dentro(e.px*RT-cx,e.py*RT-cy));
     c.save(); c.globalAlpha=tapa?.22:1; c.translate(0,dy); _mm9(c,t); c.restore(); }catch(e){ try{ c.restore(); }catch(x){} } }; }
 
@@ -18688,7 +18817,7 @@ async function gr12Pedir(op,arg){ const b=gr12Back(); if(!b) return {err:"El gre
   /* la base compartida de la página de Claude: un documento por gremio y uno por miembro (cada uno escribe solo el suyo) */
   try{ const G=c=>db.doc("gremios/"+c), M=(c,y)=>db.doc("gremios/"+c+"/m/"+y);
     const estado=async c=>{ const g=await G(c).get(); if(!g.exists) return {err:"No encontramos un gremio con ese código."}; const q=await db.collection("gremios/"+c+"/m").get(); const L=[]; let tot=0;
-      (q.docs||[]).forEach(d=>{ const x=d.data()||{}; const vale=x.mes===A.mes&&x.jefe===A.jefe; const dd=vale?(+x.d||0):0; tot+=dd; L.push({n:String(x.n||"").slice(0,24),d:dd,yo:d.id===yo}); });
+      (q.docs||[]).forEach(d=>{ const x=d.data()||{}; const vale=x.mes===A.mes&&x.jefe===A.jefe; const dd=vale?(+x.d||0):0; tot+=dd; L.push({n:String(x.n||"").slice(0,32),d:dd,yo:d.id===yo}); });
       return {ok:true,id:c,nombre:(g.data()||{}).n||"Gremio",miembros:L.sort((a,b)=>b.d-a.d),tot:tot}; };
     if(op==="crear"){ let c=gr12Cod(); for(let i=0;i<3;i++){ const g=await G(c).get(); if(!g.exists) break; c=gr12Cod(); } await G(c).set({n:String(arg).slice(0,24),creado:Date.now()}); await M(c,yo).set({n:gr12Nom(),mes:A.mes,jefe:A.jefe,d:A.d,t:Date.now()}); return estado(c); }
     if(op==="unir"){ const s=await estado(arg); if(s.err) return s; if(!s.miembros.some(m=>m.yo)&&s.miembros.length>=GR12_MAX) return {err:"Ese gremio ya tiene "+GR12_MAX+" miembros."}; await M(arg,yo).set({n:gr12Nom(),mes:A.mes,jefe:A.jefe,d:A.d,t:Date.now()}); return estado(arg); }
@@ -18750,7 +18879,7 @@ function gr12Card(){ const b=gr12Back(), V=jm12Vida(), J=jm12(), mio=J?J.mio:0;
      el casillero que vas a tocar se marca ───────── */
 
 /* ══ Historia ══ */
-const RZ12_DUR=7, RZ12_ESPERA=26;
+const RZ12_DUR=7, RZ12_ESPERA=45; /* v10.3: cada 45 s (antes 26) */
 function rpgComer12(){ if(!RP||RP.dlg||RP.bt||RP.fin) return; if(RP.hpM===undefined) rpgAccPrep(); if(RP.hp>=RP.hpM) return rpgBan("Estás con toda tu fuerza: guardá el pan para después.",2);
   if(RP.fe>0){ RP.fe--; const c=Math.round(RP.hpM*cbCura()); RP.hp=Math.min(RP.hpM,RP.hp+c); son("mas"); try{ rvSync(); }catch(e){} rpgBan("Comés un pedazo de pan: recuperás "+c+" de vida.",2.4); rpgAccBot(); return; }
   if(provN("pan")>0) return provUsar("pan"); if(provN("odre")>0) return provUsar("odre");
@@ -18762,10 +18891,10 @@ rpgRezarAcc=rpgComer12;
 /* mientras dura la oración, las sombras se alejan y no golpean */
 { const _tk12r=rpgAccTick; rpgAccTick=function(dt){ const r=_tk12r.apply(this,arguments); try{ if(!RP) return r; if(RP.rz12cd>0) RP.rz12cd=Math.max(0,RP.rz12cd-dt);
       if(RP.rz12>0){ RP.rz12=Math.max(0,RP.rz12-dt); RP.rz12t=(RP.rz12t||0)-dt; const mover=RP.rz12t<=0; if(mover) RP.rz12t=.3;
-        rpgHostiles().forEach(e=>{ if(e.hp===undefined||e.px===undefined) return; const d=Math.abs(e.px-RP.x)+Math.abs(e.py-RP.y); if(d>4) return; e.tel=0; e.cd=Math.max(e.cd||0,.6); if(e.k==="jefemes") return;
+        rpgHostiles().forEach(e=>{ if(e.hp===undefined||e.px===undefined) return; const d=Math.abs(e.px-RP.x)+Math.abs(e.py-RP.y); if(d>4) return; const jf=(RPG_ENE[e.s]&&RPG_ENE[e.s].jefe)||e.k==="jefe"||e.k==="guardian"||e.k==="jefemes"; if(jf){ if(RP.rz12>RZ12_DUR-1.2){ e.tel=0; e.cd=Math.max(e.cd||0,.5); } return; } e.tel=0; e.cd=Math.max(e.cd||0,.6);
           if(!mover) return; const op=[[Math.sign(e.px-RP.x)||1,0],[0,Math.sign(e.py-RP.y)||1]].sort(()=>Math.random()-.5);
           for(const o of op){ const nx=e.px+o[0], ny=e.py+o[1]; if(RSOL.includes(rpgTile(nx,ny))||(nx===RP.x&&ny===RP.y)||rpgEnts().some(q=>q!==e&&q.px===nx&&q.py===ny)) continue; e.px=nx; e.py=ny; break; } });
-        if(RP.cap==="jefemes"&&typeof JM11!=="undefined"){ JM11.cd=Math.max(JM11.cd,.8); JM11.tel=0; if(RP.eo) RP.eo=RP.eo.filter(o=>Math.hypot(o.x-RP.x-.5,o.y-RP.y-.5)>2.6); } }
+        if(RP.cap==="jefemes"&&typeof JM11!=="undefined"&&RP.rz12>RZ12_DUR-1.2){ JM11.cd=Math.max(JM11.cd,.8); JM11.tel=0; if(RP.eo) RP.eo=RP.eo.filter(o=>Math.hypot(o.x-RP.x-.5,o.y-RP.y-.5)>2.6); } }
       const b=document.getElementById("acRez"); if(b){ const q=RP.rz12cd>0?RP.rz12cd/RZ12_ESPERA:0; b.style.setProperty("--rz",String(q)); b.classList.toggle("espera",q>0); b.classList.toggle("activo",RP.rz12>0); } }catch(e){} return r; }; }
 { const _ad12r=rpgAccDib; rpgAccDib=function(c,t){ _ad12r.apply(this,arguments); try{ if(!RP||!(RP.rz12>0)) return; const M=rpgMapa(), [cx,cy]=mundoCam(M), [px,py]=lzCentro(), X=px*RT-cx, Y=py*RT-cy, a=Math.min(1,RP.rz12/1.2);
       c.save(); c.globalAlpha=.22*a+.08*Math.sin(t*6); c.fillStyle="#FFE9A8"; c.beginPath(); c.arc(X,Y,30+2*Math.sin(t*4),0,7); c.fill(); c.globalAlpha=.75*a; c.strokeStyle="#FFE38A"; c.lineWidth=1.5; c.beginPath(); c.arc(X,Y,34+2*Math.sin(t*4),0,7); c.stroke();
@@ -18852,12 +18981,10 @@ ACC.sv12Mapa=function(){ if(!SV) return; const ya=document.getElementById("sv12M
       document.getElementById("sv").appendChild(d); try{ document.getElementById("svTip").classList.remove("on"); }catch(e){}
       setTimeout(()=>{ try{ if(SV){ SV.E.t=.999; } }catch(e){} },2300);
       setTimeout(()=>{ d.classList.add("fin"); try{ if(SV){ SV.panel=null; } }catch(e){} setTimeout(()=>d.remove(),600); },3600); }catch(e){ errAnotar(e,"dormir"); } return r; }; }
-/* las grietas en lo que golpeás y el casillero que vas a tocar */
+/* las grietas en lo que golpeás (desde la 10.3, sv13Grietas en vat.js) y el casillero que vas a tocar */
 { const _sdb12=svDibujar; svDibujar=function(tt){ const r=_sdb12.apply(this,arguments); try{ const c=SV.c, K=SV.K, E=SV.E, RW=SV.RW, RH=SV.RH; c.setTransform(K,0,0,K,0,0);
       const px=(E.x+(SV.mv?SV.mv.dx*SV.mv.p:0))*16+8, py=(E.y+(SV.mv?SV.mv.dy*SV.mv.p:0))*16+8; let cx=Math.max(0,Math.min(SVW*16-RW,px-RW/2)), cy=Math.max(0,Math.min(SVH*16-RH,py-RH/2)); cx=Math.round(cx*K)/K; cy=Math.round(cy*K)/K;
-      Object.keys(SV.hit||{}).forEach(k=>{ const [x,y]=k.split(",").map(Number), D=SV_DUR[svTile(x,y)]; if(!D) return; const p=Math.min(1,SV.hit[k]/D[0]), X=x*16-cx, Y=y*16-cy; c.strokeStyle="rgba(30,18,10,.85)"; c.lineWidth=1; c.beginPath();
-        const L=[[8,8,3,2],[8,8,13,5],[8,8,5,13],[8,8,12,13],[3,2,1,6],[13,5,15,2],[5,13,2,15],[12,13,15,12]], n=Math.ceil(p*L.length); for(let i=0;i<n;i++){ const l=L[i]; c.moveTo(X+l[0]+.5,Y+l[1]+.5); c.lineTo(X+l[2]+.5,Y+l[3]+.5); } c.stroke();
-        c.fillStyle="rgba(255,255,255,.18)"; c.fillRect(X,Y+15,Math.round(16*p),1); });
+      sv13Grietas(c,cx,cy,tt);
       if(!SV.panel&&!SV.mv){ const [fx,fy]=svFrente(), C=svAcCtx(); if(C.k!=="nada"){ const X=fx*16-cx, Y=fy*16-cy, a=.45+.25*Math.sin(tt*6); c.strokeStyle="rgba(255,236,170,"+a.toFixed(2)+")"; c.lineWidth=1; c.strokeRect(X+.5,Y+.5,15,15); } }
       if(SV.rz12>0){ const X=px-cx, Y=py-cy, q=Math.min(1,SV.rz12/1.5); c.save(); c.globalAlpha=.16*q+.06*Math.sin(tt*5); c.fillStyle="#FFE9A8"; c.beginPath(); c.arc(X,Y,44,0,7); c.fill(); c.globalAlpha=.7*q; c.strokeStyle="#FFE38A"; c.beginPath(); c.arc(X,Y,48+2*Math.sin(tt*4),0,7); c.stroke(); c.restore(); } }catch(e){} return r; }; }
 
@@ -18936,7 +19063,7 @@ function sv13Pagina(){ const E=S.sv&&S.sv.seed?S.sv:null, M=(E&&E.metas12)||{}, 
     '<div class="sv13-et">'+et.map((x,i)=>{ const n=x.L.filter(m=>M[m.id]).length, todo=n===x.L.length; return '<span class="'+(todo?"ok":i===ci?"act":"")+'"><b>'+(todo?"✓":i+1)+'</b>'+esc(x.n)+'</span>'; }).join("")+'</div>'+
     '<p class="sv13-nota">Cada meta paga la primera vez que la cumplís. La última, llegar al día 40, trae un cofre.</p></div>';
   const tips=[["martillo","Golpeá","Árboles, rocas y arbustos. Con la herramienta justa —hacha, pico— rinde mucho más; se elige sola."],
-    ["pan","Comé","Curarte es comiendo: pan, dátiles o bayas. El hambre y la sed bajan solas."],
+    ["pan","Comé","Curarte es comiendo: con pan, dátiles o bayas en la mano, tocá el botón grande. Ojo con las bayas negras: envenenan."],
     ["cruz","Rezá","Las sombras se alejan un rato y no te atacan. Rezar no cura."],
     ["luna","Dormí","Con una cama, la noche pasa y amanece. Si caés, volvés a tu cama."]];
   try{ if(typeof PC13!=="undefined"&&PC13) tips.push(["teclado","En la compu","WASD o flechas para caminar. Espacio golpea, C come, R reza, E abre la mochila, M el mapa y 1 a 8 eligen lo que tenés en la mano."]); }catch(e){}
@@ -19085,6 +19212,511 @@ window.addEventListener("keydown",e=>{ if(!pc13Juego()) return; const k=e.key, d
   e.preventDefault(); e.stopImmediatePropagation(); PC13_K[d]=true; if(!PC13_RAF){ PC13_T=performance.now(); PC13_RAF=requestAnimationFrame(pc13Paso); } },true);
 window.addEventListener("keyup",e=>{ const k=e.key; if(k==="ArrowLeft"||k==="a"||k==="A") PC13_K.l=false; if(k==="ArrowRight"||k==="d"||k==="D") PC13_K.r=false; },true);
 window.addEventListener("blur",()=>{ PC13_K.l=PC13_K.r=false; });
+
+/* ───────── v10.3 · la Historia, más jugable (pedidos de Lorenzo del 19/10 a la tarde)
+   · El joystick no se traba más: se suelta aunque el dedo termine fuera de la zona, si se pierde la captura o si se van todos los dedos.
+   · Los mensajes ya no tapan el juego: carteles, avisos y la presentación de cada sala van a una columna chiquita al costado (`f13`).
+   · Sin minimapa, y las luces que ya tocaste desaparecen del camino.
+   · Las salas se cierran: con sombras adentro no hay «escapar»; para irte, una piedra de teletransporte (mochila). Con la mochila abierta
+     las sombras no atacan.
+   · Rezar aleja mucho a las sombras chicas y muy poco a los jefes, y se puede cada 45 s. La súper pega menos.
+   · Con un enemigo cerca, el botón grande dice siempre «Atacar», sea cual sea tu camino.
+   · Espacio y Enter: avanzan y cierran conversaciones; con opciones, las flechas eligen y Espacio confirma (también en «Subiste de nivel»).
+   · El querubín de la espada de fuego pelea con vos. Noé sin palabras escritas en su animación.
+   · Adán, Eva, Noé, Abel, Caín y el querubín con el mismo dibujo y la misma estatura que tu personaje (en el juego y en las escenas) ───────── */
+
+/* ── el joystick: nunca queda tomado ── */
+{ const soltar13=()=>{ try{ if(JOY.id!==null){ JOY.id=null; if(RP&&JOY.dir&&RP.hold===JOY.dir) RP.hold=null; JOY.dir=null; joyPintar(); } }catch(e){} };
+  let ult13=0; const marca=()=>{ ult13=performance.now(); };
+  document.addEventListener("pointerdown",e=>{ try{ const z=document.getElementById("joyZ"); if(!z||!z.contains(e.target)) return; if(JOY.id!==null&&JOY.id!==e.pointerId&&performance.now()-ult13>450) soltar13(); marca(); }catch(x){} },true);
+  document.addEventListener("pointermove",e=>{ try{ if(e.pointerId!==JOY.id) return; marca(); const z=document.getElementById("joyZ"); if(z&&z.contains(e.target)) return;
+      JOY.x=e.clientX; JOY.y=e.clientY; const dx=JOY.x-JOY.bx, dy=JOY.y-JOY.by, d=Math.hypot(dx,dy); if(d>11) JOY.mov=true; if(d>70){ const k=(d-70)/d; JOY.bx+=dx*k; JOY.by+=dy*k; } joyDir(JOY.x-JOY.bx,JOY.y-JOY.by,Math.hypot(JOY.x-JOY.bx,JOY.y-JOY.by)); joyPintar(); }catch(x){} },true);
+  ["pointerup","pointercancel"].forEach(t=>document.addEventListener(t,e=>{ if(e.pointerId===JOY.id) setTimeout(soltar13,0); },true));
+  document.addEventListener("lostpointercapture",e=>{ if(e.pointerId===JOY.id) setTimeout(()=>{ if(performance.now()-ult13>120) soltar13(); },140); },true);
+  document.addEventListener("touchend",e=>{ if(!e.touches||!e.touches.length) soltar13(); },true);
+  document.addEventListener("touchcancel",()=>soltar13(),true);
+  window.addEventListener("blur",soltar13); document.addEventListener("visibilitychange",()=>{ if(document.hidden) soltar13(); }); }
+
+/* ── los mensajes, al costado y chiquitos ── */
+let F13_ULT="";
+function feed13(txt,tit,seg){ try{ txt=String(txt||"").trim(); if(!txt) return; const k=(tit||"")+"|"+txt; if(k===F13_ULT&&document.querySelector('#f13 .f13-i:not(.va)')) return; F13_ULT=k;
+    let F=document.getElementById("f13"); if(!F){ F=document.createElement("div"); F.id="f13"; F.setAttribute("role","status"); F.setAttribute("aria-live","polite"); document.body.appendChild(F); }
+    const d=document.createElement("div"); d.className="f13-i"; d.innerHTML=(tit?'<b>'+esc(tit)+'</b>':'')+'<span>'+esc(txt)+'</span>'; F.appendChild(d);
+    const L=F.querySelectorAll(".f13-i:not(.va)"); if(L.length>(innerWidth<600?2:3)) L[0].remove();
+    const dur=Math.max(2.6,Math.min(7,seg||(2.4+txt.length/30)))*1000; setTimeout(()=>{ d.classList.add("va"); setTimeout(()=>d.remove(),420); },dur); }catch(e){} }
+function feed13Juego(){ try{ return !!(RP&&document.getElementById("rpgCv")&&S.tab==="juegos"); }catch(e){ return false; } }
+rpgBan=function(t,seg,quien){ if(!RP) return; RP.ban=null; feed13(t,quien,seg); };
+{ const _lc13=lugarCartel; lugarCartel=function(M,lineas){ try{ const L=(lineas||[]).map(String).filter(x=>x.trim()); if(L.length) feed13(L.join(" "),(M&&M.n)||"",Math.min(7,3+L.join(" ").length/34)); }catch(e){} }; }
+{ const _av13=avisar; avisar=function(txt){ if(feed13Juego()&&!(RP&&(RP.dlg||RP.bt))) return feed13(txt); return _av13.apply(this,arguments); }; }
+/* sin minimapa */
+miniMapa=function(){};
+
+/* ── las luces ya tocadas se van del camino ── */
+{ const _re13=rpgEnts; rpgEnts=function(){ const L=_re13.apply(this,arguments); try{ return L.filter(e=>!(e.k==="luz"&&!e.fn&&rpgF(e.id))&&!(e.k==="comida"&&rpgF(e.id))); }catch(x){ return L; } }; }
+
+/* ── las salas se cierran: nada de escapar; la piedra de teletransporte ── */
+escLibre=function(){ return false; };
+let ESC13=0;
+escPreguntar=function(d){ const n=Date.now(); if(n-ESC13<2200) return; ESC13=n; try{ RP.hold=null; RP.ruta=null; JOY.dir=null; }catch(e){}
+  feed13("Mientras haya sombras, las puertas están cerradas. Para irte, usá una piedra de teletransporte (en tu mochila).","Sala cerrada",4); try{ son("off"); }catch(e){} };
+function tp13N(){ return (S.tp13||0); }
+{ const _ir13=rpgIrA; rpgIrA=function(m){ try{ if(RP&&RP.map&&RP.map!==m&&!(rpgMapa().mini)){ RP.prev13={m:RP.map,x:(RP.px0!==undefined?RP.px0:RP.x),y:(RP.py0!==undefined?RP.py0:RP.y)}; } }catch(e){} return _ir13.apply(this,arguments); }; }
+function tp13Usar(){ if(!RP||RP.dlg||RP.bt||RP.fin) return; if(tp13N()<1) return feed13("No tenés piedras de teletransporte. Se compran en la Tienda (Equipo) y a veces aparecen en los tesoros.","Mochila");
+  const P=RP.prev13; if(!P||!RPG_MAPS[P.m]) return feed13("Desde acá no hay a dónde volver.","Piedra de teletransporte");
+  S.tp13--; guardar(); RP.mochila=false; PELEA_LIBRE++; try{ rpgIrA(P.m); RP.x=P.x; RP.y=P.y; RP.mv=null; RP.hold=null; } finally { PELEA_LIBRE--; }
+  try{ rpgChispas(RP.x,RP.y); son("nivel"); }catch(e){} rpgUI(); feed13("Volviste a la sala anterior.","Piedra de teletransporte",2.6); }
+ACC.tp13Usar=tp13Usar;
+ACC.tp13Comprar=function(){ if(S.talentos<TP13_C) return avisar("Te faltan "+(TP13_C-S.talentos)+" talentos."); S.talentos-=TP13_C; S.tp13=tp13N()+1; son("compra"); guardar(); pintar(); try{ cab(); }catch(e){} avisar("Piedra de teletransporte: guardada en tu mochila."); };
+const TP13_C=80;
+/* la primera vez que entrás a la Historia, una piedra de regalo; en los tesoros, a veces otra */
+{ const _ri13=rpgIniciar; rpgIniciar=function(cap){ const r=_ri13.apply(this,arguments); try{ if(!S.tp13ini){ S.tp13ini=1; S.tp13=tp13N()+1; guardar(); setTimeout(()=>feed13("Tenés una piedra de teletransporte en la mochila: te saca de una sala cerrada.","Regalo",5),2500); } }catch(e){} return r; }; }
+{ const _rt13=rpgTocar; rpgTocar=function(e){ const r=_rt13.apply(this,arguments); try{ if(e&&e.k==="cofre"&&Math.random()<.3){ S.tp13=tp13N()+1; guardar(); feed13("También había una piedra de teletransporte.","Tesoro",3); } }catch(x){} return r; }; }
+/* con sombras en la sala, las puertas se ven trabadas */
+{ const _ad13p=rpgAccDib; rpgAccDib=function(c,t){ _ad13p.apply(this,arguments); try{ if(!RP||!enPelea()) return; const M=rpgMapa(), [cx,cy]=mundoCam(M);
+    M.ents.forEach(s=>{ if(s.k!=="salida"||(s.vis&&!s.vis())) return; const X=s.x*RT-cx, Y=s.y*RT-cy; if(X<-16||Y<-16||X>RW||Y>RH) return; const a=.55+.2*Math.sin(t*5);
+      c.fillStyle="rgba(40,10,40,"+(a*.6).toFixed(2)+")"; c.fillRect(X,Y,16,16); c.fillStyle="rgba(200,120,255,"+a.toFixed(2)+")"; for(let i=2;i<16;i+=4) c.fillRect(X+i,Y+1,1,14); c.fillRect(X+1,Y+4,14,1); c.fillRect(X+1,Y+11,14,1); }); }catch(e){} }; }
+/* con la mochila abierta, todo espera */
+{ const _tk13m=rpgAccTick; rpgAccTick=function(dt){ if(RP&&RP.mochila) return; return _tk13m.apply(this,arguments); }; }
+
+/* ── rezar: fuerte con las sombras chicas, apenas un respiro con los jefes; cada 45 s ── */
+function jefe13(e){ try{ const E=RPG_ENE[e.s]||{}; return !!(E.jefe||e.k==="jefe"||e.k==="guardian"||e.k==="jefemes"); }catch(x){ return false; } }
+/* la súper, más medida */
+{ const _sp13=supPega; supPega=function(e,m,col){ return _sp13.call(this,e,(m||1)*(jefe13(e)?.45:.6),col); }; }
+
+/* ── «Atacar», siempre que haya un enemigo cerca ── */
+function pelea13(){ try{ if(!RP||RP.bt||RP.dlg||RP.fin||rpgMapa().mini) return null; let best=null, bd=99; rpgHostiles().forEach(e=>{ if(e.px===undefined||!(e.hp>0)||(e.nec&&!e.nec())) return; const d=Math.abs(e.px-RP.x)+Math.abs(e.py-RP.y); if(d<=6&&d<bd){ bd=d; best=e; } }); return best?{e:best,d:bd}:null; }catch(x){ return null; } }
+accArma=function(){ return {l:"Atacar",i:"espada"}; };
+{ const _cx13=accCtx; accCtx=function(){ const C=_cx13.apply(this,arguments); try{ if(!C) return C; const P=pelea13(); if(P){ const E=RPG_ENE[P.e.s]; return {k:"atk",l:"Atacar",e:P.d<=1?P.e:undefined,sub:(E&&E.n)||"Sombra"}; } }catch(e){} return C; }; }
+
+/* ── Espacio y las flechas en las conversaciones y en «Subiste de nivel» ── */
+let OP13=0;
+function op13Lista(){ const u=document.getElementById("rpgUI"); if(!u) return []; return [...u.querySelectorAll('[data-a="rpgOp"],[data-a="rpg"][data-p^="op"]')].filter(b=>b.offsetParent!==null); }
+function op13Marcar(L){ L.forEach((b,i)=>b.classList.toggle("sel13",i===OP13)); }
+document.addEventListener("keydown",e=>{ try{ const t=e.target; if(t&&(t.tagName==="INPUT"||t.tagName==="TEXTAREA"||t.isContentEditable)) return;
+    const k=e.key, her=document.getElementById("herOv");
+    if(her){ const B=[...her.querySelectorAll(".her-op")]; if(!B.length) return; if(["ArrowLeft","ArrowUp","ArrowRight","ArrowDown"].includes(k)){ e.preventDefault(); e.stopImmediatePropagation(); OP13=(OP13+(k==="ArrowLeft"||k==="ArrowUp"?-1:1)+B.length)%B.length; B.forEach((b,i)=>b.classList.toggle("sel13",i===OP13)); return; }
+      if(k===" "||k==="Enter"){ e.preventDefault(); e.stopImmediatePropagation(); if(!e.repeat) (B[OP13]||B[0]).click(); OP13=0; } return; }
+    if(!RP||!RP.dlg||RP.bt) return; const D=RP.dlg, conOps=D.ops&&D.i>=D.l.length-1; if(!conOps) return; const L=op13Lista(); if(!L.length) return;
+    if(["ArrowLeft","ArrowUp","ArrowRight","ArrowDown"].includes(k)){ e.preventDefault(); e.stopImmediatePropagation(); OP13=(OP13+(k==="ArrowLeft"||k==="ArrowUp"?-1:1)+L.length)%L.length; op13Marcar(L); return; }
+    if(k===" "||k==="Enter"){ e.preventDefault(); e.stopImmediatePropagation(); if(!e.repeat){ const b=L[Math.min(OP13,L.length-1)]; OP13=0; b.click(); } } }catch(x){} },true);
+{ const _ui13o=rpgUI; rpgUI=function(){ const r=_ui13o.apply(this,arguments); try{ if(RP&&RP.dlg&&RP.dlg.ops){ OP13=Math.min(OP13,9); const L=op13Lista(); if(L.length){ if(OP13>=L.length) OP13=0; op13Marcar(L); } } else OP13=0; }catch(e){} return r; }; }
+
+/* ── el querubín pelea con vos ── */
+{ const _tk13q=rpgAccTick; rpgAccTick=function(dt){ const r=_tk13q.apply(this,arguments); try{ if(!RP||RP.pausa) return r; const M=rpgMapa();
+    M.ents.forEach(q=>{ if(!q.espada||(q.vis&&!q.vis())) return; q.cd13=(q.cd13||1.5)-dt; if(q.cd13>0) return; const H=rpgHostiles().filter(e=>e.px!==undefined&&e.hp>0&&Math.abs(e.px-q.x)+Math.abs(e.py-q.y)<=3);
+      if(!H.length){ q.cd13=.4; return; } const e=H[0]; q.cd13=2.4; q.tajo13={x:e.px,y:e.py,t:.35}; const d=Math.max(1,Math.round(cbGolpe()*.9)); e.hp=Math.max(0,e.hp-d); e.hit=.25; e.visto=1;
+      RP.nums.push({x:e.px,y:e.py,t:String(d),l:0,c:"#FFB46A"}); try{ son("ok"); }catch(x){} if(e.hp<=0){ try{ rpgVencer(e); }catch(x){} } }); }catch(e){} return r; }; }
+{ const _ad13q=rpgAccDib; rpgAccDib=function(c,t){ _ad13q.apply(this,arguments); try{ if(!RP) return; const M=rpgMapa(), [cx,cy]=mundoCam(M); M.ents.forEach(q=>{ const T=q.tajo13; if(!T||T.t<=0) return; T.t-=1/60; const a=Math.max(0,T.t/.35), X=T.x*RT-cx+8, Y=T.y*RT-cy+8;
+      c.save(); c.globalAlpha=a; c.strokeStyle="#FFB43A"; c.lineWidth=3; c.beginPath(); c.arc(X,Y,10,-2.2,.4); c.stroke(); c.strokeStyle="#FFF2B8"; c.lineWidth=1; c.beginPath(); c.arc(X,Y,10,-2.2,.4); c.stroke(); c.restore(); }); }catch(e){} }; }
+
+/* ── Noé, sin palabras escritas en su animación ── */
+nTxt=function(){};
+
+/* ── Adán, Eva, Noé, Abel, Caín y el querubín: con el mismo dibujo y la misma estatura que vos ── */
+const HOJA13=["#6E9A54","#4E7A3A","#8EBA6E"], PIEL13=["#9A6A3E","#6E4A26","#BA8A5E"];
+Object.assign(NPCX,{
+ adan:{base:"habito",tela:HOJA13,pelo:"pelo1",peloCol:AV_PELO_COL[1],barba:1,piel:2},
+ eva:{sexo:1,base:"habito",tela:["#7EAA5E","#5A8A42","#9ECA7E"],pelo:"pelo2",peloCol:AV_PELO_COL[0],piel:2},
+ adan2:{base:"habito",tela:PIEL13,capa:["#7A5232","#57381E","#9A7252"],pelo:"pelo1",peloCol:AV_PELO_COL[1],barba:2,piel:2},
+ eva2:{sexo:1,base:"habito",tela:["#A87A4E","#7A5432","#C89A6E"],pelo:"pelo2",peloCol:AV_PELO_COL[0],piel:2},
+ noe:{base:"habito",tela:["#8A6A4A","#644A30","#A88A6A"],capa:["#4E6E94","#344E70","#6E8EB4"],pelo:"pelo1",peloCol:AV_PELO_COL[AV_PELO_COL.length-1],barba:3,piel:2,mano:"baston"},
+ abel:{base:"habito",tela:["#EDE4CE","#CFC4A8","#FFFBEE"],pelo:"pelo1",peloCol:AV_PELO_COL[1],piel:2,mano:"baston"},
+ cain:{base:"habito",tela:["#7A3A22","#5E2414","#9A5A40"],pelo:"pelo3",peloCol:AV_PELO_COL[0],barba:1,piel:3},
+ querubin:{base:"alba",tela:["#FFFDF4","#E6DCC0","#FFFFFF"],pelo:"pelo1",peloCol:["#F2CB62","#C9A23A","#FFE8A0"],piel:0}});
+const NPC13=new Set(["adan","eva","adan2","eva2","noe","abel","cain","querubin"]);
+let ALAS13=null;
+function alas13(){ if(ALAS13) return ALAS13; try{ ALAS13=rImg("alas13",alasURL(0)); }catch(e){ ALAS13=null; } return ALAS13; }
+{ const _dx13=rpgDibExtra; rpgDibExtra=function(c,e,sx,sy,t){ try{ if(e&&e.k==="npc"&&NPC13.has(e.s)){ if(e.s==="querubin"){ const A=alas13(); if(A&&A.complete&&A.naturalWidth){ c.globalAlpha=.95; c.drawImage(A,sx-8,sy-14+Math.round(Math.sin(t*3)),32,32); c.globalAlpha=1; } }
+        rpgDibPers(c,rNpc(e.s),sx,sy,t,e);
+        if(e.espada){ const f=.6+.4*Math.sin(t*9); c.fillStyle="rgba(255,150,60,"+(.35*f).toFixed(2)+")"; c.beginPath(); c.arc(sx+15,sy-2,6,0,7); c.fill(); c.fillStyle="#2B1A23"; c.fillRect(sx+13,sy-9,3,15); c.fillStyle="#FFB43A"; c.fillRect(sx+14,sy-8,1,10); c.fillStyle=f>.8?"#FFF2B8":"#FF7A3A"; c.fillRect(sx+14,sy-11,1,3); }
+        return true; } }catch(x){} return _dx13.apply(this,arguments); }; }
+{ const _ca13=cineActor; cineActor=function(c,a,i,t){ try{ const n=String(a[0]); if(NPC13.has(n)) return _ca13.call(this,c,["n:"+n].concat(a.slice(1)),i,t); }catch(e){} return _ca13.apply(this,arguments); }; }
+/* en cada escena, las personas con la misma estatura (la de tu personaje, si está) */
+{ const _dc13=rpgDibCine; rpgDibCine=function(c,t,dt){ try{ const D=RP&&RP.dlg, e=D&&D.esc&&D.esc[Math.min(D.i,D.esc.length-1)];
+    if(e&&e.a&&!e._h13){ e._h13=1; const hum=a=>{ const n=String(a[0]); return n==="yo"||n.indexOf("n:")===0||n.indexOf("s:")===0||NPC13.has(n); }, H=e.a.filter(hum).map(a=>a[3]).filter(x=>x>0);
+      if(H.length>1){ const yo=e.a.find(a=>a[0]==="yo"), ref=yo?yo[3]:H.slice().sort((x,y)=>x-y)[Math.floor(H.length/2)]; e.a=e.a.map(a=>hum(a)&&a[3]>0&&Math.abs(a[3]-ref)/ref>.12?[a[0],a[1],a[2],Math.round(ref*(a[3]<ref*.55?.6:1))].concat(a.slice(4)):a); } } }catch(x){} return _dc13.apply(this,arguments); }; }
+nNoe=function(c,x,y,h,flip,bob){ try{ const Y=rNpc("noe"), bb=rYoBB(Y); if(!bb||!Y.im.complete) return; const hh=h*.95, w=bb.w*hh/bb.h; c.save(); if(flip){ c.translate(x,0); c.scale(-1,1); c.drawImage(Y.im,bb.x,bb.y,bb.w,bb.h,-w/2,y-hh+(bob||0),w,hh); } else c.drawImage(Y.im,bb.x,bb.y,bb.w,bb.h,x-w/2,y-hh+(bob||0),w,hh); c.restore(); }catch(e){} };
+
+/* ───────── comer: solo lo que encontrás en el mapa o llevás en la mochila; si comés lo que no va, te envenenás ───────── */
+const COM13={
+ higos:{n:"Higos",cura:.25,col:"#6A3A5E",d:"Dulces y maduros."},
+ uvas:{n:"Uvas",cura:.2,col:"#7A4AA8",d:"Un racimo fresco."},
+ datiles:{n:"Dátiles",cura:.2,col:"#A8642A",d:"Del desierto, dan fuerza."},
+ pescado:{n:"Pescado asado",cura:.4,col:"#C9D2DC",d:"Como el de la orilla del lago."},
+ panal:{n:"Miel silvestre",cura:.3,col:"#E8B83A",d:"«Comió miel silvestre» (Mt 3, 4)."},
+ hongo:{n:"Hongo de pintas rojas",veneno:1,col:"#D23A2E",d:"Nunca viste uno así."},
+ bayasn:{n:"Bayas negras",veneno:1,col:"#2A1E3A",d:"Brillan demasiado."},
+ podrido:{n:"Fruta pasada",veneno:1,col:"#6E6A3A",d:"Tiene un olor raro."}};
+const COM13_BUENOS=["higos","uvas","datiles","pescado","panal"], COM13_MALOS=["hongo","bayasn","podrido"];
+function com13N(id){ return (S.com13&&S.com13[id])||0; }
+function com13Dar(id,n){ if(!S.com13) S.com13={}; S.com13[id]=Math.max(0,com13N(id)+(n||1)); guardar(); }
+function h13(s){ let h=2166136261; for(let i=0;i<s.length;i++){ h^=s.charCodeAt(i); h=Math.imul(h,16777619); } return (h>>>0)/4294967296; }
+function com13Sala(){ try{ if(!RP||!RP.cap) return false; if(["mundo","parroquia","arena","jefemes"].includes(RP.cap)) return false; const M=rpgMapa(); return !!(M&&!M.mini&&M.t&&M.t.length>4); }catch(e){ return false; } }
+function com13Poner(){ try{ if(!com13Sala()) return; const M=rpgMapa(); if(M._com13) return; M._com13=1; const id=RP.map, n=h13(id+"n")<.45?2:1, H=M.t.length, W=M.t[0].length, ocup=(x,y)=>M.ents.some(e=>{ const ex=e.x, ey=e.y; return x>=ex&&x<ex+(e.w||1)&&y>=ey&&y<ey+(e.h||1); });
+    for(let i=0;i<n;i++){ for(let k=0;k<40;k++){ const x=1+Math.floor(h13(id+"x"+i+"_"+k)*(W-2)), y=1+Math.floor(h13(id+"y"+i+"_"+k)*(H-2)); const ch=M.t[y]&&M.t[y][x];
+        if(!ch||RSOL.includes(ch)||ocup(x,y)) continue; if(M.ini&&Math.abs(M.ini[0]-x)+Math.abs(M.ini[1]-y)<2) continue;
+        const malo=h13(id+"m"+i)<.3, L=malo?COM13_MALOS:COM13_BUENOS, s=L[Math.floor(h13(id+"s"+i)*L.length)];
+        M.ents.push({id:"c13_"+id+"_"+i,k:"comida",x:x,y:y,s:s,e:COM13[s].n}); break; } } }catch(e){} }
+{ const _ir13c=rpgIrA; rpgIrA=function(m){ const r=_ir13c.apply(this,arguments); try{ com13Poner(); }catch(e){} return r; }; }
+{ const _ri13c=rpgIniciar; rpgIniciar=function(cap){ const r=_ri13c.apply(this,arguments); try{ com13Poner(); }catch(e){} return r; }; }
+/* no ocupa la casilla: se junta pasando por arriba */
+{ const _ee13=rpgEntEn; rpgEntEn=function(x,y){ const r=_ee13.apply(this,arguments); if(r&&r.k==="comida"){ try{ return rpgEnts().find(e=>e.k!=="comida"&&e.k!=="salida"&&x>=(e.px===undefined?e.x:e.px)&&x<(e.px===undefined?e.x:e.px)+(e.w||1)&&y>=(e.py===undefined?e.y:e.py)&&y<(e.py===undefined?e.y:e.py)+(e.h||1))||null; }catch(x){ return null; } } return r; }; }
+{ const _ll13=rpgLlegar; rpgLlegar=function(){ try{ const e=rpgMapa().ents.find(q=>q.k==="comida"&&q.x===RP.x&&q.y===RP.y&&!rpgF(q.id)); if(e){ RP.f[e.id]=1; com13Dar(e.s,1); try{ son("mas"); rpgChispas(e.x,e.y); }catch(x){} feed13(COM13[e.s].n+": a tu mochila.","Juntaste",2.4); try{ rpgGuardar(); }catch(x){} } }catch(x){} return _ll13.apply(this,arguments); }; }
+function com13Ico(s,px){ const C=COM13[s]||{col:"#C98A3A"}, P=px||2, R=(x,y,w,h,c)=>'<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="'+c+'"/>'; let r="";
+  if(s==="hongo") r=R(4,6,8,4,"#2B1A23")+R(5,7,6,3,"#D23A2E")+R(6,7,1,1,"#FFF")+R(9,8,1,1,"#FFF")+R(7,10,2,4,"#EFE6D2");
+  else if(s==="bayasn") r=R(5,7,3,3,"#2A1E3A")+R(8,8,3,3,"#2A1E3A")+R(6,10,3,3,"#2A1E3A")+R(6,8,1,1,"#9A8AC8")+R(9,9,1,1,"#9A8AC8")+R(8,5,1,3,"#3A6A3A");
+  else if(s==="podrido") r=R(5,6,7,7,"#6E6A3A")+R(6,7,2,2,"#4A4A22")+R(9,9,2,2,"#4A4A22")+R(8,4,1,3,"#4A3A22");
+  else if(s==="pescado") r=R(3,7,9,4,"#8A9AAE")+R(4,8,7,2,"#C9D2DC")+R(12,6,2,6,"#8A9AAE")+R(5,8,1,1,"#2B1A23");
+  else if(s==="panal") r=R(4,5,8,8,"#B8862A")+R(5,6,6,6,"#E8B83A")+R(6,7,2,2,"#FFE38A")+R(9,9,1,1,"#FFE38A");
+  else if(s==="uvas") r=R(6,4,1,2,"#3A6A3A")+R(5,6,2,2,C.col)+R(8,6,2,2,C.col)+R(6,8,2,2,C.col)+R(8,8,2,2,C.col)+R(7,10,2,2,C.col)+R(5,6,1,1,"#C9A8E8");
+  else if(s==="datiles") r=R(4,7,3,5,C.col)+R(7,6,3,6,"#8A4A1A")+R(10,7,3,5,C.col)+R(5,8,1,1,"#E8A86A");
+  else r=R(5,6,6,7,C.col)+R(7,4,1,2,"#3A6A3A")+R(6,7,2,2,"#9A6A8E");
+  return '<svg class="com13-ic" viewBox="0 0 16 16" width="'+(16*P)+'" height="'+(16*P)+'" shape-rendering="crispEdges" aria-hidden="true">'+r+'</svg>'; }
+const COM13_IMG={};
+function com13Img(s){ if(COM13_IMG[s]) return COM13_IMG[s]; const im=new Image(); im.src="data:image/svg+xml;utf8,"+encodeURIComponent(com13Ico(s,1).replace('<svg ','<svg xmlns="http://www.w3.org/2000/svg" ')); return COM13_IMG[s]=im; }
+{ const _dx13c=rpgDibExtra; rpgDibExtra=function(c,e,sx,sy,t){ if(e&&e.k==="comida"){ try{ const im=com13Img(e.s), b=Math.round(Math.sin(t*3+e.x)*1.2); c.fillStyle="rgba(0,0,0,.22)"; c.beginPath(); c.ellipse(sx+8,sy+13,4,1.5,0,0,7); c.fill();
+      c.fillStyle="rgba(255,240,190,"+(.18+.12*Math.sin(t*4+e.y)).toFixed(2)+")"; c.beginPath(); c.arc(sx+8,sy+8+b,7,0,7); c.fill(); if(im.complete&&im.naturalWidth) c.drawImage(im,sx,sy+b,16,16); }catch(x){} return true; } return _dx13c.apply(this,arguments); }; }
+/* comer y el veneno */
+function comer13(id){ if(!RP||RP.dlg||RP.bt||RP.fin) return; if(RP.hpM===undefined) rpgAccPrep(); const C=COM13[id]; if(!C||com13N(id)<1) return;
+  if(!C.veneno&&RP.hp>=RP.hpM) return feed13("Estás con toda tu fuerza: guardalo para después.","Mochila",2);
+  com13Dar(id,-1); RP.mochila=false;
+  if(C.veneno){ RP.ven13=6; RP.ven13t=1.2; try{ son("off"); }catch(e){} rpgUI(); feed13("¡Te cayó mal! Estás envenenado un rato: no comas lo que no conocés.",C.n,4.5); return; }
+  const c=Math.max(1,Math.round(RP.hpM*C.cura)); RP.hp=Math.min(RP.hpM,RP.hp+c); try{ rvSync(); }catch(e){} try{ son("mas"); rpgChispas(RP.x,RP.y); }catch(e){} RP.nums.push({x:RP.x,y:RP.y,t:"+"+c,l:0,c:"#9FE0A8"}); rpgUI(); feed13("Recuperás "+c+" de vida.",C.n,2.4); }
+ACC.comer13=function(id){ comer13(String(id)); };
+{ const _tk13v=rpgAccTick; rpgAccTick=function(dt){ const r=_tk13v.apply(this,arguments); try{ if(RP&&RP.ven13>0&&!RP.pausa){ RP.ven13t-=dt; if(RP.ven13t<=0){ RP.ven13t=1.2; RP.ven13--; const d=Math.max(1,Math.round(RP.hpM*.04)); if(RP.hp>1){ RP.hp=Math.max(1,RP.hp-d); RP.nums.push({x:RP.x,y:RP.y,t:"-"+d,l:0,c:"#8ADB5A"}); try{ rvSync(); }catch(e){} } if(RP.ven13<=0) feed13("Se te pasó el malestar.","Veneno",2.2); } } }catch(e){} return r; }; }
+{ const _ad13v=rpgAccDib; rpgAccDib=function(c,t){ _ad13v.apply(this,arguments); try{ if(RP&&RP.ven13>0){ c.fillStyle="rgba(110,200,70,"+(.08+.05*Math.sin(t*4)).toFixed(3)+")"; c.fillRect(0,0,RW,RH); } }catch(e){} }; }
+/* el botón «Comer» ya no está en la pantalla: se come desde la mochila (o con la tecla C, lo mejor que tengas) */
+rpgComer12=function(){ if(!RP) return; if(RP.hpM===undefined) rpgAccPrep(); const id=COM13_BUENOS.slice().sort((a,b)=>COM13[b].cura-COM13[a].cura).find(k=>com13N(k)>0);
+  if(id) return comer13(id); if(provN("pan")>0) return provUsar("pan"); if(provN("odre")>0) return provUsar("odre"); feed13("No tenés nada para comer. Buscá comida en el camino (¡ojo con lo que no conocés!) o comprá pan en la Tienda.","Mochila",4); };
+{ const _au13=rpgAccUI; rpgAccUI=function(u){ const r=_au13.apply(this,arguments); try{ document.querySelectorAll("#acCom").forEach(x=>x.remove()); }catch(e){} return r; }; }
+/* la mochila: comida, provisiones, pociones, la piedra y tu arma */
+{ const _mo13=inmMochiHTML; inmMochiHTML=function(){ let o=_mo13.apply(this,arguments); try{
+    const tienen=Object.keys(COM13).filter(k=>com13N(k)>0);
+    const com='<p class="mo-sec">Para comer</p>'+(tienen.length?tienen.map(k=>{ const C=COM13[k]; return '<div class="mo-f">'+com13Ico(k,2)+'<span><b>'+esc(C.n)+'</b><small>Tenés '+com13N(k)+' · '+esc(C.d)+(C.veneno?"":' · +'+Math.round(C.cura*100)+' % de vida')+'</small></span><button class="mochi-u" data-a="comer13" data-p="'+k+'">Comer</button></div>'; }).join(""):'<p class="mo-nota">Nada todavía: buscá comida por el camino. Lo que no conocés, mejor no lo comas.</p>');
+    const tp='<p class="mo-sec">Para salir de una sala</p><div class="mo-f"><span class="tp13-ic" aria-hidden="true"></span><span><b>Piedra de teletransporte</b><small>Tenés '+tp13N()+' · te lleva a la sala anterior, aunque esté cerrada</small></span><button class="mochi-u" data-a="tp13Usar"'+(tp13N()?"":" disabled")+'>Usar</button></div>';
+    o=o.replace('<p class="mo-sec">Para curarte</p>',com+'<p class="mo-sec">Provisiones</p>'); const k=o.indexOf('<p class="mo-sec">Pociones</p>'); o=k>=0?o.slice(0,k)+tp+o.slice(k):o; }catch(e){} return o; }; }
+/* en la Tienda (Equipo, provisiones): la piedra */
+{ const _ph13=provHTML; provHTML=function(){ let o=_ph13.apply(this,arguments); try{ const fila='<div class="item prov-it"><span class="tp13-ic grande" aria-hidden="true"></span><div class="item-b"><div class="item-n">Piedra de teletransporte <span class="pill">Tenés '+tp13N()+'</span></div><div class="item-d">Las salas se cierran mientras haya sombras: con esta piedra volvés a la sala anterior.</div></div><div class="item-a"><button class="btn sm'+(S.talentos>=TP13_C?" pri":"")+'" data-a="tp13Comprar"><i class="moneda"></i> '+TP13_C+'</button></div></div>';
+    o=o.replace("En los capítulos la vida no se llena sola y tenés solo tres oraciones. Llevá algo en la mochila.","En los capítulos la vida no se llena sola: te curás comiendo lo que encontrás en el camino o lo que llevás en la mochila."); const k=o.lastIndexOf("</div>"); o=o.slice(0,k)+fila+o.slice(k); }catch(e){} return o; }; }
+
+/* ───────── v10.3 · la Historia a pantalla completa en horizontal y en la compu (Lorenzo: «el juego solo está pensado para jugarlo en
+   vertical»; «podemos agrandar la pantalla para la versión en ordenador»; «el modo supervivencia se ve muy bien, tomalo de referencia»).
+   · Con la pantalla acostada (teléfono, tablet o compu), el dibujo ocupa todo el ancho: la sala queda en el medio, de alto completo, y a
+     los costados sigue el lugar (las paredes y el suelo del borde, que se van oscureciendo). Los controles y los mensajes van sobre esos
+     costados, sin tapar la sala, como en Supervivencia.
+   · La cámara centra la sala cuando la pantalla es más ancha que ella (`camX13`/`camY13`, que reemplazan la cuenta de siempre en
+     `parches.py`, paso 22) ───────── */
+function camX13(W,px){ if(W<=RW) return Math.round((W-RW)/2); return Math.round(Math.max(0, Math.min(W-RW, px+8-RW/2))); }
+function camY13(H,py){ if(H<=RH) return Math.round((H-RH)/2); return Math.round(Math.max(0, Math.min(H-RH, py+8-RH/2))); }
+let ANCHO13=false;
+function ancho13Ok(MM){ try{ if(!INM||!RP) return false; if(RP.bt||(RP.dlg&&RP.dlg.esc)||MM.mini) return false; const C=inmCaja(); return !C.port; }catch(e){ return false; } }
+{ const _md13=rpgModo; rpgModo=function(cv,MM){ if(!ancho13Ok(MM)){ if(ANCHO13){ ANCHO13=false; INM_K=""; document.documentElement.classList.remove("inm-ancho13"); } return _md13.apply(this,arguments); }
+    const mw=MM.t[0].length, mh=MM.t.length, k=["a13",innerWidth,innerHeight,mw,mh,RK_MAX].join("|");
+    if(k!==INM_K||!INM_C){ INM_K=k; const C=inmCaja(), filas=mh<=12?12:Math.min(mh,14); let T=Math.max(18,Math.min(96,C.ah/filas)); const w=Math.max(9,Math.min(44,Math.floor((C.vw-C.sa.l-C.sa.r)/T)));
+      INM_C={C:C,w:w,h:filas,md:"w",T:T,K:rkElegir(T)}; RPG_AJ=""; }
+    if(!ANCHO13){ ANCHO13=true; document.documentElement.classList.add("inm-ancho13"); ayu13Pronto(); }
+    const I=INM_C; RK=I.K;
+    if(!(RVW===I.w&&RVH===I.h&&cv.width===I.w*RT*RK&&cv.height===I.h*RT*RK&&cv.dataset.modo===I.md)){ RVW=I.w; RVH=I.h; RW=RT*I.w; RH=RT*I.h; cv.width=RW*RK; cv.height=RH*RK; cv.dataset.modo=I.md; try{ cv.getContext("2d")._dep=0; }catch(e){} RPG_AJ=""; }
+    rpgAjustar(cv); }; }
+/* afuera de la sala: el borde de la sala que sigue, cada vez más oscuro */
+{ const _td13=rpgTileDib; rpgTileDib=function(c,ch,x,y,sx,sy,et,t){ if(ch==="#"){ try{ const M=rpgMapa(), W=M.t[0].length, H=M.t.length; if(x<0||y<0||x>=W||y>=H){
+        const cx=Math.max(0,Math.min(W-1,x)), cy=Math.max(0,Math.min(H-1,y)); let ch2=M.t[cy][cx]; if(!ch2||ch2==="#") ch2=null;
+        const d=Math.max(cx-x,x-cx,cy-y,y-cy);
+        if(ch2){ _td13.call(this,c,ch2,x,y,sx,sy,et,t); c.fillStyle="rgba(6,10,20,"+Math.min(.9,.42+d*.11).toFixed(2)+")"; c.fillRect(sx,sy,16,16); }
+        else { c.fillStyle="#070B14"; c.fillRect(sx,sy,16,16); }
+        return; } }catch(e){} }
+    return _td13.apply(this,arguments); }; }
+/* la ayuda del teclado: en la compu, sobre el costado izquierdo, y se esconde con H */
+let AYU13=1, AYU13_MAN=false, AYU13_TM=0;
+/* la ayuda se ve al entrar y a los 15 segundos se achica sola (con H vuelve) */
+function ayu13Pronto(){ if(AYU13_MAN) return; clearTimeout(AYU13_TM); AYU13=1; document.documentElement.classList.remove("ayu13-off"); AYU13_TM=setTimeout(()=>{ if(AYU13_MAN) return; AYU13=0; document.documentElement.classList.add("ayu13-off"); },15000); }
+document.addEventListener("keydown",e=>{ try{ if(!RP||!document.getElementById("rpgCv")) return; const t=e.target; if(t&&(t.tagName==="INPUT"||t.tagName==="TEXTAREA")) return; if(e.key==="h"||e.key==="H"){ AYU13_MAN=true; clearTimeout(AYU13_TM); AYU13=AYU13?0:1; document.documentElement.classList.toggle("ayu13-off",!AYU13); } }catch(x){} });
+
+/* ───────── v10.3 · el arte: enemigos nuevos, el equipo según tu camino y el caballero de espaldas
+   · Enemigos (Lorenzo: «cambiemos el diseño de los enemigos»; «fantasmas que no ocupan ninguna función»): las sombras eran fantasmas
+     iguales con otro color. Ahora cada tentación tiene su figura: la Vergüenza se tapa la cara con las manos, el Miedo es una bestia
+     erizada de ojos enormes, la Envidia un duende verde que agarra, la Burla un bufón, la Violencia un bruto con garrote, la Pereza una
+     babosa con gorro de dormir, la Distracción tiene una pantalla por cabeza y la Soledad camina encorvada con un farol. Las demás que
+     usaban la sombra (Incredulidad, Olvido…) toman la figura de la Vergüenza con sus colores. Las genera herramientas/ene13.py.
+   · El equipo según el camino (Lorenzo: «compré mi armadura, soy predicador y me veo como un caballero»): la Armadura de Dios da lo mismo
+     en la pelea, pero solo el guerrero se ve de caballero. El predicador lleva el escapulario blanco con la cruz, el cordón y sandalias; el
+     monje, el escapulario oscuro, el cordón y sandalias; el peregrino, un chaleco de cuero. Ellos no llevan yelmo, ni espada ni escudo a la
+     vista (el peregrino conserva un escudo chico).
+   · El caballero de espaldas: la cúpula del yelmo, el cubrenuca en láminas y la nuca; sin el hueco de la cara ni la hebilla del cinturón ───────── */
+const RSPR13={"sombra":["................","......dddd......",".....ddlldd.....","....dddllddd....","...dddKKKKddd...","...ddKKKKKKdd...","..dddKeKKKKddd..","..ddallaallaadd.","..ddaaaaaaaaadd.","..dddaaaaaaaddd.","..ddddDddddDddd.",".dddddDddddDdddd",".ddddDdddddDdddd",".DdddDddddddDddD",".DDdDDddDDdDDdDD","..DD.DD..DD.DD.."],"sombra2":["...d...d..d.....","...dd.ddd.dd..d.","..dddddddddddd..",".dddddddddddddd.",".ddwwwddddwwwdd.",".dwwKwwddwwKwwd.",".ddwwwddddwwwdd.",".dddddddddddddd.","ddddKwKwKwKwdddd","dddddKKKKKKddddd",".DddddddddddddD.",".DDddddddddddDD.","..DDdDDdDDdDDD..","..wD.wD..Dw.Dw..","..w..w....w..w..","................"],"envidia13":["................","a..............a","aa...dddddd...aa",".aa.dddddddd.aa.","..adddddddddda..","...ddeeddeedd...","...ddKeddKedd...","...dddddddddd...","....dwKwKwKwd...",".....dddddd.....","...DddddddddD.l.","..DdDddddddDddll","..DdDddddddD.dl.","...DDddddddD....","....dD....Dd....","...DD......DD..."],"burla13":["a............a..","bb..........bb..",".bbb......bbb...","..bbbbbbbbbb....","..bcbcbcbcbc....","..dddddddddd....",".dddwwddwwddd...",".dddKwddKwddd...",".ddwwwwwwwwdd...",".ddwKwKwKwKdd...","..ddwwwwwwdd....","..bbddddddbb.l..",".bbbbbbbbbbbbll.",".bcbcbcbcbcbc...","..dd......dd....",".ddd......ddd..."],"violencia13":["............cc..","...h......h.ccc.","...hh....hh.ccc.","....hdddddh..cc.","...dddddddddd.c.","..ddKKddddKKddc.","..dddwedddewdlc.","..dddddddddddl..","..ddKwwwwwwKdd..","...ddKKKKKKdd...",".DddddddddddddD.","DddDddddddddDddD","lddDddddddddDddl","...DddddddddD...","...DddD..DddD...","..DDDD....DDDD.."],"pereza13":["................",".........aaab...","........aaaa.b..",".......aaaaa....","......dddddddd..",".....dddddddddd.","....ddKKddddKKd.","....ddwwddddwwd.","...ddddddddddddd","...dddddKKKddddd","..ddddddddddddd.",".DddddddddddddD.","DDddddddddddddDD","DDDDddddddddDDDD",".DDDDDDDDDDDDDD.","................"],"distraccion13":["..w..........w..",".www........www.","..w.KKKKKKKK.w..","....KllllllKa...","....KlwKlwKKaa..","....KlllllllKa..","....KlKwwwKlK...","....KlllllllK...","....KllaalllK...","....KKKKKKKKK...",".....dddddd.....","...dddddddddd...","..dd.dddddd.dd..",".....dd..dd.....","....dd....dd....","................"],"soledad":["................",".....dddd.......","....dddddd......","...ddKKKKdd.....","...dKeKKeKd.....","...dKKKKKKd.....","...ddKKKKdd.....","..dddddddddd....","..ddddDddddd.c..",".ddddDdddddlcac.",".dddDdddddd.cac.",".dddDddddddd.c..",".DddDdddddddd...",".DDdDDddddDdd...","..DDDDDDDDDDD...","................"]};
+const RPAL13={"sombra":{"d":"#5A3E78","D":"#3A2652","l":"#7A5E98","K":"#160E22","e":"#FFE38A","a":"#E8C4B4","w":"#FFFFFF"},"sombra2":{"d":"#2A3E5E","D":"#18263C","l":"#4A6488","w":"#F4F6FF","K":"#0E1422","e":"#FFE38A"},"envidia13":{"d":"#3E8A4E","D":"#245A32","l":"#7ACB5A","e":"#F6E04A","K":"#10200E","w":"#FFFFFF","a":"#2E6A3A"},"burla13":{"d":"#B8863A","D":"#7A5A22","l":"#F4D27A","w":"#FFFFFF","K":"#2B1A12","a":"#F6D24A","b":"#7A2A8A","c":"#E3B341"},"violencia13":{"d":"#A8322E","D":"#6E1A18","l":"#E07A5E","w":"#FFE0A0","e":"#FFE38A","K":"#2A0A0A","h":"#E8DCC8","c":"#7A4A22"},"pereza13":{"d":"#7A7A8E","D":"#55556A","l":"#A8A8BC","K":"#2A2A36","w":"#D8D8E8","a":"#5A6EB0","b":"#F4F0E0"},"distraccion13":{"d":"#2A5A7A","D":"#1A3A52","l":"#7FE8FF","K":"#0E1A26","w":"#FFFFFF","a":"#FF4A5A"},"soledad":{"d":"#8A90A8","D":"#5E6478","l":"#B8BED2","K":"#1E2232","e":"#9AD8FF","c":"#3A3242","a":"#F6D27A"}};
+const SPR13E={"tab13":{"x":27,"y":24,"r":["...KK......KK...","..KcCK....KCcK..","..KccCKKKKCccK..","..KcccccccccCK..","..KwccccccccCK..","..KwccccccccCK..","..KwccccccccCK..","..KwccccccccCK..","..KwccccccccCK..","..KwccccccccCK..","..KwccccccccCK..","..KwccccccccCK..","..KwccccccccCK..","..KwccccccccCK..","..KwccccccccCK..","..KCCCCCCCCCCK..","...KKKKKKKKKK..."]},"tab13x":{"x":31,"y":28,"r":["...gg...","...gg...",".gggggg.",".gggggg.","...gg...","...gg...","...gg..."]},"chal13":{"x":23,"y":25,"r":["..KKKK........KKKK....",".KcccCK......KCcccK...","KwcccCK......KCcccCK..","KwccccK......KccccCK..","KwccccKg....gKccccCK..","KwccccK......KccccCK..","KwccccKg....gKccccCK..","KwccccK......KccccCK..","KwccccKg....gKccccCK..","KwccccK......KccccCK..","KCCCCCK......KCCCCCK..",".KKKKK........KKKKK..."]},"cord13":{"x":26,"y":33,"r":["KKKKKKKKKKKKKKKK","KwwwwwwwwwwwwwwK","KKKKKKKKKwKKKKKK","........KwK.....","........KwK.....","........KwwK....","........KKK....."]},"sand13":{"x":25,"y":42,"r":[".KUsUsUK..KUsUsUK.",".KsUsUsK..KsUsUsK.","KsUsUsUsKKsUsUsUsK","KUUUUUUUKKUUUUUUUK",".KKKKKKK..KKKKKKK."]}};
+Object.assign(RSPR,{sombra:RSPR13.sombra,sombra2:RSPR13.sombra2,soledad:RSPR13.soledad,envidia13:RSPR13.envidia13,burla13:RSPR13.burla13,violencia13:RSPR13.violencia13,pereza13:RSPR13.pereza13,distraccion13:RSPR13.distraccion13});
+Object.assign(RPAL,{sombra:RPAL13.sombra,sombra2:RPAL13.sombra2,soledad:RPAL13.soledad,envidia13:RPAL13.envidia13,burla13:RPAL13.burla13,violencia13:RPAL13.violencia13,pereza13:RPAL13.pereza13,distraccion13:RPAL13.distraccion13});
+[["envidia","envidia13"],["burla","burla13"],["violencia","violencia13"],["pereza","pereza13"],["distraccion","distraccion13"]].forEach(([k,s])=>{ if(RPG_ENE[k]){ RPG_ENE[k].spr=s; RPG_ENE[k].pal=s; } });
+/* las variantes de color de la sombra: completar las letras nuevas a partir de su color */
+function col13(h,k){ try{ const n=parseInt(h.slice(1),16); let r=n>>16,g=(n>>8)&255,b=n&255; const f=v=>Math.max(0,Math.min(255,Math.round(k<0?v*(1+k):v+(255-v)*k))); return "#"+[f(r),f(g),f(b)].map(v=>v.toString(16).padStart(2,"0")).join(""); }catch(e){ return h; } }
+Object.keys(RPAL).forEach(k=>{ const P=RPAL[k]; if(!/^(sx_|sombra[3-7]$)/.test(k)||!P||!P.d) return; if(!P.D) P.D=col13(P.d,-.38); if(!P.l) P.l=col13(P.d,.22); if(!P.K||P.K==="#2B1A23") P.K="#140C1C"; if(!P.e) P.e="#FFE38A"; if(!P.a) P.a="#E8C4B4"; });
+Object.keys(RSC).forEach(k=>{ delete RSC[k]; });
+
+/* ── el equipo según tu camino ── */
+Object.assign(SPR,SPR13E);
+try{ PJ_FRENTE.add("tab13x"); }catch(e){}
+const EQ13_PAL={predicador:{c:"#F4F1EA",C:"#CFC8B8",w:"#FFFFFF"},monje:{c:"#3A2A22",C:"#261A14",w:"#56443A"},peregrino:{c:"#8A5A2B",C:"#64401E",w:"#A8763E",g:"#E4C08C"}};
+const EQ13_CRUZ={predicador:{g:"#26262E"},monje:{g:"#E3B341"}};
+const EQ13_SACA={predicador:["yelmo","espada","escudo"],monje:["yelmo","espada","escudo"],peregrino:["yelmo","espada"]};
+function eq13Cls(){ try{ return cbCls()||""; }catch(e){ return ""; } }
+{ const _ec13=eqCapa; eqCapa=function(k){ const c=eq13Cls(); if(EQ13_SACA[c]){ if(k==="coraza") return [c==="peregrino"?"chal13":"tab13",EQ13_PAL[c]]; if(k==="cinturon"&&c!=="peregrino") return ["cord13",{w:"#EFE6D2"}]; if(k==="calzado"&&c!=="peregrino") return ["sand13",{U:"#7A4A22"}]; if(k==="escudo"&&c==="peregrino") return "escudo1"; } return _ec13.apply(this,arguments); }; }
+{ const _cp13=capas; capas=function(Lk,a,conEq){ const c=eq13Cls(), saca=conEq&&EQ13_SACA[c]; if(!saca||!S||!Array.isArray(S.equipo)) return _cp13.apply(this,arguments);
+    const eq0=S.equipo; let L; try{ S.equipo=eq0.filter(x=>!saca.includes(x)); L=_cp13.apply(this,arguments); } finally { S.equipo=eq0; }
+    try{ if(EQ13_CRUZ[c]){ const i=L.findIndex(it=>Array.isArray(it)&&it[0]==="tab13"); if(i>=0) L.splice(i+1,0,["tab13x",EQ13_CRUZ[c]]); } }catch(e){} return L; }; }
+/* ── el caballero de espaldas: la cúpula del yelmo, el cubrenuca en láminas y, debajo, la nuca (antes el metal tapaba toda la
+   cabeza y el hueco de la cara dejaba una «cara» rara) ── */
+{ const _pe13=pjEspalda; pjEspalda=function(F,lista){ const r=_pe13.apply(this,arguments); try{ const W=F.W, x0=22+F.dx, x1=45+F.dx;
+    const yi=F.noms.findIndex(n=>!!n&&/^yelmo/.test(n));
+    if(yi>=0){ const enM=(x,y)=>{ if(y<0||y>23||!pjHay(F,x,y)) return false; const n=pjCapaEn(F,x,y); return n===F.noms[yi]||n==="base"||n==="base_f"; };
+      const Py=F.pals[yi]||F.base, B=F.base; let kol=null; for(let y=0;y<6&&!kol;y++) for(let x=x0-4;x<=x1+4;x++) if(pjCapaEn(F,x,y)===F.noms[yi]){ kol=pjCol(F,x,y); break; }
+      kol=kol||"#1B1F2A"; const m=Py.m||"#A9AFB8", M=Py.M||"#7D8590", N=Py.N||"#D4D9E0", ks=B.k||"#7A4A3A";
+      for(let y=13;y<=23;y++){ let a=99,b=-1; for(let x=x0-5;x<=x1+5;x++) if(enM(x,y)){ if(x<a)a=x; if(x>b)b=x; } if(b<0) continue;
+        for(let x=a;x<=b;x++){ if(!enM(x,y)) continue; const borde=!enM(x-1,y)||!enM(x+1,y);
+          if(y<=18){ if(borde){ pjPon(F,x,y,kol); continue; } const linea=(y-13)%3===2, cresta=pjCapaEn(F,x,y)===F.noms[yi]&&String.fromCharCode(F.CH[y*W+x])==="M"&&x>a+2&&x<b-2; pjPon(F,x,y,linea||cresta?M:x<=a+2?N:x>=b-2?M:m); }
+          else if(y===19) pjPon(F,x,y,kol);
+          else pjPon(F,x,y,borde?ks:x>=b-2?(B.S||B.s):B.s); } } }
+    for(let y=30;y<40;y++) for(let x=x0;x<=x1;x++){ if(!pjHay(F,x,y)) continue; const n=pjCapaEn(F,x,y); if(!n||!/^cinturon/.test(n)) continue; const ch=String.fromCharCode(F.CH[y*W+x]); if(!"goG".includes(ch)) continue; const P=F.pals[F.L[y*W+x]]||{}; pjPon(F,x,y,P.u||P.U||"#5C3A18"); } }catch(e){} return r; }; }
+
+/* ───────── v10.3 · quién es quién y la herrería de verdad (Lorenzo: «¿cómo identificamos a los usuarios que se llaman de la misma
+   forma? vamos a tener que poner un nombre de usuario que no se pueda cambiar, que detectemos palabras ofensivas»; «cambiarse el nombre es
+   cuando arranca el capítulo de Jesús y él te llama por tu nombre, te da tarjeta de cambio de nombre»; «cuando el equipo lo subo a especial,
+   épico, legendario no puede ser en la tienda con monedas, para eso está la herrería… no tiene que ser tan fácil»).
+   · El usuario: @algo, de 3 a 16 letras minúsculas, números, punto o guion bajo. Es único (lo confirma el servidor de Scaeli o la base de
+     la página) y no se cambia. Se elige una vez; si todavía no hay servidor, queda reservado en el teléfono y se confirma cuando lo haya.
+     Se ve en Yo, en Ajustes y al lado de tu nombre en el gremio.
+   · Las palabras ofensivas no pasan ni en el nombre, ni en el usuario, ni en el nombre del gremio (con números en lugar de letras, letras
+     repetidas o separadas con puntos, también).
+   · El nombre ya no se cambia en Ajustes: se cambia con la tarjeta de cambio de nombre, que te da Jesús al empezar su capítulo
+     («Te llamé por tu nombre, tú me perteneces», Is 43, 1).
+   · La armadura se mejora en la herrería, con hierro, esencia de luz, materiales de jefe y talentos; cada rareza pide bastante más ───────── */
+
+/* ── palabras ofensivas ── */
+const OF13_DURO=["mierd","pelotud","bolud","pendej","cabron","gilipol","imbecil","estupid","idiota","hijodeput","hijadeput","conchatumadre","conchetumadre","conchesumadre","conchetumare","conchasumadre",
+  "chupala","chupamela","chupame","poronga","garcha","pajero","pajera","maricon","culiad","culiau","sorete","mogolic","nazi","hitler","satan","lucifer","porno","xxx",
+  "fuck","shit","bitch","cunt","nigg","faggot","whore","slut","asshole","ashole","dickhead","motherf","pussy"];
+const OF13_PAL=["puta","puto","putas","putos","putita","putito","culo","culos","orto","verga","pija","pijas","trolo","trola","marica","maricas","coger","joto","hdp","ctm","ptm","lpm","lpqtp","sex","sexo","sexy","porn","dick","cock","rape","ass","conyo"];
+const OF13_BORDE=["puta","puto","hdp"], OF13_OK=["computo","computos","disputa","disputas","imputo","reputa"];
+function of13Vars(t){ const b=String(t||"").toLowerCase().replace(/ñ/g,"ny").normalize("NFD").replace(/[̀-ͯ]/g,"");
+  const L={"0":"o","3":"e","4":"a","5":"s","7":"t","8":"b","@":"a","$":"s","!":"i","|":"l","€":"e"}, m=s=>s.replace(/[034578@$!|€]/g,c=>L[c]);
+  return [m(b.replace(/1/g,"i")),m(b.replace(/1/g,"l"))]; }
+function ofensivo13(t){ const col=s=>s.replace(/(.)\1+/g,"$1");
+  for(const v of of13Vars(t)){ const tok=v.split(/[^a-z]+/).filter(Boolean), jun=tok.join("");
+    if([jun,col(jun)].some(j=>OF13_DURO.some(w=>j.includes(w)))) return true;
+    const T=[...tok,...tok.map(col),jun,col(jun)];
+    if(T.some(x=>OF13_PAL.includes(x))) return true;
+    if(T.some(x=>!OF13_OK.includes(x)&&OF13_BORDE.some(w=>x.length>w.length&&(x.startsWith(w)||x.endsWith(w))))) return true; }
+  return false; }
+
+/* ── el usuario ── */
+const US13_RES=["scaeli","scala","admin","administrador","moderador","mod","soporte","oficial","staff","sistema","claude","anthropic","nadie","usuario"];
+const US13={msg:"",busy:false,mas:0};
+function us13Norm(u){ return String(u||"").trim().toLowerCase().replace(/^@+/,"").normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/ñ/g,"n").replace(/\s+/g,"_"); }
+function us13Error(u){ if(!u) return "Escribí tu usuario.";
+  if(u.length<3) return "Tiene que tener al menos 3 letras."; if(u.length>16) return "Hasta 16 letras.";
+  if(!/^[a-z0-9_.]+$/.test(u)) return "Solo letras sin tilde, números, punto y guion bajo.";
+  if(/^[._]|[._]$/.test(u)||/[._]{2}/.test(u)) return "El punto y el guion bajo van entre letras.";
+  if(/^[0-9._]+$/.test(u)) return "Que tenga alguna letra.";
+  if(US13_RES.includes(u.replace(/[._0-9]/g,""))) return "Ese usuario está reservado.";
+  if(ofensivo13(u)) return "Ese usuario no se puede usar. Elegí otro.";
+  return ""; }
+function us13Sug(){ const base=us13Norm(String(S.nombre||"").split(/\s+/)[0]).replace(/[^a-z0-9]/g,"").slice(0,11)||"peregrino", y=gr12Yo(), n=parseInt(y.slice(0,4),16);
+  const L=[base,base+"_"+(n%90+10),base+"."+String(n%900+100)]; return L.filter((u,i)=>!us13Error(u)&&L.indexOf(u)===i); }
+async function us13Reservar(u){ const b=gr12Back(), yo=gr12Yo();
+  if(b==="srv"){ const r=await nubePedir("POST","/usuario",{usuario:u,jugador:yo}); if(r.st===0) return {pend:true};
+    if(r.j&&r.j.ok) return {ok:true,b:"srv"}; return {err:(r.j&&r.j.error)||"No se pudo."}; }
+  if(b==="db"){ try{ const d=db.doc("usuarios/"+u), g=await d.get(); if(g.exists&&(g.data()||{}).j!==yo) return {err:"Ese usuario ya lo tiene otra persona."};
+      if(!g.exists) await d.set({j:yo,t:Date.now()}); return {ok:true,b:"db"}; }catch(e){ return {pend:true}; } }
+  return {pend:true}; }
+/* elegirlo */
+ACC.us13Abrir=function(){ if(S.usuario&&!S.usuarioChoque) return avisar("Tu usuario es @"+S.usuario+" y no se cambia."); US13.msg=""; COMPRA={a:"us13"}; pintarModal(); setTimeout(()=>{ try{ const i=document.getElementById("us13I"); if(i&&matchMedia("(pointer:fine)").matches) i.focus(); }catch(e){} },60); };
+ACC.us13Sug=function(u){ const i=document.getElementById("us13I"); if(i){ i.value=u; us13Vivo(); } };
+ACC.us13Mas=function(){ S.us13Mas=Date.now(); guardar(); COMPRA=null; pintarModal(); };
+ACC.us13Ok=async function(){ if(US13.busy) return; const i=document.getElementById("us13I"), u=us13Norm(i?i.value:""), er=us13Error(u); if(er){ US13.msg=er; return us13Msg(); }
+  US13.busy=true; US13.msg="Buscando si está libre…"; us13Msg(true); const r=await us13Reservar(u); US13.busy=false;
+  if(r.err){ US13.msg=r.err; return us13Msg(); }
+  S.usuario=u; S.usuarioOk=r.ok?r.b:""; S.usuarioChoque=0; guardar(); COMPRA=null; pintarModal(); pintar(); try{ son("nivel"); }catch(e){}
+  avisar("¡Listo! Sos @"+u+(r.pend?". Lo confirmamos apenas haya conexión con el servidor de Scaeli.":". Nadie más puede usarlo.")); };
+function us13Msg(ok){ const e=document.getElementById("us13E"); if(e){ e.textContent=US13.msg; e.classList.toggle("ok",!!ok); } const b=document.querySelector('#modal [data-a="us13Ok"]'); if(b) b.disabled=US13.busy; }
+function us13Vivo(){ const i=document.getElementById("us13I"); if(!i) return; const u=us13Norm(i.value); if(i.value!==u){ const p=i.selectionStart; i.value=u; try{ i.setSelectionRange(p,p); }catch(e){} }
+  const er=u?us13Error(u):""; US13.msg=er||(u?"Así te van a ver: @"+u:""); us13Msg(!er); }
+document.addEventListener("input",e=>{ try{ if(e.target&&e.target.id==="us13I") us13Vivo(); }catch(x){} });
+document.addEventListener("keydown",e=>{ try{ if(e.key==="Enter"&&e.target&&e.target.id==="us13I"){ e.preventDefault(); ACC.us13Ok(); } if(e.key==="Enter"&&e.target&&e.target.id==="tn13I"){ e.preventDefault(); ACC.tn13Ok(); } }catch(x){} });
+function us13Modal(){ const sug=us13Sug();
+  return '<div class="velo-modal" data-a="noCompra"></div><div class="caja-modal us13-m" role="dialog" aria-modal="true" aria-label="Elegí tu usuario">'+
+    '<span class="us13-ic" aria-hidden="true">@</span><h3>'+(S.usuarioChoque?"Elegí otro usuario":"Elegí tu usuario")+'</h3>'+
+    '<p class="p">'+(S.usuarioChoque?'Otra persona ya tenía <b>@'+esc(S.usuario||"")+'</b> antes que vos. Elegí uno nuevo: este sí queda para siempre.':'Es tu nombre único en Scaeli: así te encuentran tus amigos y nadie se confunde con otro que se llame igual que vos. <b>Una vez elegido, no se cambia.</b>')+'</p>'+
+    '<label class="us13-in"><span>@</span><input id="us13I" maxlength="16" autocomplete="off" autocapitalize="none" spellcheck="false" inputmode="email" placeholder="'+esc(sug[0]||"tu_usuario")+'" aria-label="Tu usuario"></label>'+
+    '<p class="us13-e" id="us13E" role="status" aria-live="polite"></p>'+
+    (sug.length?'<div class="us13-sug"><small>Ideas</small>'+sug.map(u=>'<button data-a="us13Sug" data-p="'+esc(u)+'">@'+esc(u)+'</button>').join("")+'</div>':'')+
+    '<p class="nota">De 3 a 16: letras sin tilde, números, punto y guion bajo. Nada que ofenda.</p>'+
+    '<div class="btn-fila"><button class="btn" data-a="'+(S.usuarioChoque?"noCompra":"us13Mas")+'">Más tarde</button><button class="btn pri" data-a="us13Ok">Confirmar</button></div></div>'; }
+/* si se eligió sin conexión, se confirma cuando la haya */
+async function us13Confirmar(){ try{ if(!S||!S.usuario||S.usuarioOk||S.usuarioChoque||!gr12Back()) return; const r=await us13Reservar(S.usuario);
+    if(r.ok){ S.usuarioOk=r.b; guardar(); } else if(r.err&&/otra persona|ya existe|ya lo tiene/i.test(r.err)){ S.usuarioChoque=1; guardar(); try{ pintar(); }catch(e){} } }catch(e){} }
+setTimeout(us13Confirmar,6000); setInterval(us13Confirmar,5*60*1000);
+/* la primera vez (y si dijiste «más tarde», al otro día), te lo pide solo, cuando estás en Inicio sin nada abierto */
+setInterval(()=>{ try{ if(navigator.webdriver||!S||!S.nombre||S.tuto!==true||COMPRA||RP||(typeof J!=="undefined"&&J&&J.g)||document.getElementById("sv")||document.body.classList.contains("en-juego")||(typeof COFRE!=="undefined"&&COFRE)||(typeof PASE9_AB!=="undefined"&&PASE9_AB)||(typeof P9!=="undefined"&&P9)||(typeof TUTO_I!=="undefined"&&TUTO_I>=0)) return;
+    if(S.usuario&&!S.usuarioChoque) return; if(S.tab!=="inicio"||document.hidden) return; if(S.us13Mas&&Date.now()-S.us13Mas<20*3600*1000&&!S.usuarioChoque) return;
+    if(US13.mas&&Date.now()-US13.mas<60000) return; US13.mas=Date.now(); ACC.us13Abrir(); }catch(e){} },4000);
+
+/* ── la tarjeta de cambio de nombre ── */
+ACC.tn13Abrir=function(){ if(!((S.tarjNombre||0)>0)) return avisar("El nombre se cambia con la tarjeta de cambio de nombre: te la da Jesús cuando empieza su capítulo."); COMPRA={a:"tn13"}; pintarModal(); };
+ACC.tn13Ok=function(){ const i=document.getElementById("tn13I"), n=(i?i.value:"").replace(/\s+/g," ").trim().slice(0,28), e=document.getElementById("tn13E");
+  const mal=t=>{ if(e) e.textContent=t; };
+  if(n.length<2) return mal("Escribí tu nombre."); if(ofensivo13(n)) return mal("Ese nombre no se puede usar. Probá con otro.");
+  if(n===S.nombre) return mal("Es el mismo nombre que ya tenés.");
+  if(!((S.tarjNombre||0)>0)) return mal("No te quedan tarjetas.");
+  S.tarjNombre--; S.nombre=n; guardar(); COMPRA=null; pintarModal(); pintar(); try{ son("nivel"); anotar("compra","Usaste la tarjeta de cambio de nombre."); }catch(x){} avisar("Ahora te llamás "+n+"."+(S.usuario?" Tu usuario sigue siendo @"+S.usuario+".":"")); };
+function tn13Modal(){ const q=S.tarjNombre||0;
+  return '<div class="velo-modal" data-a="noCompra"></div><div class="caja-modal tn13-m" role="dialog" aria-modal="true" aria-label="Tarjeta de cambio de nombre">'+
+    '<div class="tn13-t" aria-hidden="true"><i></i><b>'+esc(S.nombre||"")+'</b><small>Is 43, 1</small></div>'+
+    '<h3>Tarjeta de cambio de nombre</h3><p class="p">«No temas, porque yo te redimí; te llamé por tu nombre, tú me perteneces». Con esta tarjeta cambiás tu nombre una vez'+(S.usuario?'; tu usuario, <b>@'+esc(S.usuario)+'</b>, queda igual':'')+'.</p>'+
+    '<div class="campo"><label for="tn13I">Tu nombre nuevo</label><input id="tn13I" maxlength="28" autocomplete="off" value="'+esc(S.nombre||"")+'"></div><p class="us13-e" id="tn13E" role="status" aria-live="polite"></p>'+
+    '<div class="btn-fila"><button class="btn" data-a="noCompra">Ahora no</button><button class="btn pri" data-a="tn13Ok">Usar la tarjeta'+(q>1?' (tenés '+q+')':'')+'</button></div></div>'; }
+{ const _pm13=pintarModal; pintarModal=function(){ const el=document.getElementById("modal"); try{ if(el&&COMPRA&&COMPRA.a==="us13"){ el.innerHTML=us13Modal(); return; } if(el&&COMPRA&&COMPRA.a==="tn13"){ el.innerHTML=tn13Modal(); return; } }catch(e){ errAnotar(e,"usuario"); } return _pm13.apply(this,arguments); }; }
+/* el nombre: sin palabras ofensivas, y una vez puesto ya no se cambia con el campo de siempre */
+{ const _nm13=ACC.nombre; ACC.nombre=function(){ const i=document.getElementById("inNombre"), v=i?i.value.trim():"";
+    if(S.nombre&&!document.querySelector(".ini-bienv #inNombre")) return ACC.tn13Abrir();
+    if(v&&ofensivo13(v)){ avisar("Ese nombre no se puede usar. Probá con otro."); try{ i.focus(); i.select(); }catch(e){} return; }
+    return _nm13.apply(this,arguments); }; }
+/* Jesús te llama por tu nombre al empezar su capítulo */
+let TN13_T=0;
+setInterval(()=>{ try{ if(!RP||RP.cap!=="reino"||S.tn13Dada){ TN13_T=0; return; } if(RP.dlg||RP.bt||RP.mini||RP.fin||RP.mochila||document.hidden){ TN13_T=0; return; } if(++TN13_T<3) return;
+    S.tn13Dada=1; S.tarjNombre=(S.tarjNombre||0)+1; guardar(); const n=String(S.nombre||"").split(/\s+/)[0]||"amigo";
+    rpgDecir(["«"+n+"».","«No temas, porque yo te redimí; te llamé por tu nombre, tú me perteneces» (Is 43, 1).","Te conozco desde antes de que nacieras. Tomá esta tarjeta: con ella podés cambiar tu nombre una vez. Lo que nunca cambia es que sos mío."],"Jesús",()=>{ try{ feed13("Recibiste la tarjeta de cambio de nombre. Se usa en Yo, en Ajustes.","Tarjeta",6); son("nivel"); }catch(e){} }); }catch(e){} },800);
+
+/* ── dónde se ve ── */
+{ const _yh13=yo12Hero; yo12Hero=function(){ let o=_yh13.apply(this,arguments); try{
+    const at=S.usuario?'<i class="us13-yo'+(S.usuarioChoque?" mal":"")+'">@'+esc(S.usuario)+'</i>':'<button class="us13-yo nuevo" data-a="us13Abrir">Elegí tu usuario</button>';
+    o=o.replace(/(<b class="yo12-n" id="yo12N">[\s\S]*?<\/b>)/,"$1"+at); }catch(e){} return o; }; }
+function us13Ajustes(){ const q=S.tarjNombre||0;
+  return '<div class="us13-aj"><div class="us13-f"><small>Tu nombre</small><b>'+esc(S.nombre||"")+'</b>'+
+      (q>0?'<button class="btn sm pri" data-a="tn13Abrir">Cambiarlo · tarjeta'+(q>1?' ×'+q:'')+'</button>':'<span>Se cambia con la tarjeta de cambio de nombre, que te da Jesús cuando empieza su capítulo.</span>')+'</div>'+
+    '<div class="us13-f"><small>Tu usuario</small>'+(S.usuario?'<b>@'+esc(S.usuario)+'</b><span>'+(S.usuarioChoque?'Otra persona lo tenía antes: <button class="lnk" data-a="us13Abrir">elegí otro</button>.':'No se cambia: es lo que te distingue de otros que se llaman como vos.'+(S.usuarioOk?'':' Se confirma cuando haya conexión.'))+'</span>':'<button class="btn sm pri" data-a="us13Abrir">Elegir mi usuario</button><span>Es único y para siempre.</span>')+'</div></div>'; }
+{ const _va13=vistaAlma; vistaAlma=function(){ let o=_va13.apply(this,arguments); try{
+    o=o.replace(/<div class="campo"><label>Tu nombre<\/label><input type="text" id="inNombre"[^>]*><\/div>\s*<button class="btn sm" data-a="nombre">Guardar nombre<\/button>/,us13Ajustes()); }catch(e){ errAnotar(e,"ajustes usuario"); } return o; }; }
+/* en el gremio: tu nombre y tu @ */
+gr12Nom=function(){ const n=String(S.nombre||"Peregrino").trim(); if(!S.usuario) return n.slice(0,24); return n.split(/\s+/)[0].slice(0,12)+" @"+S.usuario; };
+{ const _gc13=gr12Card; gr12Card=function(){ let o=_gc13.apply(this,arguments); try{ o=o.replace(/<b>([^<]*?) @([a-z0-9_.]{3,16})( \(vos\))?<\/b>/g,'<b>$1$3<small class="us13-g">@$2</small></b>'); }catch(e){} return o; }; }
+{ const _gc13c=ACC.gr12Crear; ACC.gr12Crear=function(){ const i=document.getElementById("gr12N"); if(i&&ofensivo13(i.value)) return avisar("Ese nombre de gremio no se puede usar. Elegí otro."); return _gc13c.apply(this,arguments); }; }
+
+/* ── la armadura se mejora en la herrería ── */
+const EQ13_FORJA=[null,null,{hierro:6,esencia:1,jefe:0,tal:150},{hierro:12,esencia:3,jefe:1,tal:300},{hierro:20,esencia:6,jefe:3,tal:600},{hierro:30,esencia:10,jefe:5,tal:1200}];
+function eq13Jefes(){ return MAT_JEFES.reduce((a,k)=>a+mat(k),0); }
+function eq13Costo(n){ return EQ13_FORJA[Math.max(2,Math.min(EQ_MAXN,n))]; }
+function eq13Alcanza(c){ return mat("hierro")>=c.hierro&&mat("esencia")>=c.esencia&&eq13Jefes()>=c.jefe&&(S.talentos||0)>=c.tal; }
+function eq13CostoHTML(c){ const j=c.jefe?'<span class="cs9'+(eq13Jefes()>=c.jefe?"":" falta")+'" title="materiales de jefe (cualquiera)">'+px9("m_corona",16)+'<b>'+c.jefe+'</b></span>':'';
+  return costoHTML({hierro:c.hierro,esencia:c.esencia})+j+costoHTML({tal:c.tal}); }
+function eq13Forja(){ const L=EQ_ARM.filter(k=>EQ_CB[k]&&S.equipo.includes(k)); if(!L.length) return '<div class="sec" id="eq13F">Mejorá tu armadura</div><div class="card eq13"><p class="p">Cuando tengas piezas de la armadura de Dios (en la Tienda, Equipo), acá las subís de rareza: Especial, Épica, Legendaria y Ultra legendaria.</p></div>';
+  return '<div class="sec" id="eq13F">Mejorá tu armadura</div><div class="card eq13"><p class="p">Las piezas no se mejoran con talentos solos: hace falta forjarlas. Cada rareza pide más hierro, más esencia de luz y, desde la Épica, materiales de jefe (cualquiera).</p>'+
+    L.map(k=>{ const T=TIENDA.find(t=>t.id===k), n=eqNivel(k); if(n>=EQ_MAXN) return '<div class="eq13-f max">'+eqIco(k)+'<div class="eq13-b"><b>'+esc(T.n)+' '+eqEst(n)+'</b><small>'+eqEfecto(k,n)+'.</small></div><span class="tenes">Al máximo</span></div>';
+      const c=eq13Costo(n+1), ok=eq13Alcanza(c);
+      return '<div class="eq13-f">'+eqIco(k)+'<div class="eq13-b"><b>'+esc(T.n)+' '+eqEst(n)+'<i aria-hidden="true">→</i>'+eqEst(n+1)+'</b><small>'+eqEfecto(k,n+1)+'.</small><div class="eq13-c">'+eq13CostoHTML(c)+'</div></div>'+
+        '<button class="btn sm'+(ok?" pri":"")+'" data-a="eq13Forjar" data-p="'+k+'"'+(ok?"":' aria-disabled="true"')+'>Forjar</button></div>'; }).join("")+'</div>'; }
+ACC.eq13Forjar=function(k){ k=String(k); const n=eqNivel(k), T=TIENDA.find(t=>t.id===k); if(!n||!T||n>=EQ_MAXN||!EQ_CB[k]) return; const c=eq13Costo(n+1);
+  const fal=[]; if(mat("hierro")<c.hierro) fal.push((c.hierro-mat("hierro"))+" de hierro"); if(mat("esencia")<c.esencia) fal.push((c.esencia-mat("esencia"))+" de esencia de luz");
+  if(eq13Jefes()<c.jefe) fal.push((c.jefe-eq13Jefes())+" material"+(c.jefe-eq13Jefes()===1?"":"es")+" de jefe"); if((S.talentos||0)<c.tal) fal.push((c.tal-(S.talentos||0))+" talentos");
+  if(fal.length) return avisar("Para forjarla te falta"+(fal.length>1?"n":"")+": "+fal.join(", ")+".");
+  S.mat.hierro-=c.hierro; S.mat.esencia-=c.esencia; S.talentos-=c.tal;
+  for(let q=c.jefe;q>0;q--){ const m=MAT_JEFES.filter(x=>mat(x)>0).sort((a,b)=>mat(b)-mat(a))[0]; if(!m) break; S.mat[m]--; }
+  if(!S.eqNiv) S.eqNiv={}; S.eqNiv[k]=n+1; try{ son("nivel"); anotar("compra","Forjaste: "+T.n+" a "+eqRzN(n+1)+"."); }catch(e){} guardar(); pintar();
+  setTimeout(()=>{ try{ const f=document.querySelector('[data-a="eq13Forjar"][data-p="'+k+'"]'); const r=f&&f.closest(".eq13-f"); if(r){ r.classList.add("forjada"); r.scrollIntoView({block:"center"}); } }catch(e){} },30);
+  avisar(T.n+": "+eqRzN(n+1)+". "+eqEfecto(k,n+1)+"."); };
+{ const _hh13=herreriaHTML; herreriaHTML=function(){ let o=_hh13.apply(this,arguments); try{ const f=eq13Forja(), k=o.indexOf('<div class="sec">Materiales de los jefes'); o=k>=0?o.slice(0,k)+f+o.slice(k):o+f; }catch(e){ errAnotar(e,"forja armadura"); } return o; }; }
+/* en la tienda ya no se mejora: te lleva a la herrería */
+{ const _ef13=eqFila; eqFila=function(i){ let o=_ef13.apply(this,arguments); try{ if(!EQ_CB[i.id]) return o;
+    o=o.replace(/<button class="btn sm[^"]*" data-a="eqMejorar" data-p="([^"]+)">[\s\S]*?<\/button>/,'<button class="btn sm" data-a="eq13Ir" data-p="$1">Se mejora en la herrería</button>');
+    o=o.replace("Después se mejora: Especial, Épica, Legendaria y Ultra legendaria.","Después se forja en la herrería: Especial, Épica, Legendaria y Ultra legendaria."); }catch(e){} return o; }; }
+ACC.eq13Ir=function(){ COMPRA=null; try{ pintarModal(); }catch(e){} ACC.irHerreria(); [60,300].forEach(ms=>setTimeout(()=>{ try{ const s=document.getElementById("eq13F"); if(s) s.scrollIntoView({block:"start"}); }catch(e){} },ms)); };
+ACC.eqMejorar=function(){ return ACC.eq13Ir(); };
+setTimeout(()=>{ try{ const i=COMPRAS.indexOf("eqMejorar"); if(i>=0) COMPRAS.splice(i,1); }catch(e){} },60);
+
+/* ───────── v10.3 · Supervivencia más pareja con la Historia (Lorenzo: «la animación de ruptura de las cosas no está muy buena»;
+   «los botones hay que mejorarlos»; en la Historia: «te curás comiendo… si comés algo que no va te podés envenenar», «el comer no
+   tendría que estar ahí en la pantalla»).
+   · Romper: cada golpe hace saltar astillas del color de lo que golpeás y el casillero destella; las grietas son de dos tonos y van
+     creciendo, con una barrita de lo que le falta. Al romperse, revienta en pedazos que rebotan en el piso y una nube de polvo.
+   · Comer: sin el botón Comer. Lo que tenés en la mano (pan, dátiles, bayas) se come con el botón grande y cura; la C come lo mejor
+     que tengas. Los arbustos a veces dan bayas negras: parecen bayas, pero envenenan (te sacan vida de a poco, nunca la última).
+   · Los botones: el grande muestra lo que tenés en la mano y cambia de color según lo que vas a hacer; Rezar, con su anillo de espera ───────── */
+SV_IT.bayasn={n:"Bayas negras",col:"#3A2A4A",come:2,veneno:true,d:"Parecen bayas, pero no son de comer."};
+{ const _si13=svIco; svIco=function(it){ if(it!=="bayasn") return _si13.apply(this,arguments); if(SV_ICO[it]) return SV_ICO[it];
+    const cv=document.createElement("canvas"); cv.width=16; cv.height=16; const c=cv.getContext("2d"), R=(col,a,b,w,h)=>{ c.fillStyle=col; c.fillRect(a,b,w,h); };
+    [[4,6],[8,5],[6,9],[10,9]].forEach(p=>{ R("#120A16",p[0]-1,p[1]-1,4,4); R("#3A2A4A",p[0],p[1],2,2); R("#8A6AA8",p[0],p[1],1,1); }); R("#5A6A3A",7,2,2,3); R("#3A4A22",8,2,1,3);
+    return SV_ICO[it]=cv.toDataURL(); }; }
+/* al juntar bayas, a veces viene alguna negra */
+{ const _sd13=svDar; svDar=function(it,n){ try{ if(SV&&SV.rompe13&&it==="bayas"&&n>0&&Math.random()<.22){ if(n>1) _sd13.call(this,"bayas",n-1); return _sd13.call(this,"bayasn",1); } }catch(e){} return _sd13.apply(this,arguments); }; }
+
+/* ── lo que se rompe: colores de cada cosa ── */
+const SV13_COL={[T_.ARBOL]:["#3E7A3A","#2C5A2A","#8A5A2B","#5E9A4A"],[T_.PALMERA]:["#5A9A48","#8A5A2B","#B87A3A","#3E7A3A"],[T_.ROCA]:["#9A948A","#7A746A","#C9C2B2","#5E5A52"],
+  [T_.HIERRO]:["#8A847A","#C9D2DC","#6A6A72","#E4ECF4"],[T_.BAYAS]:["#C0392B","#3E7A3A","#E85A4A","#6A9A4A"],[T_.CACTUS]:["#4E8A50","#2E6A30","#9AC070"],[T_.ALTO]:["#9AC070","#7DB262","#E4C08C"],
+  [T_.ARBUSTO]:["#6A9A4A","#4A7A2A","#8AB86A"],[T_.MURO_M]:["#9A6430","#7A4A22","#C08A50"],[T_.MURO_P]:["#8A847A","#6A645A","#B4AEA2"],[T_.PUERTA]:["#7A4A22","#9A6430","#3A2410"],
+  [T_.FOGATA]:["#F2A03A","#5A3A1A","#FFD24A"],[T_.ANTORCHA]:["#F6D24A","#7A4A22"],[T_.MESA]:["#AE7C46","#7A4A22","#D0A06A"],[T_.CAMA]:["#C0392B","#AE7C46","#F2E6D0"],[T_.CRUZ]:["#E3B341","#8A6A2A","#FFF0B0"]};
+function sv13Col(t){ return SV13_COL[t]||["#AE7C46","#7A4A22"]; }
+function sv13Astillas(x,y,t,n,fuerza,dx,dy){ if(!SV.fx13) SV.fx13=[]; const C=sv13Col(t), cx=x*16+8, cy=y*16+8;
+  for(let i=0;i<n;i++){ const a=Math.random()*Math.PI*2, v=(fuerza||1)*(30+Math.random()*60); SV.fx13.push({k:"a",x:cx+(Math.random()-.5)*8+(dx||0)*-5,y:cy+(Math.random()-.5)*6+(dy||0)*-5,vx:Math.cos(a)*v+(dx||0)*-25,vy:-40-Math.random()*70*(fuerza||1),g:y*16+12+Math.random()*5,s:Math.random()<.35?3:2,c:C[i%C.length],l:0,m:.8+Math.random()*.5}); } }
+function sv13Polvo(x,y,n,col){ if(!SV.fx13) SV.fx13=[]; for(let i=0;i<n;i++){ const a=i/n*Math.PI*2; SV.fx13.push({k:"p",x:x*16+8+Math.cos(a)*4,y:y*16+11+Math.sin(a)*2,vx:Math.cos(a)*22,vy:Math.sin(a)*8-4,r:2+Math.random()*2,l:0,m:.55+Math.random()*.25,c:col||"#EDE0C4"}); } }
+function sv13Destello(x,y,fuerte){ if(!SV.fx13) SV.fx13=[]; SV.fx13.push({k:"f",x:x,y:y,l:0,m:fuerte?.22:.13,fu:!!fuerte}); }
+/* el golpe y la rotura, y comer con lo que tenés en la mano */
+{ const _sa13=svAccion; svAccion=function(){ try{ if(SV&&!SV.panel){ const C=svAcCtx();
+        if(C.k==="comer"){ const now=performance.now(); if(now-(SV.ultG||0)<sv12Cd()) return; SV.ultG=now; SV.golpe=.18; return sv13Comer(svSelIt()); }
+        if(C.k==="romper"){ const k=C.x+","+C.y, h0=(SV.hit&&SV.hit[k])||0, t0=C.t; SV.rompe13=true; let r; try{ r=_sa13.apply(this,arguments); } finally { SV.rompe13=false; }
+          const t1=svTile(C.x,C.y), h1=(SV.hit&&SV.hit[k])||0, v=ACC_DIR[SV.dir]||[0,1];
+          if(t1!==t0){ sv13Astillas(C.x,C.y,t0,14,1.25); sv13Polvo(C.x,C.y,8,t0===T_.ROCA||t0===T_.HIERRO||t0===T_.MURO_P?"#D8D2C6":"#EDE0C4"); sv13Destello(C.x,C.y,true); }
+          else if(h1>h0){ sv13Astillas(C.x,C.y,t0,4,.7,v[0],v[1]); sv13Destello(C.x,C.y,false); }
+          return r; } } }catch(e){ errAnotar(e,"supervivencia 10.3"); } return _sa13.apply(this,arguments); }; }
+function sv13Comer(it){ const E=SV.E, I=SV_IT[it]; if(!I||!I.come) return;
+  if(I.veneno){ svDar(it,-1); E.ham=Math.min(20,E.ham+(I.come||0)); SV.ven13=Math.max(SV.ven13||0,5); SV.ven13t=0; try{ son("menos"); }catch(e){}
+    svChispas(E.x,E.y,"#7ACB5A",12); svAviso("¡Puaj! Las bayas negras no son de comer: te envenenaste. Se pasa en un rato; comer algo bueno ayuda.",3.4); svBarras(); try{ sv12Botones(); svAcLbl(); }catch(e){} return; }
+  const cura=SV12_CURA[it]||1, hambre=E.ham<20||(I.sed&&E.sed<20), herido=E.vida<20;
+  if(!hambre&&!herido) return svAviso("No tenés hambre y estás con toda tu fuerza.",1.6);
+  svDar(it,-1); E.ham=Math.min(20,E.ham+I.come); if(I.sed) E.sed=Math.min(20,E.sed+I.sed); E.vida=Math.min(20,E.vida+cura); if(SV.ven13>0) SV.ven13=Math.max(0,SV.ven13-2);
+  SV.nums.push({x:E.x,y:E.y,t:"+"+cura,l:0,c:"#8FE09A"}); try{ son("mas"); }catch(e){} svAviso("Comiste "+I.n.toLowerCase()+": +"+cura+" de vida.",1.6); svBarras(); try{ sv12Botones(); svAcLbl(); }catch(e){} }
+/* la C come lo mejor que tengas (nunca las bayas negras) */
+svComer12=function(){ if(!SV||SV.panel) return; const it=sv12Comida(); if(!it) return svAviso(svN("bayasn")>0?"Solo tenés bayas negras, y esas no son de comer.":"No tenés comida: juntá bayas, buscá dátiles en las palmeras o hacé pan junto al fuego.",3); sv13Comer(it); };
+/* el veneno: de a poco, nunca la última vida */
+{ const _st13=svTick; svTick=function(dt){ const r=_st13.apply(this,arguments); try{ if(SV&&SV.ven13>0&&!SV.panel){ SV.ven13t=(SV.ven13t||0)+(dt||0); if(SV.ven13t>=1.2){ SV.ven13t=0; SV.ven13--; const E=SV.E;
+        if(E.vida>1){ E.vida-=1; SV.nums.push({x:E.x,y:E.y,t:"−1",l:0,c:"#9AE07A"}); svBarras(); } } } }catch(e){} return r; }; }
+
+/* ── las grietas: de dos tonos, crecen con cada golpe, y una barrita con lo que le falta ── */
+const SV13_GR={};
+function sv13Ramas(x,y){ const k=x+","+y; if(SV13_GR[k]) return SV13_GR[k]; let h=(x*73856093^y*19349663)>>>0; const rnd=()=>{ h=(h*1103515245+12345)>>>0; return (h>>>8)/16777216; };
+  const S=[], ox=6+rnd()*4, oy=6+rnd()*4; for(let b=0;b<4;b++){ let a=b*Math.PI/2+.5+rnd()*.7, px=ox, py=oy; for(let j=0;j<3;j++){ const l=2.4+rnd()*2.4, nx=Math.max(1,Math.min(15,px+Math.cos(a)*l)), ny=Math.max(1,Math.min(15,py+Math.sin(a)*l)); S.push([px,py,nx,ny,j]); px=nx; py=ny; a+=(rnd()-.5)*1.1; } }
+  S.sort((a,b)=>a[4]-b[4]); return SV13_GR[k]=S; }
+function sv13Grietas(c,cx,cy,tt){ Object.keys(SV.hit||{}).forEach(k=>{ const [x,y]=k.split(",").map(Number), D=SV_DUR[svTile(x,y)]; if(!D) return; const p=Math.min(1,SV.hit[k]/D[0]), X=x*16-cx, Y=y*16-cy, S=sv13Ramas(x,y), n=Math.max(1,Math.ceil(p*S.length));
+    c.lineWidth=1; c.lineCap="square"; c.strokeStyle="rgba(255,246,222,.45)"; c.beginPath(); for(let i=0;i<n;i++){ const s=S[i]; c.moveTo(X+s[0]+.5,Y+s[1]+1.5); c.lineTo(X+s[2]+.5,Y+s[3]+1.5); } c.stroke();
+    c.strokeStyle="rgba(26,14,6,.92)"; c.beginPath(); for(let i=0;i<n;i++){ const s=S[i]; c.moveTo(X+s[0]+.5,Y+s[1]+.5); c.lineTo(X+s[2]+.5,Y+s[3]+.5); } c.stroke();
+    if(p>=.5){ c.fillStyle="rgba(26,14,6,.85)"; const s=S[0]; c.fillRect(X+Math.round(s[0])-1,Y+Math.round(s[1])-1,2,2); }
+    const q=1-p; c.fillStyle="rgba(12,10,20,.75)"; c.fillRect(X+1,Y-4,14,3); c.fillStyle=q>.5?"#FFD45A":q>.25?"#F2A03A":"#E8584A"; c.fillRect(X+2,Y-3,Math.max(1,Math.round(12*q)),1); });
+  try{ if(SV.ven13>0){ c.save(); c.setTransform(1,0,0,1,0,0); c.fillStyle="rgba(90,190,70,"+(0.07+0.04*Math.sin(tt*5)).toFixed(3)+")"; c.fillRect(0,0,c.canvas.width,c.canvas.height); c.restore(); } }catch(e){} }
+/* astillas, polvo y destellos (se mueven y se dibujan después del mundo) */
+{ const _sdb13=svDibujar; svDibujar=function(tt){ const r=_sdb13.apply(this,arguments); try{ if(!SV||!SV.fx13||!SV.fx13.length) { if(SV) SV.fx13T=tt; return r; }
+      const dt=Math.max(0,Math.min(.05,tt-(SV.fx13T||tt))); SV.fx13T=tt; const c=SV.c, K=SV.K, E=SV.E, RW=SV.RW, RH=SV.RH; c.setTransform(K,0,0,K,0,0);
+      const px=(E.x+(SV.mv?SV.mv.dx*SV.mv.p:0))*16+8, py=(E.y+(SV.mv?SV.mv.dy*SV.mv.p:0))*16+8; let cx=Math.max(0,Math.min(SVW*16-RW,px-RW/2)), cy=Math.max(0,Math.min(SVH*16-RH,py-RH/2)); cx=Math.round(cx*K)/K; cy=Math.round(cy*K)/K;
+      SV.fx13=SV.fx13.filter(f=>{ f.l+=dt; if(f.l>=f.m) return false; const a=Math.max(0,Math.min(1,(f.m-f.l)/(f.m*.35)));
+        if(f.k==="a"){ f.vy+=300*dt; f.x+=f.vx*dt; f.y+=f.vy*dt; if(f.y>f.g&&f.vy>0){ f.y=f.g; f.vy*=-.32; f.vx*=.55; if(Math.abs(f.vy)<14) f.vy=0; }
+          c.globalAlpha=a; c.fillStyle=f.c; c.fillRect(Math.round(f.x-cx),Math.round(f.y-cy),f.s,f.s); c.fillStyle="rgba(0,0,0,.35)"; c.fillRect(Math.round(f.x-cx),Math.round(f.y-cy)+f.s-1,f.s,1); }
+        else if(f.k==="p"){ f.x+=f.vx*dt; f.y+=f.vy*dt; f.vx*=.9; f.vy*=.9; const rr=f.r+f.l/f.m*5; c.globalAlpha=.55*a; c.fillStyle=f.c; c.beginPath(); c.arc(f.x-cx,f.y-cy,rr,0,7); c.fill(); }
+        else if(f.k==="f"){ const q=1-f.l/f.m, X=f.x*16-cx, Y=f.y*16-cy; c.globalAlpha=(f.fu?.75:.5)*q; c.fillStyle="#FFFFFF"; c.fillRect(X,Y,16,16);
+          if(f.fu){ c.globalAlpha=.8*q; c.strokeStyle="#FFF6D2"; c.lineWidth=1; const rr=6+(1-q)*14; c.beginPath(); c.arc(X+8,Y+8,rr,0,7); c.stroke(); } }
+        return true; }); c.globalAlpha=1; }catch(e){} return r; }; }
+
+/* ── los botones: sin Comer; el grande muestra lo que tenés en la mano ── */
+const SV13_ICO={pegar:"espada",beber:"gota",mesa:"martillo",cama:"luna",nada:"martillo"};
+function sv13AccIco(C){ const it=svSelIt(), I=SV_IT[it];
+  if(C.k==="comer"||C.k==="poner") return svIcoH(it);
+  if(C.k==="romper"){ const D=SV_DUR[C.t], tool=D&&D[3]; if(tool&&svN(tool)>0) return svIcoH(tool); if(I&&(I.tool||I.dmg)) return svIcoH(it); return C.t===T_.BAYAS||C.t===T_.ALTO?'<img alt="" src="'+svIco("mano")+'">':aci("martillo","sv-ai"); }
+  if(C.k==="pegar"){ if(svN("espada_h")>0) return svIcoH("espada_h"); if(svN("espada_p")>0) return svIcoH("espada_p"); return aci("espada","sv-ai"); }
+  if(C.k==="beber") return '<svg class="aci sv-ai" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5c-3.6 4.6-6.5 8.4-6.5 12a6.5 6.5 0 0 0 13 0c0-3.6-2.9-7.4-6.5-12z"/></svg>';
+  if(C.k==="cama") return '<svg class="aci sv-ai" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5a8.6 8.6 0 1 0 11.1 11.1z"/></svg>';
+  if(I&&(I.tool||I.dmg)) return svIcoH(it); return aci("martillo","sv-ai"); }
+{ const _al13=svAcLbl; svAcLbl=function(){ const r=_al13.apply(this,arguments); try{ const a=document.getElementById("svA"); if(!a||!SV) return r; const C=svAcCtx(), key=C.k+"|"+svSelIt()+"|"+(C.t===undefined?"":C.t);
+      if(a.dataset.i13!==key){ a.dataset.i13=key; let s=a.querySelector(".sv13-ai"); if(!s){ s=document.createElement("span"); s.className="sv13-ai"; const v=a.querySelector(".sv-ai"); if(v) v.replaceWith(s); else a.prepend(s); } s.innerHTML=sv13AccIco(C); } }catch(e){} return r; }; }
+{ const _sab13=svAbrir; svAbrir=function(){ const r=_sab13.apply(this,arguments); try{ const el=document.getElementById("sv"); if(el){ el.classList.add("sv13"); const c=el.querySelector("#svC"); if(c) c.remove();
+      const R=el.querySelector("#svR"); if(R&&!R.querySelector(".sv13-rz")) R.insertAdjacentHTML("afterbegin",'<i class="sv13-rz" aria-hidden="true"></i>');
+      svAcLbl(); } }catch(e){ errAnotar(e,"supervivencia botones"); } return r; }; }
 
 
 let COMPRA=null;
