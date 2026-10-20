@@ -4629,6 +4629,140 @@ button.us13-yo.nuevo{border:0;cursor:pointer;background:linear-gradient(180deg,#
 /* con la mochila, el mapa u otra ventana abierta, los avisos no se ven */
 body:has(.mochi-pop,.caja-modal,#herOv,.don-ov,#rpgMapa,.cofre-ov) #f13{visibility:hidden}
 
+/* ───────── v10.4 · tipografía pareja, el joystick nuevo, Vestimentas, los desafíos del pase y los avisos en la barra ───────── */
+
+/* ── tipografía (Lorenzo: «esta tipografía es poco profesional… sé detallista con toda la tipografía»):
+   una sola letra para todo, la del sistema (San Francisco en el iPhone, Roboto en Android, Segoe en Windows), con pesos y tamaños
+   parejos. La serif queda solo para el nombre «Scaeli» y para los textos que se rezan o se leen despacio (Brygada) ── */
+:root{--f-sis:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --f-ui:var(--f-sis);--f-display:var(--f-sis);--f-juego:var(--f-sis);--f-titulo:var(--f-sis)}
+body{font-family:var(--f-sis);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+#vista h1,#vista .card h2,#vista>h2,.tn9-cab h2,.td9-tit h2,.hc9-tit,.rz9-hero h2,.rz9 h2,.mj9 h2,.her-c h2,.lb10-hero h2,.lb10-sec,#vista #ini h3.lb10-sec,
+.p9x-htx h2,.p9x-sec,.jm11-tx h2,#vista .arena-cab h2,.her11-ht h2,#vista .her11-ht h2,.her11-vt h3,#vista .her11-vt h3,.td11-ideas h3,.sv13-tx h2,.sk13-info h2,.yo12-n,
+.gr12-cab h3,.per12-cab h3,.card.prem12 h3,.dev12-cab h3,.sv13-mc h3,.jg-ini-c h3,.tn10-st h3{font-weight:800!important;letter-spacing:-.022em!important;font-style:normal!important}
+#vista .tn9-cab h2,.tn9-cab h2,.td9-tit h2{font-size:30px!important;line-height:1.08!important}
+.rz9-hero h2,.lb10-hero h2,.p9x-htx h2,.sk13-info h2,.sv13-tx h2{line-height:1.1!important}
+body[data-ui="ios"] #vista h3.pl,body[data-ui="ios"] #vista .sec,body[data-ui="ios"] #vista .ep-santos{font-weight:800!important;letter-spacing:-.015em!important}
+/* las etiquetas chiquitas en mayúscula: un solo estilo */
+.tn10-h-tx small,.rz9-hero-t small,.lb9-yo small,.yo12-d small,.vt14-cab small,.des14-cab small,.p9x-mes{letter-spacing:.08em}
+/* sin sombras de texto «de juguete» en botones y chips */
+.op,.rzc,.btn,.lb9-jugar b,.tn10 .tn9-ofs-t b{text-shadow:none!important}
+/* la marca: Scaeli sigue en su letra */
+.in-tit,.bienv-n,.brand-n,.lb-logo b{font-family:"Playfair9","Playfair Display",Georgia,serif!important}
+/* lo que se lee despacio */
+.voz12-frase,.her11-cita{font-family:var(--f-rezo)!important}
+
+/* ── el viejo aviso del costado ya no se usa: lo importante va en la barra de arriba ── */
+#f13{display:none!important}
+html.inm body.en-juego .hs-top.inm-top #rpgObj.m14{color:#FFE38A!important;animation:m14 .35s ease-out}
+html.inm body.en-juego .hs-top.inm-top #rpgObj.m14::before{background:radial-gradient(circle,#FFE38A 0 3px,transparent 3.5px),radial-gradient(circle,transparent 5px,#FFE38A 5.5px 6.5px,transparent 7px)!important}
+body.en-juego .hs-top #rpgObj{overflow:hidden;display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+@keyframes m14{from{opacity:.2;transform:translateY(3px)}to{opacity:1;transform:none}}
+
+/* ── el joystick (Lorenzo: «cambiar el diseño del joystick»): vidrio esmerilado, cuatro puntitos, la perilla clara y un arco dorado hacia
+   donde caminás. El mismo en la Historia y en Supervivencia ── */
+html.inm body.en-juego #joyZ .joy-b,#sv .sv-joy .joy-b{
+  background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.10) 0 30%,rgba(255,255,255,.045) 31% 63%,rgba(6,16,28,.36) 64% 100%)!important;
+  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.30),inset 0 0 0 12px rgba(255,255,255,.03),0 10px 26px rgba(0,0,0,.28)!important;
+  -webkit-backdrop-filter:blur(8px) saturate(1.15);backdrop-filter:blur(8px) saturate(1.15)}
+html.inm body.en-juego #joyZ .joy-b::before,#sv .sv-joy .joy-b::before{content:"";position:absolute;inset:10px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle at 50% 4px,rgba(255,255,255,.6) 0 2.2px,transparent 2.8px),radial-gradient(circle at 50% calc(100% - 4px),rgba(255,255,255,.6) 0 2.2px,transparent 2.8px),
+    radial-gradient(circle at 4px 50%,rgba(255,255,255,.6) 0 2.2px,transparent 2.8px),radial-gradient(circle at calc(100% - 4px) 50%,rgba(255,255,255,.6) 0 2.2px,transparent 2.8px)}
+html.inm body.en-juego #joyZ .joy-k,#sv .sv-joy .joy-k{background:radial-gradient(circle at 50% 30%,#FFFFFF 0,#F4EEE2 42%,#D6CAB2 100%)!important;
+  box-shadow:0 0 0 1px rgba(255,255,255,.8),0 8px 18px rgba(0,0,0,.36),inset 0 -4px 0 rgba(120,96,60,.16)!important}
+html.inm body.en-juego #joyZ .joy-k::after,#sv .sv-joy .joy-k::after{content:"";position:absolute;inset:33%;border-radius:50%;background:radial-gradient(circle at 50% 35%,#F8DC8E,#C9952F);box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 1px 2px rgba(0,0,0,.2)}
+html.inm body.en-juego #joyZ .joy-f::before{left:-54px!important;top:-54px!important;width:108px;height:108px;border:0!important;border-radius:50%;
+  background:conic-gradient(from -32deg,rgba(248,220,142,.98) 0 64deg,transparent 64deg 360deg);
+  -webkit-mask:radial-gradient(circle,transparent 0 47px,#000 48px 53px,transparent 54px);mask:radial-gradient(circle,transparent 0 47px,#000 48px 53px,transparent 54px);filter:drop-shadow(0 0 6px rgba(248,220,142,.8))}
+html.inm body.en-juego #joyZ.act .joy-b{box-shadow:inset 0 0 0 1.5px rgba(248,220,142,.55),inset 0 0 0 12px rgba(255,255,255,.04),0 10px 26px rgba(0,0,0,.3)!important}
+
+/* ── Vestimentas ── */
+.vt14{display:flex;flex-direction:column;gap:16px}
+.vt14-hero{position:relative;display:grid;grid-template-columns:44% 1fr;align-items:end;gap:6px;width:100%;min-height:210px;padding:0 16px 0 4px;border:0;border-radius:24px;overflow:hidden;cursor:pointer;text-align:left;color:#FFFFFF;
+  background:radial-gradient(120% 90% at 22% 85%,color-mix(in srgb,var(--b) 70%,#fff 30%) 0,var(--b) 32%,var(--a) 100%);box-shadow:0 14px 30px -12px color-mix(in srgb,var(--a) 70%,#000 30%),inset 0 0 0 1px rgba(255,255,255,.18)}
+.vt14-hero-luz{position:absolute;inset:-40% -10% auto -30%;height:150%;background:repeating-conic-gradient(from 0deg at 22% 70%,rgba(255,255,255,.10) 0 8deg,transparent 8deg 22deg);pointer-events:none;animation:vt14r 40s linear infinite}
+@keyframes vt14r{to{transform:rotate(360deg)}}
+.vt14-hero-pj{position:relative;align-self:end;height:200px}
+.vt14-hero-pj .pj.mini,.vt14-esc .pj.mini{position:absolute!important;inset:0;width:100%!important;height:100%;border:0!important;background:none!important;box-shadow:none!important;border-radius:0!important}
+.vt14-hero-pj .pj.mini img{object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 10px 10px rgba(0,0,0,.28))}
+.vt14-hero-tx{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:18px 0 16px}
+.vt14-hero-tx small{font:700 11px/1 var(--f-sis);letter-spacing:.1em;text-transform:uppercase;opacity:.85}
+.vt14-hero-tx b{font:800 22px/1.1 var(--f-sis);letter-spacing:-.02em;text-shadow:0 1px 2px rgba(0,0,0,.25)}
+.vt14-hero-tx em{font:500 12.5px/1.35 var(--f-sis);font-style:normal;opacity:.9;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.vt14-hero-pie{display:flex;align-items:center;gap:8px;margin-top:4px;flex-wrap:wrap}
+.vt14-ver{display:inline-flex;align-items:center;padding:8px 14px;border-radius:999px;background:#FFFFFF;color:#14213A;font:800 13px/1 var(--f-sis);box-shadow:0 4px 12px rgba(0,0,0,.18)}
+.vt14-hero .vt14-p{background:rgba(0,0,0,.28);color:#FFFFFF;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+.vt14-col,.vt14-ex{display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:22px;background:var(--surface,#FBF8F1);box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 8px 24px -16px rgba(20,30,50,.35),0 0 0 1px rgba(20,30,50,.06)}
+.vt14-cab{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.vt14-cab small{display:block;font:700 11px/1.2 var(--f-sis);text-transform:uppercase;color:var(--muted,#7A6A5A)}
+.vt14-cab b{display:block;font:800 19px/1.2 var(--f-sis);letter-spacing:-.015em;color:var(--fg,#1E2433)}
+.vt14-bar{flex:0 0 38%;height:8px;border-radius:99px;background:rgba(20,30,50,.08);overflow:hidden;margin-bottom:6px}
+.vt14-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#E3B341,#F6D27E)}
+.vt14-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:2px 16px 4px;scroll-padding:16px}
+.vt14-tabs::-webkit-scrollbar{display:none}
+.vt14-tab{flex:none;display:inline-flex;align-items:center;gap:7px;padding:9px 13px;border:0;border-radius:999px;background:#FFFFFF;color:var(--fg,#1E2433);font:700 13.5px/1 var(--f-sis);cursor:pointer;box-shadow:inset 0 0 0 1px rgba(20,30,50,.12)}
+.vt14-tab i{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--b),var(--a))}
+.vt14-tab small{font:600 12px/1 var(--f-sis);opacity:.6;font-variant-numeric:tabular-nums}
+.vt14-tab[aria-pressed="true"]{background:linear-gradient(135deg,var(--b),var(--a));color:#FFFFFF;box-shadow:0 6px 14px -6px var(--a)}
+.vt14-tab[aria-pressed="true"] i{background:#FFFFFF}
+.vt14-tab[aria-pressed="true"] small{opacity:.85}
+.vt14-fil{display:flex;padding:3px;border-radius:12px;background:rgba(20,30,50,.06)}
+.vt14-fil button{flex:1;padding:8px 6px;border:0;border-radius:9px;background:none;color:var(--muted,#6A5A50);font:700 13px/1 var(--f-sis);cursor:pointer}
+.vt14-fil button[aria-pressed="true"]{background:#FFFFFF;color:var(--fg,#1E2433);box-shadow:0 1px 3px rgba(20,30,50,.18)}
+.vt14-info{margin:0;padding:2px 0 2px 10px;border-left:3px solid var(--b);font:500 12.5px/1.4 var(--f-sis);color:var(--muted,#6A5A50)}
+.vt14-info b{color:var(--fg,#1E2433)}
+.vt14-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (min-width:560px){ .vt14-g{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@media (min-width:900px){ .vt14-g{grid-template-columns:repeat(4,minmax(0,1fr))} }
+.vt14-fila{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:2px 16px 6px}
+.vt14-fila::-webkit-scrollbar{display:none}
+.vt14-fila .vt14-c{flex:0 0 46%}
+@media (min-width:560px){ .vt14-fila .vt14-c{flex-basis:30%} }
+.vt14-c{position:relative;display:flex;flex-direction:column;gap:6px;padding:0 0 10px;border:0;border-radius:18px;overflow:hidden;background:#FFFFFF;cursor:pointer;text-align:left;
+  box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 6px 16px -10px rgba(20,30,50,.4),0 0 0 1px rgba(20,30,50,.07);transition:transform .15s}
+.vt14-c:active{transform:scale(.97)}
+.vt14-esc{position:relative;display:block;aspect-ratio:1/1;background:radial-gradient(90% 80% at 50% 80%,color-mix(in srgb,var(--b) 60%,#fff 40%) 0,var(--b) 45%,var(--a) 100%);overflow:hidden}
+.vt14-luz{position:absolute;inset:-30%;background:repeating-conic-gradient(from 0deg at 50% 62%,rgba(255,255,255,.09) 0 9deg,transparent 9deg 24deg)}
+.vt14-esc .pj.mini{inset:8% 4% 0!important;height:auto!important}
+.vt14-esc .pj.mini img{object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 6px 6px rgba(0,0,0,.25))}
+.vt14-n{padding:0 10px;font:700 13.5px/1.2 var(--f-sis);letter-spacing:-.01em;color:var(--fg,#1E2433);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.4em}
+.vt14-pie{display:flex;align-items:center;gap:6px;padding:0 10px;flex-wrap:wrap}
+.vt14-p{display:inline-flex;align-items:center;gap:5px;padding:5px 10px 5px 7px;border-radius:999px;background:#F3EEE4;color:#14213A;font:800 13px/1 var(--f-sis);font-variant-numeric:tabular-nums}
+.vt14-p i{transform:scale(.9)}
+.vt14-t{display:inline-flex;align-items:center;gap:4px;padding:5px 10px;border-radius:999px;background:rgba(46,125,70,.12);color:#2E7D46;font:800 12px/1 var(--f-sis)}
+.vt14-t.on{background:#2E7D46;color:#FFFFFF}
+.vt14-nv{display:inline-flex;align-items:center;gap:4px;padding:5px 8px;border-radius:999px;background:rgba(20,30,50,.08);color:var(--muted,#6A5A50);font:700 11.5px/1 var(--f-sis)}
+.vt14-nv::before{content:"";width:9px;height:10px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 12'%3E%3Cpath d='M2 5V3.5a3 3 0 0 1 6 0V5h1v7H1V5zm1.5 0h3V3.5a1.5 1.5 0 0 0-3 0z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 12'%3E%3Cpath d='M2 5V3.5a3 3 0 0 1 6 0V5h1v7H1V5zm1.5 0h3V3.5a1.5 1.5 0 0 0-3 0z'/%3E%3C/svg%3E") center/contain no-repeat}
+.vt14-c.ten::after{content:"✓";position:absolute;top:8px;right:8px;width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:#FFFFFF;color:#2E7D46;font:900 13px/1 var(--f-sis);box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.vt14-vacio{margin:6px 0;font:600 13px/1.4 var(--f-sis);color:var(--muted,#6A5A50);text-align:center}
+
+/* ── el pase: niveles sin premio gratis y los desafíos ── */
+.p9c.nada{display:block;opacity:.0;pointer-events:none}
+.des14{display:flex;flex-direction:column;gap:8px;margin:0 0 6px}
+.des14-cab{display:flex;align-items:baseline;justify-content:space-between;margin-top:6px}
+.des14-cab b{font:800 14px/1.2 var(--f-sis);color:#FFF6DA}
+.des14-cab small{font:600 11px/1.2 var(--f-sis);color:rgba(255,246,218,.65);text-transform:uppercase}
+.des14-f{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.des14-f.listo{background:rgba(242,196,106,.16);box-shadow:inset 0 0 0 1px rgba(242,196,106,.55)}
+.des14-f.cob{opacity:.55}
+.des14-b{flex:1;min-width:0;display:grid;grid-template-columns:1fr auto;gap:5px 8px;align-items:center}
+.des14-b b{grid-column:1/-1;font:700 13.5px/1.25 var(--f-sis);color:#FFFFFF}
+.des14-bar{height:6px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
+.des14-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#E3B341,#F6D27E)}
+.des14-b small{font:700 11px/1 var(--f-sis);color:rgba(255,246,218,.75)}
+.des14-xp{font:800 12px/1 var(--f-sis);color:rgba(255,246,218,.7)}
+.des14-go{border:0;border-radius:999px;padding:8px 12px;background:linear-gradient(180deg,#FFE58A,#E2A932);color:#3A2608;font:800 13px/1 var(--f-sis);cursor:pointer;box-shadow:0 3px 0 #9A6A12}
+.des14-ok{width:26px;height:26px;display:grid;place-items:center;border-radius:50%;background:#2E7D46;color:#FFFFFF;font:900 13px/1 var(--f-sis)}
+/* los títulos de Rezar, con la misma letra que el resto; lo que se reza o se lee sigue en serif */
+.rz9-hola h1,.rz9-hero-t b,.rz9-sec,.rz9-t-b b,.rz9-cab-t,.rz9-ban-b h1,.rz9c-m h2,.p9-tit,.p9-h1,.p9-h2,.ex9-card b,.rz9-tira-t b,.ep-cl h2,.ep-cl h3{font-family:var(--f-sis)!important;font-weight:800!important;letter-spacing:-.02em!important;font-style:normal!important}
+/* elegir camino: «Es tu camino» con fondo propio (no se encima con el texto) */
+.ep-ya{background:#14213A!important;box-shadow:0 0 0 1.5px rgba(242,196,106,.6),0 10px 22px rgba(0,0,0,.45)}
+/* «Es tu camino» no flota sobre el texto: queda al final, centrado */
+.cls-ov.epic .ep-ya{position:relative!important;bottom:auto!important;display:table;margin:16px auto 6px}
+/* Supervivencia: el cartelito de la meta entra entero («Meta 1 de 19 · Juntá 10 de madera») */
+.sv12-meta{width:max-content}
+.sv12-meta small{white-space:nowrap;flex:0 0 auto}
+
 </style>
 <style id="cssTema">
 body{--fr1:#1A3A55;--fr2:#0E2A3F;--fr-fg:#FBF3E0;--fr-sub:#CDB9A8;--fr-chip:#24496A;--fr-chipb:#3E6688;--fr-chipfg:#F8E3A0;--fr-on:#F8E3A0;--fr-nav:#BDA79E;--fr-line:#C99A2E;--fr-vac:#2E5476;
@@ -6793,7 +6927,7 @@ function vistaAlma(){
    '<hr class="sep"><label>Vibración</label><button class="btn sm'+(S.vibrar!==false?" pri":"")+'" data-a="vibrarAlt">'+(S.vibrar!==false?"Activada":"Apagada")+'</button><p class="nota" style="margin:6px 0 0">Un toque cuando te golpean (en los teléfonos que lo permiten).</p>'+
    '<hr class="sep"><label>Brújula en la historia</label><button class="btn sm'+(S.brujula?" pri":"")+'" data-a="brujulaAlt">'+(S.brujula?"Encendida":"Apagada")+'</button><p class="nota" style="margin:6px 0 0">Apagada, explorás por tu cuenta: nadie te dice adónde ir.</p>'+
    (typeof nubeAjustesHTML==="function"?nubeAjustesHTML():"")+
-   '<hr class="sep"><div class="brand" style="margin:0">'+logoSVG(40)+'<div><div class="brand-n" style="font-size:19px">Scaeli</div><div class="brand-s">Versión 10.2 · Tu fe, a otro nivel</div></div></div>'+
+   '<hr class="sep"><div class="brand" style="margin:0">'+logoSVG(40)+'<div><div class="brand-n" style="font-size:19px">Scaeli</div><div class="brand-s">Versión 10.4 · Tu fe, a otro nivel</div></div></div>'+
    '<hr class="sep"><label>Respaldo de tu progreso</label>'+
    '<p class="p" style="margin:0 0 10px">Copiá tu progreso para guardarlo o pasarlo a otro dispositivo, y pegalo acá para restaurarlo.</p>'+
    '<button class="btn sm" data-a="respCopiar">Copiar mi progreso</button>'+
@@ -8402,7 +8536,7 @@ function esComun(id){ return !SKINS[id].perlas&&!SKINS[id].pase; }
 function vidaMax(){ const b=Math.max(0,100-20*(S.caidas||0)), ap=atrPuesto(); return b>0&&ap?b+ap.vida:b; }
 
 /* ── pase de santidad ── */
-const PASE_PASO=1, PASE_N=25;
+const PASE_PASO=1, PASE_N=50;
 const PASE_SKIN=["reymago","abraham","moises","juan","pablo","pedro","juanbautista","abraham","moises","juan","pablo","pastor"];
 const EFECTOS={tabor:{n:"Luz del Tabor",fx:"serafin"},estrella:{n:"Estrella de Belén",fx:"dorado"},rocio:{n:"Rocío del cielo",fx:"zafiro"},brasas:{n:"Brasas de Pentecostés",fx:"fuego"},vigilia:{n:"Luz de la Vigilia",fx:"noche"}};
 const PASE_FX=["estrella","rocio","vigilia","tabor","brasas","rocio","tabor","brasas","vigilia","tabor","rocio","estrella"];
@@ -16475,7 +16609,7 @@ pjClase=function(cv,cls,vista){ if(!cls||!CLS_V[cls]) return cv; const o=documen
     else { clsDib9(x,cls,"atras"); clsDib9(x,cls,"espalda"); x.drawImage(cv,0,0); clsDib9(x,cls,"mano"); clsDib9(x,cls,"pecho"); } }
   finally { CLS_VISTA="d"; } return o; };
 function clsClave(cls){ return (cls||"")+":"+clsPz(cls).join("-")+(S.skin?"|s":""); }
-yoSprCls=function(cls,todo){ CLS_TODO=todo?1:0; try{ const Lk=clsLook(lookActual(),cls), k="run9:"+claveEstado(Lk)+"|c:"+clsClave(cls); if(_cache[k]) return _cache[k];
+yoSprCls=function(cls,todo){ CLS_TODO=todo?1:0; try{ const Lk=clsLook(lookActual(),cls), k="run9:"+(todo?"todo|":"")+claveEstado(Lk)+"|c:"+clsClave(cls); if(_cache[k]) return _cache[k];
     const r=_pix(clsCapas(Lk,cls),-CORRE,Lk); r.ctx.putImageData(r.img,0,0); if(!cls||!CLS_V[cls]) return _cache[k]=r.cv.toDataURL();
     const cv=document.createElement("canvas"); cv.width=r.cv.width; cv.height=r.cv.height; const x=cv.getContext("2d"); CLS_VISTA="d"; clsDib9(x,cls,"atras"); clsDib9(x,cls,"espalda"); x.drawImage(r.cv,0,0); clsDib9(x,cls,"mano"); clsDib9(x,cls,"pecho"); return _cache[k]=cv.toDataURL(); }
   finally { CLS_TODO=0; } };
@@ -18441,7 +18575,7 @@ function perla12Dar(n,por){ PERLA12_OK++; try{ darPerlas(n,por); }finally{ PERLA
 /* Premium y la hoja de perlas */
 tarjetaPremium=function(){
   return '<div class="sec" id="secPremium">Premium</div><div class="card prem12'+(S.premium?" on":"")+'"><span class="prem12-ic" aria-hidden="true">✦</span><h3>'+(S.premium?"Sos Premium":"Scaeli Premium")+'</h3>'+
-    '<p class="p">La pista Premium del pase de santidad: una recompensa extra cada día que entrás, el efecto exclusivo en el escalón 12 y, al final, la vestimenta y el fondo exclusivos del mes y una perla. La oración, el examen, la confesión, las lecturas y los juegos son gratis para todos, siempre.</p>'+
+    '<p class="p">La pista Premium del pase de santidad: un premio en cada uno de los 50 niveles del mes —talentos, cofres, festejos, mascotas, dos efectos y dos vestimentas que se arman con fragmentos— y, al final, la vestimenta y el fondo exclusivos del mes y una perla. La oración, el examen, la confesión, las lecturas y los juegos son gratis para todos, siempre.</p>'+
     (S.dev||S.premium?'<button class="btn '+(S.premium?"":"pri")+' full" data-a="premium">'+(S.premium?"Desactivar (prueba)":"Activar Premium (prueba)")+'</button>':'<button class="btn full" disabled>Disponible cuando la app esté publicada</button>')+
     '<button class="btn full" style="margin-top:8px" data-a="perlas12">Ver las perlas</button>'+
     '<p class="nota">En esta versión de prueba no se cobra nada.</p></div>'; };
@@ -18668,16 +18802,16 @@ const CAP12_Q={
  pascua:[["¿Montado en qué entró Jesús en Jerusalén?",["En un burrito","En un caballo blanco","En un carro"],0],["¿Por cuánto entregó Judas a Jesús?",["Treinta monedas de plata","Veinte monedas","Cien monedas de oro"],0],["¿Cuántas veces negó Pedro a Jesús?",["Tres","Una","Siete"],0],["¿Quién ayudó a Jesús a llevar la cruz?",["Simón de Cirene","Juan","Nicodemo"],0],["¿Qué discípulo estaba al pie de la cruz con María?",["El discípulo amado, Juan","Pedro","Judas"],0],["¿Qué día resucitó Jesús?",["El primer día de la semana, el domingo","El sábado","El viernes"],0]],
  iglesia:[["¿Cuántos días después de la Pascua llega Pentecostés?",["Cincuenta","Cuarenta","Siete"],0],["¿Cómo se vio el Espíritu Santo en Pentecostés?",["Como lenguas de fuego","Como una nube oscura","Como una estrella"],0],["¿Quién le habló a la multitud el día de Pentecostés?",["Pedro","Pablo","Tomás"],0],["¿Cómo vivían los primeros cristianos?",["Compartían todo y partían el pan juntos","Cada uno por su lado","Escondidos para siempre"],0],["¿Quién fue el primer mártir?",["San Esteban","San Pedro","San Pablo"],0],["¿Qué le pasó a Saulo camino de Damasco?",["Lo envolvió una luz y oyó a Jesús","Lo asaltaron unos ladrones","Se perdió en el desierto"],0]]};
 function cap12Banco(C){ const extra=CAP12_Q[C.id]||[]; const b=(C.quiz0||C.quiz).concat(extra); if(!C.quiz0) C.quiz0=C.quiz.slice(); return b; }
-function cap12Preguntas(C){ return q12Elegir("cap_"+C.id,cap12Banco(C),4); }
+function cap12Preguntas(C){ return q12Elegir("cap_"+C.id,cap12Banco(C),5); }
 
 /* ── el final del capítulo: queda guardado aunque salgas ── */
 function cap12Es(cap){ return !!(cap&&RPG_CAPS[cap]&&HS_CAPS.some(c=>c.id===cap)); }
 setInterval(()=>{ try{ if(RP&&RP.fin&&cap12Es(RP.cap)&&!hsHechos().includes(RP.cap)){ if(!S.capFin12) S.capFin12={}; if(!S.capFin12[RP.cap]){ S.capFin12[RP.cap]={map:RP.map,x:RP.x,y:RP.y}; guardar(); } } }catch(e){} },400);
 function cap12Stats(f){ const st={caidas:0,lados:0,ladosT:0}; try{ st.caidas=(f&&f._caidas)||0; const C=CAPX[RP?RP.cap:""]; if(C&&RP) Object.keys(RPG_MAPS).forEach(k=>{ const M=RPG_MAPS[k]; if(M.parent&&M.cap===RP.cap){ st.ladosT++; if(f&&f["vis_"+k]) st.lados++; } }); }catch(e){} return st; }
-/* responder: 4 al azar; con 3 o más, el capítulo queda completo y cobrás; si no, volvés a la última sala */
+/* responder: 5 al azar (desde la 10.4); con 4 o más, el capítulo queda completo y cobrás; si no, volvés a la última sala */
 function cap12Quiz(id){ const C=HS_CAPS.find(x=>x.id===id); if(!C) return; const enRP=!!(RP&&RP.cap===id), st=enRP?capStats():cap12Stats((S.rpgS&&S.rpgS[id]&&S.rpgS[id].f)||{}), img=capImg(C.id), niv=(RPG_CAPS[C.id]&&RPG_CAPS[C.id].niv)||1;
-  abrirQuiz(C.t,"Cuatro preguntas sobre lo que viviste. Hacen falta tres bien.",cap12Preguntas(C),(ok,n)=>{
-    if(ok<3){ pintar(); return cap12Repetir(id,ok); }
+  abrirQuiz(C.t,"Cinco preguntas sobre lo que viviste. Hacen falta cuatro bien.",cap12Preguntas(C),(ok,n)=>{
+    if(ok<4){ pintar(); return cap12Repetir(id,ok); }
     if(!S.hs) S.hs={hechos:[]}; const nuevo=!S.hs.hechos.includes(C.id); CAP_FIN_P=null;
     if(nuevo){ S.hs.hechos.push(C.id); capPremio(C.id); if(CAP_FIN_P&&CAP_FIN_P.perlas){ CAP_FIN_P.tal=(CAP_FIN_P.tal||0)+CAP_FIN_P.perlas*PERLA12_TAL; CAP_FIN_P.perlas=0; } anotar("historia","Historia de la salvación: completaste «"+C.t+"»."); } else { const t=darTalentos(10+5*niv); CAP_FIN_P={tal:t,perlas:0,xp:0,cofre:0,pase:null}; }
     if(S.rpgS) delete S.rpgS[C.id]; if(S.capFin12) delete S.capFin12[C.id]; guardar(); son("nivel");
@@ -19054,7 +19188,7 @@ function sv13Pagina(){ const E=S.sv&&S.sv.seed?S.sv:null, M=(E&&E.metas12)||{}, 
   const cur=et.find(x=>x.L.some(m=>!M[m.id]))||et[et.length-1], ci=et.indexOf(cur), dia=E?(E.dia||1):0, mejor=E?Math.max(E.mejor||1,dia):0;
   const hora=E?(E.t<.22||E.t>.78?"de noche":E.t<.35?"amanece":E.t>.66?"atardece":"de día"):"";
   const hero='<div class="sv13-hero"><div class="sv13-img">'+rz9Img("md_sv")+'<span class="sv13-dia">'+(E?'<b>Día '+dia+'</b><small>de 40 · '+hora+'</small>':'<b>Día 1</b><small>de 40</small>')+'</span></div>'+
-    '<div class="sv13-tx"><em>Modo supervivencia</em><h2>Cuarenta días en el desierto</h2><p>Juntá madera y piedra, armá tu refugio y resistí las noches, cuando salen las sombras. Comé para curarte y rezá para que se alejen.</p>'+
+    '<div class="sv13-tx"><em>Modo supervivencia</em><h2>Cuarenta días en el desierto</h2><p>Juntá madera y piedra, armá tu refugio y resistí las noches, cuando salen las sombras. Curate con las hierbas del desierto y rezá para que se alejen.</p>'+
       '<div class="sv13-st"><span><b class="num">'+(E?dia:"—")+'</b><small>Día</small></span><span><b class="num">'+(E?mejor:"—")+'</b><small>Récord</small></span><span><b class="num">'+hechas+'<i>/'+SV12_METAS.length+'</i></b><small>Metas</small></span></div>'+
       '<button class="sv13-go" data-a="sv"><b>'+(E?'¡Seguir!':'¡Empezar!')+'</b><small>'+(E?'Volvés al día '+dia+', donde lo dejaste':'Se guarda solo: podés salir y volver cuando quieras')+'</small></button></div></div>';
   const metas='<div class="sv13-m"><div class="sv13-mc"><div><small>Etapa '+(ci+1)+' de '+et.length+'</small><h3>'+esc(cur.n)+'</h3></div><span class="num">'+cur.L.filter(m=>M[m.id]).length+'/'+cur.L.length+'</span></div>'+
@@ -19063,7 +19197,7 @@ function sv13Pagina(){ const E=S.sv&&S.sv.seed?S.sv:null, M=(E&&E.metas12)||{}, 
     '<div class="sv13-et">'+et.map((x,i)=>{ const n=x.L.filter(m=>M[m.id]).length, todo=n===x.L.length; return '<span class="'+(todo?"ok":i===ci?"act":"")+'"><b>'+(todo?"✓":i+1)+'</b>'+esc(x.n)+'</span>'; }).join("")+'</div>'+
     '<p class="sv13-nota">Cada meta paga la primera vez que la cumplís. La última, llegar al día 40, trae un cofre.</p></div>';
   const tips=[["martillo","Golpeá","Árboles, rocas y arbustos. Con la herramienta justa —hacha, pico— rinde mucho más; se elige sola."],
-    ["pan","Comé","Curarte es comiendo: con pan, dátiles o bayas en la mano, tocá el botón grande. Ojo con las bayas negras: envenenan."],
+    ["pan","Comé y curate","Comer te saca el hambre (ojo con las bayas negras: envenenan). Para curarte, buscá las hierbas de flor blanca en el pasto: vuelven a crecer cada día."],
     ["cruz","Rezá","Las sombras se alejan un rato y no te atacan. Rezar no cura."],
     ["luna","Dormí","Con una cama, la noche pasa y amanece. Si caés, volvés a tu cama."]];
   try{ if(typeof PC13!=="undefined"&&PC13) tips.push(["teclado","En la compu","WASD o flechas para caminar. Espacio golpea, C come, R reza, E abre la mochila, M el mapa y 1 a 8 eligen lo que tenés en la mano."]); }catch(e){}
@@ -19717,6 +19851,305 @@ function sv13AccIco(C){ const it=svSelIt(), I=SV_IT[it];
 { const _sab13=svAbrir; svAbrir=function(){ const r=_sab13.apply(this,arguments); try{ const el=document.getElementById("sv"); if(el){ el.classList.add("sv13"); const c=el.querySelector("#svC"); if(c) c.remove();
       const R=el.querySelector("#svR"); if(R&&!R.querySelector(".sv13-rz")) R.insertAdjacentHTML("afterbegin",'<i class="sv13-rz" aria-hidden="true"></i>');
       svAcLbl(); } }catch(e){ errAnotar(e,"supervivencia botones"); } return r; }; }
+
+/* ───────── v10.4 · lo que Lorenzo vio jugando la 10.3 (19 y 20/10, con capturas):
+   · «No puedo elegir ningún nombre de usuario» (el servidor que tiene prendido es de antes y no sabe de usuarios: respondía «No existe»).
+   · «No se puede guardar el progreso en la nube»: el aviso decía solo «Sin conexión»; ahora espera más, explica y reintenta solo.
+   · «Antes estaba mucho mejor como habías hecho las clases»: al elegir camino, cada camino se veía con el equipo del tuyo (el guerrero
+     con el escapulario del predicador). Ahora cada uno se ve con lo suyo.
+   · «Eva con un velo, parece una monja»: pelo largo y suelto, sin velo. Moisés, José, Jacob, Elías y David también con el dibujo de
+     las skins en las escenas.
+   · «El guerrero quedó sin ojos en la vista frontal»: el borde del visor ya no es negro; los ojos se ven.
+   · «Cambiar el diseño del ángel y usar siempre el mismo para todos, incluso los querubines»: todos los ángeles (escenas, Completas,
+     la escalera de Jacob, la Anunciación, los querubines del paraíso) son tu ángel de la guarda. Alas nuevas para los arcángeles y la
+     espada de San Miguel derecha (la ondulada parecía una cadena).
+   · «Siguen apareciendo carteles»: en el juego no hay más carteles sobre el dibujo. Lo importante aparece un momento arriba, en la
+     barra (donde dice el objetivo), y lo que juntás o te cura sube como un número sobre tu personaje.
+   · «Sacar la opción comer como curación y hacerlo cuando encuentro un objeto»: en la Historia te curás al tocar la comida del camino
+     (si te hace falta; si no, queda ahí). Lo que no se come, te envenena al tocarlo. En Supervivencia comer saca el hambre, y te curás con
+     las hierbas de flor blanca que crecen en el pasto (vuelven a crecer cada día) ───────── */
+
+/* ── las clases: cada camino, con su propio equipo ── */
+let EQ14_PREV=null;
+eq13Cls=function(){ try{ return EQ14_PREV||cbCls()||""; }catch(e){ return ""; } };
+{ const _ys14=yoSprCls; yoSprCls=function(cls){ const p=EQ14_PREV; EQ14_PREV=cls||null; try{ return _ys14.apply(this,arguments); } finally { EQ14_PREV=p; } }; }
+
+/* ── Eva sin velo; las personas de las escenas con el dibujo de las skins ── */
+NPCX.eva=Object.assign({},NPCX.eva,{sexo:0,pelo:"pelo2",peloCol:AV_PELO_COL[0]});
+NPCX.eva2=Object.assign({},NPCX.eva2,{sexo:0,pelo:"pelo2",peloCol:AV_PELO_COL[0]});
+try{ delete RNPC.eva; delete RNPC.eva2; }catch(e){}
+const CINE14={moises:"moises",jose:"jose",jacob:"jacob",elias:"elias",david:"david",noe:"noe"};
+{ const _ca14=cineActor; cineActor=function(c,a,i,t){ try{ const n=String(a[0]);
+      if(n==="angelc"||n==="n:gabriel"||n==="angel"){ if(ang14Dib(c,a,i,t)) return; }
+      if(CINE14[n]&&(NPCX[CINE14[n]]||SKINS[CINE14[n]])) return _ca14.call(this,c,["n:"+CINE14[n]].concat(a.slice(1)),i,t); }catch(e){} return _ca14.apply(this,arguments); }; }
+
+/* ── el visor del yelmo: de frente y de costado, el borde que toca la cara es metal (no negro), así se ven los ojos ── */
+{ const _pc14=pjComponer; pjComponer=function(lista,dx,Lk,vista){ const F=_pc14.apply(this,arguments); try{ if(vista==="u") return F; const yi=F.noms.findIndex(n=>!!n&&/^yelmo/.test(n)); if(yi<0) return F;
+      const P=F.pals[yi]||F.base, M=P.M||"#7D8590", cara=n=>n==="base"||n==="base_f"||n==="cara"||n==="cara_f";
+      const cambia=[]; for(let y=0;y<30;y++) for(let x=0;x<F.W;x++){ if(F.L[y*F.W+x]!==yi||String.fromCharCode(F.CH[y*F.W+x])!=="K") continue;
+        if([[1,0],[-1,0],[0,1],[0,-1]].some(([a,b])=>cara(pjCapaEn(F,x+a,y+b)))) cambia.push([x,y]); }
+      cambia.forEach(([x,y])=>pjPon(F,x,y,M)); }catch(e){} return F; }; }
+
+/* ── San Miguel: una espada derecha y brillante ── */
+SPR.espada14={x:41,y:8,r:["....K.....","...KNK....","...KNmK...","...KNmK...","...KNmK...","...KNmK...","...KNmK...","...KNmK...","...KNmK...","...KNmK...","...KNmK...","...KNmK...","...KNmK...","...KNmK...","...KNmK...","...KNmK...","...KNmK...","...KNmK...","...KNmK...","...KNmK...","...KNmK...","...KNmK...","...KNmK...","...KNmK...","...KNmK...",".oKKNmKKo.","oggggggggo","oggggggggo",".ooKUUKoo.",".kssUUK...",".kssUUK...","..kKUUK...","..oegggo..","..oggggo..","...oooo..."]};
+try{ if(SKINS.miguel&&SKINS.miguel.look) SKINS.miguel.look.arma=["espada14",{K:"#2B1A23",N:"#FFFFFF",m:"#C9D4E2",g:"#E3B341",o:"#8A5E10",U:"#7A4A22",e:"#FFF2B8"}]; }catch(e){}
+
+/* ── las alas: un solo diseño, con plumas en dos hileras (las de los arcángeles y las que se dibujan en el juego) ── */
+const ALA14=["......ooo.........","....oowwwoo.......","...owwwwwwwoo.....","..owwwwwwwwwwoo...",".owwwwwwwwwwwwwoo.",".owwwfffwwwwwwwwwo","owwwfllffwwwwwwwwo","owwflFllffwwwwwwwo","owflFwFllfffwwwwwo","oflFwwwFllllfffwwo","oflFwwwwFFlllllffo","olFwwwwwwwFFFllllo","olFwwfwwwwwwwFFFlo","olFwflfwwwwwwwwwoo","oFwflFlfwwwwwwwo..","oFwflFFlffwwwwo...","oFfllFolllffoo....","oFfllo.oFFllo.....","oFflo...ooFo......","oFlo......o.......","oFo...............",".o................"];
+const ALA14_PAL={o:"#4E5E80",w:"#FFFFFF",f:"#F2F0EA",l:"#D4DEEA",F:"#A9B8CE"};
+const ALA14_CV={};
+function ala14Canvas(dx){ const k="a14:"+dx; if(ALA14_CV[k]) return ALA14_CV[k]; const cv=document.createElement("canvas"); cv.width=PXW; cv.height=PXH; const x=cv.getContext("2d");
+  ALA14.forEach((f,j)=>{ for(let i=0;i<f.length;i++){ const col=ALA14_PAL[f[i]]; if(!col) continue; x.fillStyle=col; x.fillRect(6+dx+i,11+j,1,1); x.fillRect(61+dx-i,11+j,1,1); } });
+  return ALA14_CV[k]=cv; }
+alasURL=function(dx){ const k="alas14:"+dx; if(_cache[k]) return _cache[k]; return _cache[k]=ala14Canvas(dx).toDataURL(); };
+/* en el juego, las vestimentas con alas también las llevan (de espaldas, por encima) */
+{ const _pa14=pjArmar; pjArmar=function(v){ const r=_pa14.apply(this,arguments); try{ const Lk=lookActual(); if(!r||!r.im||!Lk||!Lk.alas) return r; const cv=document.createElement("canvas"); cv.width=r.im.width; cv.height=r.im.height; const x=cv.getContext("2d"), A=ala14Canvas(-CORRE);
+      if(v==="u"){ x.drawImage(r.im,0,0); x.globalAlpha=.96; x.drawImage(A,0,0); x.globalAlpha=1; } else { x.drawImage(A,0,0); x.drawImage(r.im,0,0); }
+      return {im:cv,bb:null}; }catch(e){ return r; } }; }
+
+/* ── un solo ángel para todos: el de tu ángel de la guarda (con las alas de serafín y aura dorada) ── */
+let ANG14=null;
+function ang14(){ if(ANG14&&ANG14.cv) return ANG14;
+  if(!ANG14){ const g0=S.angel, c0=S.compa; let L=[];
+    try{ S.angel={on:true,aura:1,alas:1,ropa:0,item:0,alasOwn:[0,1]}; S.compa=null; L=capas(lookActual(),true,false).filter(x=>Array.isArray(x)&&/^angel/.test(x[0])); }catch(e){ L=[]; } finally { S.angel=g0; S.compa=c0; }
+    if(!L.length) return null; ANG14={im:rImg("ang14",pixelURL(L,"ang14",0,lookActual())),cv:null,bb:null}; }
+  const im=ANG14.im; if(!im.complete||!im.naturalWidth) return null;
+  const W=im.naturalWidth, H=im.naturalHeight, cv=document.createElement("canvas"); cv.width=W; cv.height=H; const x=cv.getContext("2d"); x.drawImage(im,0,0);
+  const D=x.getImageData(0,0,W,H).data; let x0=W,y0=H,x1=-1,y1=-1; for(let yy=0;yy<H;yy++) for(let xx=0;xx<W;xx++) if(D[(yy*W+xx)*4+3]>8){ if(xx<x0)x0=xx; if(xx>x1)x1=xx; if(yy<y0)y0=yy; if(yy>y1)y1=yy; }
+  if(x1<0) return null; ANG14.cv=cv; ANG14.bb={x:x0,y:y0,w:x1-x0+1,h:y1-y0+1};
+  /* el mismo ángel donde antes se usaba el dibujo cuadrado («angelc») */
+  try{ const b=ANG14.bb, q=Math.max(b.w,b.h), s=document.createElement("canvas"); s.width=q; s.height=q; s.getContext("2d").drawImage(cv,b.x,b.y,b.w,b.h,Math.round((q-b.w)/2),q-b.h,b.w,b.h); RSC.angelc=s; }catch(e){}
+  return ANG14; }
+function ang14Dib(c,a,i,t){ const A=ang14(); if(!A) return false; const b=A.bb, x=a[1], y=a[2], h=a[3], bob=Math.round(Math.sin(t*2.2+i*1.7)*1.5), w=b.w*h/b.h;
+  const g=c.createRadialGradient(x,y-h*.55,1,x,y-h*.55,h*.62); g.addColorStop(0,"rgba(255,246,210,.42)"); g.addColorStop(1,"rgba(255,246,210,0)"); c.fillStyle=g; c.fillRect(x-h,y-h*1.2,h*2,h*1.3);
+  c.save(); if(a[4]){ c.translate(x,0); c.scale(-1,1); c.drawImage(A.cv,b.x,b.y,b.w,b.h,-w/2,y-h+bob,w,h); } else c.drawImage(A.cv,b.x,b.y,b.w,b.h,x-w/2,y-h+bob,w,h); c.restore(); return true; }
+setTimeout(function ang14Listo(){ if(!ang14()) setTimeout(ang14Listo,300); },400);
+/* las escenas esperan a que el ángel esté listo */
+{ const _ei14=esc9Imgs; esc9Imgs=function(fr){ const L=_ei14.apply(this,arguments); try{ if((fr.a||[]).some(a=>["angelc","n:gabriel","angel"].includes(String(a[0])))){ ang14(); if(ANG14&&ANG14.im) L.push(ANG14.im); } }catch(e){} return L; }; }
+/* los querubines del paraíso: el mismo ángel, con la espada de fuego */
+{ const _dx14=rpgDibExtra; rpgDibExtra=function(c,e,sx,sy,t){ try{ if(e&&e.k==="npc"&&e.s==="querubin"){ const A=ang14(); if(A){ const b=A.bb, k=.5, w=b.w*k, h=b.h*k, bob=Math.sin(t*2.6+(e.x||0))*1.4, X=sx+8, Y=sy+14;
+          const g=c.createRadialGradient(X,Y-h/2+bob,1,X,Y-h/2+bob,14); g.addColorStop(0,"rgba(255,246,210,.5)"); g.addColorStop(1,"rgba(255,246,210,0)"); c.fillStyle=g; c.fillRect(X-14,Y-h/2+bob-14,28,28);
+          c.fillStyle="rgba(0,0,0,.16)"; c.beginPath(); c.ellipse(X,Y+1,Math.max(3,w*.3),1.4,0,0,7); c.fill();
+          c.drawImage(A.cv,b.x,b.y,b.w,b.h,Math.round(X-w/2),Math.round(Y-h+bob),w,h);
+          if(e.espada){ const f=.6+.4*Math.sin(t*9); c.fillStyle="rgba(255,150,60,"+(.35*f).toFixed(2)+")"; c.beginPath(); c.arc(X+8,Y-h*.55+bob,6,0,7); c.fill(); c.fillStyle="#2B1A23"; c.fillRect(X+6,Y-h*.55-7+bob,3,14); c.fillStyle="#FFB43A"; c.fillRect(X+7,Y-h*.55-6+bob,1,10); c.fillStyle=f>.8?"#FFF2B8":"#FF7A3A"; c.fillRect(X+7,Y-h*.55-9+bob,1,3); }
+          return true; } } }catch(x){} return _dx14.apply(this,arguments); }; }
+
+/* ── el usuario: si el servidor es de antes (no conoce /usuario), queda reservado en el teléfono hasta que se actualice ── */
+{ const _ur14=us13Reservar; us13Reservar=async function(u){ const r=await _ur14.apply(this,arguments); if(r&&r.err&&/^No existe$/i.test(String(r.err).trim())) return {pend:true,viejo:true}; return r; }; }
+
+/* ── la nube: más tiempo para subir, un aviso que se entiende y otro intento solo ── */
+nubePedir=async function(met,ruta,cuerpo){ const ctl=typeof AbortController!=="undefined"?new AbortController():null, ms=met==="PUT"||met==="POST"?35000:15000, to=setTimeout(()=>{ try{ ctl&&ctl.abort(); }catch(e){} },ms);
+  try{ const txt=cuerpo?JSON.stringify(cuerpo):undefined; const r=await fetch(NUBE.url+ruta,{method:met,headers:cuerpo?{"Content-Type":"application/json"}:{},body:txt,signal:ctl?ctl.signal:undefined,keepalive:met==="PUT"&&!!txt&&txt.length<60000}); clearTimeout(to);
+    let j=null; try{ j=await r.json(); }catch(e){} return {st:r.status,j:j||{}}; }catch(e){ clearTimeout(to); return {st:0,j:{error:"Sin conexión"}}; } };
+let NUBE14_RE=0;
+{ const _ns14=nubeSubir; nubeSubir=async function(){ const ok=await _ns14.apply(this,arguments); try{ if(!ok&&NUBE.msg&&!NUBE.conf){
+        if(/^Sin conexión/.test(NUBE.msg)) NUBE.msg="No pudimos llegar al servidor de Scaeli (¿estás sin internet?). Lo intentamos de nuevo solo en un minuto.";
+        else if(/^No existe/.test(NUBE.msg)) NUBE.msg="El servidor de Scaeli no respondió como esperábamos. Lo intentamos de nuevo en un minuto.";
+        clearTimeout(NUBE14_RE); NUBE14_RE=setTimeout(()=>{ try{ if(nubeOn()&&(S.nube.mod||0)>(S.nube.t||0)) nubeSubir(); }catch(e){} },60000); } }catch(e){} return ok; }; }
+
+/* ── sin carteles en el juego: lo importante, un momento en la barra de arriba; lo que juntás, sobre tu personaje ── */
+let MSG14=null;
+function msg14(t,seg){ try{ t=String(t||"").replace(/\s+/g," ").trim(); if(!t) return; seg=+seg||0; MSG14={t:t,h:Date.now()+Math.max(2.2,Math.min(6,seg||(2+t.length/40)))*1000};
+    const o=document.getElementById("rpgObj"); if(o){ o.textContent=t; o.classList.add("m14"); o.hidden=false; }
+    clearTimeout(msg14.tm); msg14.tm=setTimeout(()=>{ MSG14=null; const o=document.getElementById("rpgObj"); if(o){ o.classList.remove("m14"); try{ o.textContent=rpgObjetivo(); }catch(e){} } },MSG14.h-Date.now()+30); }catch(e){} }
+{ const _ro14=rpgObjetivo; rpgObjetivo=function(){ if(MSG14&&Date.now()<MSG14.h) return MSG14.t; return _ro14.apply(this,arguments); }; }
+feed13=function(txt,tit,seg){ try{ txt=String(txt||"").trim(); if(!txt) return; if(feed13Juego()||(RP&&document.getElementById("rpgObj"))){ if(/^Juntaste/.test(tit||"")) return; return msg14(txt,seg); } avisar(txt); }catch(e){} };
+lugarCartel=function(){};
+/* lo que sube sobre tu personaje: un ícono y un número */
+function pop14(x,y,ico,t,col){ try{ if(!RP) return; if(!RP.pop14) RP.pop14=[]; RP.pop14.push({x:x,y:y,ico:ico||null,t:t||"",c:col||"#FFFFFF",l:0}); if(RP.pop14.length>6) RP.pop14.shift(); }catch(e){} }
+{ const _ad14=rpgAccDib; rpgAccDib=function(c,t){ _ad14.apply(this,arguments); try{ if(!RP||!RP.pop14||!RP.pop14.length) return; const M=rpgMapa(), [cx,cy]=mundoCam(M), now=performance.now()/1000;
+      RP.pop14=RP.pop14.filter(p=>{ if(!p.t0) p.t0=now; const l=now-p.t0; if(l>1.5) return false; const a=l<1.1?1:1-(l-1.1)/.4, X=Math.round(p.x*RT-cx+8), Y=Math.round(p.y*RT-cy-4-l*12);
+        c.save(); c.globalAlpha=Math.max(0,a); let w=0; if(p.ico&&p.ico.complete&&p.ico.naturalWidth){ c.drawImage(p.ico,X-12,Y-7,12,12); w=7; }
+        if(p.t){ c.font="800 8px Poppins,sans-serif"; c.textAlign="left"; c.lineWidth=2.5; c.strokeStyle="rgba(10,14,26,.85)"; c.strokeText(p.t,X-4+w,Y+2); c.fillStyle=p.c; c.fillText(p.t,X-4+w,Y+2); }
+        c.restore(); return true; }); }catch(e){} }; }
+
+/* ── la Historia: te curás al tocar la comida del camino; lo que no va, te envenena ── */
+let COM14_LLENO=null;
+{ const _ll14=rpgLlegar; rpgLlegar=function(){ let tmp=null; try{ const e=rpgMapa().ents.find(q=>q.k==="comida"&&q.x===RP.x&&q.y===RP.y&&!rpgF(q.id)); if(e) tmp=com14Tocar(e); }catch(x){} try{ return _ll14.apply(this,arguments); } finally { if(tmp) tmp.e.x=tmp.x; } }; }
+function com14Tocar(e){ const C=COM13[e.s]; if(!C) return null; if(RP.hpM===undefined) rpgAccPrep(); const ico=com13Img(e.s);
+  if(C.veneno){ RP.f[e.id]=1; RP.ven13=6; RP.ven13t=1.2; try{ son("off"); rpgChispas(e.x,e.y); }catch(x){} pop14(e.x,e.y,ico,"¡Veneno!","#B6F08A"); msg14("¡"+C.n+"! Te cayó mal: estás envenenado un rato. Lo que no conocés, mejor no tocarlo.",4); try{ rpgGuardar(); }catch(x){} return null; }
+  if(RP.hp>=RP.hpM){ if(COM14_LLENO!==e.id){ COM14_LLENO=e.id; pop14(e.x,e.y,ico,"Lleno","#FFE9A8"); } const x=e.x; e.x=-99; return {e:e,x:x}; }
+  const n=Math.max(1,Math.round(RP.hpM*C.cura)); RP.hp=Math.min(RP.hpM,RP.hp+n); RP.f[e.id]=1; if(RP.ven13>0) RP.ven13=Math.max(0,RP.ven13-2);
+  try{ rvSync(); }catch(x){} try{ son("mas"); rpgChispas(e.x,e.y); }catch(x){} pop14(e.x,e.y,ico,"+"+n,"#9FE0A8"); try{ rpgGuardar(); rpgUI(); }catch(x){} return null; }
+/* la tecla C ya no come: avisa cómo es ahora */
+rpgComer12=function(){ msg14("Te curás tocando la comida que encontrás en el camino (o con las provisiones de la mochila).",3.4); };
+{ const _mo14=inmMochiHTML; inmMochiHTML=function(){ let o=_mo14.apply(this,arguments); try{ const a=o.indexOf('<p class="mo-sec">Para comer</p>'), b=o.indexOf('<p class="mo-sec">Provisiones</p>'); if(a>=0&&b>a) o=o.slice(0,a)+o.slice(b); }catch(e){} return o; }; }
+{ const _ph14=provHTML; provHTML=function(){ let o=_ph14.apply(this,arguments); try{ o=o.replace("te curás comiendo lo que encontrás en el camino o lo que llevás en la mochila.","te curás tocando la comida que encontrás en el camino (¡ojo con lo que no conocés!) o con lo que llevás en la mochila."); }catch(e){} return o; }; }
+
+/* ── Supervivencia: comer saca el hambre; te curás con las hierbas de flor blanca ── */
+sv13Comer=function(it){ const E=SV.E, I=SV_IT[it]; if(!I||!I.come) return;
+  if(I.veneno){ svDar(it,-1); E.ham=Math.min(20,E.ham+(I.come||0)); SV.ven13=Math.max(SV.ven13||0,5); SV.ven13t=0; try{ son("menos"); }catch(e){}
+    svChispas(E.x,E.y,"#7ACB5A",12); svAviso("¡Puaj! Las bayas negras no son de comer: te envenenaste. Se pasa en un rato.",3.2); svBarras(); try{ sv12Botones(); svAcLbl(); }catch(e){} return; }
+  if(E.ham>=20&&!(I.sed&&E.sed<20)) return svAviso("No tenés hambre. Para curarte, buscá las hierbas de flor blanca.",2.2);
+  svDar(it,-1); E.ham=Math.min(20,E.ham+I.come); if(I.sed) E.sed=Math.min(20,E.sed+I.sed);
+  SV.nums.push({x:E.x,y:E.y,t:"+"+I.come+" hambre",l:0,c:"#FFD08A"}); try{ son("mas"); }catch(e){} svBarras(); try{ sv12Botones(); svAcLbl(); }catch(e){} };
+function her14Lista(){ if(SV.her14L) return SV.her14L; const L=[], seed=String(SV.E.seed||"s"); let h=0; for(let i=0;i<seed.length;i++) h=(h*31+seed.charCodeAt(i))>>>0;
+  for(let y=1;y<SVH-1;y++) for(let x=1;x<SVW-1;x++){ const t=svTile(x,y); if(t!==T_.PASTO&&t!==T_.ARENA) continue; let q=(Math.imul(x+h,73856093)^Math.imul(y,19349663))>>>0; q=(q^(q>>>13))>>>0; const r=(q%10000)/10000; if(r<(t===T_.PASTO?.022:.004)) L.push([x,y]); }
+  return SV.her14L=L.slice(0,90); }
+function her14Tomadas(){ const E=SV.E; if(!E.her14||E.her14.d!==E.dia) E.her14={d:E.dia,t:[]}; return E.her14.t; }
+{ const _st14=svTick; svTick=function(dt){ const r=_st14.apply(this,arguments); try{ if(!SV||SV.panel||SV.mv) return r; const E=SV.E, L=her14Lista(), T=her14Tomadas(), k=E.x+","+E.y;
+      if(T.includes(k)||!L.some(p=>p[0]===E.x&&p[1]===E.y)) return r; const t=svTile(E.x,E.y); if(t!==T_.PASTO&&t!==T_.ARENA) return r;
+      if(E.vida>=20){ if(SV.her14V!==k){ SV.her14V=k; svAviso("Una hierba que cura. Estás con toda tu fuerza: guardala para después.",2); } return r; }
+      T.push(k); E.vida=Math.min(20,E.vida+4); SV.nums.push({x:E.x,y:E.y,t:"+4",l:0,c:"#8FE09A"}); svChispas(E.x,E.y,"#EFFFF0",10); try{ son("mas"); }catch(e){} svBarras(); }catch(e){} return r; }; }
+{ const _sd14=svDibujar; svDibujar=function(tt){ const r=_sd14.apply(this,arguments); try{ if(!SV) return r; const c=SV.c, K=SV.K, E=SV.E, RW=SV.RW, RH=SV.RH; c.setTransform(K,0,0,K,0,0);
+      const px=(E.x+(SV.mv?SV.mv.dx*SV.mv.p:0))*16+8, py=(E.y+(SV.mv?SV.mv.dy*SV.mv.p:0))*16+8; let cx=Math.max(0,Math.min(SVW*16-RW,px-RW/2)), cy=Math.max(0,Math.min(SVH*16-RH,py-RH/2)); cx=Math.round(cx*K)/K; cy=Math.round(cy*K)/K;
+      const T=her14Tomadas(), R=(col,a,b,w,h)=>{ c.fillStyle=col; c.fillRect(a,b,w,h); };
+      her14Lista().forEach(([x,y])=>{ if(T.includes(x+","+y)) return; const t=svTile(x,y); if(t!==T_.PASTO&&t!==T_.ARENA) return; const X=Math.round(x*16-cx), Y=Math.round(y*16-cy); if(X<-16||Y<-16||X>RW||Y>RH) return;
+        const s=Math.sin(tt*2+x)*.5; R("rgba(0,0,0,.18)",X+4,Y+12,8,2); R("#2E6A34",X+7,Y+6,2,7); R("#3F8A45",X+4,Y+8,3,2); R("#3F8A45",X+9,Y+7,3,2); R("#5BA855",X+5,Y+8,1,1); R("#5BA855",X+10,Y+7,1,1);
+        R("#FFFFFF",X+6+Math.round(s),Y+3,4,3); R("#F6D24A",X+7+Math.round(s),Y+4,2,1); R("rgba(255,255,255,.25)",X+5+Math.round(s),Y+2,6,5); }); }catch(e){} return r; }; }
+
+/* la versión, en Ajustes */
+{ const _va14=vistaAlma; vistaAlma=function(){ return _va14.apply(this,arguments).replace(/Versión 10\.\d · /,"Versión 10.4 · "); }; }
+
+/* Supervivencia: el cartelito de la meta decía «Juntá 10 de madera · 0/19» y el 0/19 parecía la madera; ahora dice «Meta 1 de 19» */
+{ const _ch14=sv12Chip; sv12Chip=function(){ const r=_ch14.apply(this,arguments); try{ const b=document.getElementById("sv12Meta"); if(!b||!SV||!SV.E) return r; const n=Object.keys(SV.E.metas12||{}).length, L=SV12_METAS.length;
+      const sm=b.querySelector("small"), t=n>=L?"Metas":"Meta "+(n+1)+" de "+L; if(sm&&sm.textContent!==t) sm.textContent=t; const c=b.querySelector(".sv12-mn"); if(c&&c.style.display!=="none") c.style.display="none"; }catch(e){} return r; }; }
+
+/* Tu personaje en el inicio salía de caballero (yelmo, espada y escudo) aunque tu camino fuera otro: la vista previa de la Armadura de
+   Dios de la tienda lo dibujaba sin camino y la guardaba con la misma clave. Ahora la clave lleva el camino */
+{ const _pu14=pixelURL; pixelURL=function(l,k,dx,Lk){ if(typeof k==="string"&&k.indexOf("pj:")===0) k+="|c:"+eq13Cls(); return _pu14.call(this,l,k,dx,Lk); }; }
+{ const _fu14=fxURL; fxURL=function(l,k,dx,Lk,fx,fr){ if(typeof k==="string") k+="|c:"+eq13Cls(); return _fu14.call(this,l,k,dx,Lk,fx,fr); }; }
+
+/* ───────── v10.4 · Vestimentas, más moderna y clara (Lorenzo: «cambiaría esta sección de vestimenta, no condice con el diseño de la app;
+   buscaría algo más moderno e intuitivo, más tratándose de las skins, que es nuestra principal fuente de ingreso»).
+   · Arriba, la destacada del día: una vestimenta que no tenés, grande, sobre su color, con su historia y el botón para verla.
+   · Después los paquetes de la semana (como antes).
+   · Tu colección: cuántas tenés, una tira de rarezas que se desliza (cada una con su color y cuántas tenés), y un filtro
+     «Todas · Me faltan · Tengo». Las cartas, a color, sobre el escenario de su rareza, con el precio a la vista o si ya es tuya.
+   · Las exclusivas (solo con perlas), en una fila aparte con el mismo diseño ───────── */
+const VT14_COL={comun:["#4A5A6E","#8E9AA6"],especial:["#174E86","#3F8FD0"],epica:["#4A1E78","#9A52C8"],legendaria:["#8A400A","#E8962A"],ultra:["#8A1240","#E0407A"],martir:["#5E0E14","#B8282E"],papa:["#6E5010","#E3C66A"],angelical:["#1E5E8A","#7FD0F0"],divina:["#7A4E00","#F2B21C"]};
+let VT14_F="todas";
+function vt14Col(r){ return VT14_COL[r]||VT14_COL.comun; }
+function vt14Rz(){ return Object.keys(RAREZAS).sort((a,b)=>RAREZAS[a].o-RAREZAS[b].o).filter(r=>Object.keys(SKINS).some(id=>rareza(id)===r)); }
+/* el dibujo de la vestimenta, sin el pergamino de fondo (va sobre el color de su rareza) */
+function vt14Img(id){ try{ return santoIMG(id).replace(/^<div class="pj mini"><img alt="" src="[^"]*">/,'<div class="pj mini vt14-pj">'); }catch(e){ return ""; } }
+function vt14Precio(id){ const k=SKINS[id], r=rareza(id), ten=S.skins.includes(id);
+  if(S.skin===id) return '<span class="vt14-t on">Puesta</span>'; if(ten) return '<span class="vt14-t">Tuya</span>';
+  if(k.divina) return '<span class="vt14-t">Se recibe</span>'; if(k.pase) return '<span class="vt14-t">Pase</span>';
+  if(k.perlas) return '<span class="vt14-p"><i class="perla"></i>'+k.perlas+'</span>';
+  if(r==="comun"){ const nv=(k.nivel||0)>nivGeneral().nivel; return (nv?'<span class="vt14-nv">Nivel '+k.nivel+'</span>':'')+'<span class="vt14-p">'+(k.costo?'<i class="moneda"></i>'+k.costo:'Gratis')+'</span>'; }
+  const p=precioSkin(id); return '<span class="vt14-p"><i class="'+(p.u==="perlas"?"perla":"moneda")+'"></i>'+p.n+'</span>'; }
+function vt14Carta(id){ const k=SKINS[id], r=rareza(id), C=vt14Col(r), ten=S.skins.includes(id);
+  return '<button class="vt14-c'+(ten?" ten":"")+'" data-a="colVer" data-p="skin|'+id+'" style="--a:'+C[0]+';--b:'+C[1]+'" aria-label="'+esc(k.n)+'">'+
+    '<span class="vt14-esc" aria-hidden="true"><i class="vt14-luz"></i>'+vt14Img(id)+'</span>'+
+    '<span class="vt14-n">'+esc(k.n.replace(/^(San|Santa|Santo|Beato|Beata|Venerable|Siervo de Dios|Sierva de Dios) /,""))+'</span>'+
+    '<span class="vt14-pie">'+vt14Precio(id)+'</span></button>'; }
+/* la destacada del día: una que no tenés, de las más lindas */
+function vt14Destacada(){ const pref=["ultra","legendaria","angelical","martir","epica","papa","especial"]; let L=[];
+  for(const r of pref){ L=L.concat(Object.keys(SKINS).filter(id=>rareza(id)===r&&!S.skins.includes(id)&&!SKINS[id].divina&&!SKINS[id].pase)); if(L.length>=8) break; }
+  if(!L.length) return ""; const d=Math.floor(Date.now()/864e5), id=L[d%L.length], k=SKINS[id], r=rareza(id), C=vt14Col(r);
+  return '<button class="vt14-hero" data-a="colVer" data-p="skin|'+id+'" style="--a:'+C[0]+';--b:'+C[1]+'"><span class="vt14-hero-luz" aria-hidden="true"></span>'+
+    '<span class="vt14-hero-pj">'+vt14Img(id)+'</span><span class="vt14-hero-tx"><small>Destacada de hoy</small><span class="rz rz-'+r+'">'+esc((RAREZAS[r]||{n:r}).n)+'</span><b>'+esc(k.n)+'</b>'+
+    (k.bio?'<em>'+String(k.bio).replace(/<[^>]+>/g,"").slice(0,110)+(String(k.bio).length>110?"…":"")+'</em>':'')+'<span class="vt14-hero-pie">'+vt14Precio(id)+'<span class="vt14-ver">Verla puesta</span></span></span></button>'; }
+function vt14Coleccion(){ if(!RAREZAS[COL_R]) COL_R="comun"; const ids=Object.keys(SKINS), tot=ids.length, mias=ids.filter(id=>S.skins.includes(id)).length;
+  const tabs='<div class="vt14-tabs" role="tablist" aria-label="Rarezas" id="vt14Tabs">'+vt14Rz().map(r=>{ const L=ids.filter(id=>rareza(id)===r), n=L.filter(id=>S.skins.includes(id)).length, C=vt14Col(r);
+      return '<button role="tab" class="vt14-tab" data-a="colR" data-p="'+r+'" aria-pressed="'+(COL_R===r)+'" style="--a:'+C[0]+';--b:'+C[1]+'"><i aria-hidden="true"></i>'+esc(RZ_PL[r]||r)+'<small>'+n+'/'+L.length+'</small></button>'; }).join("")+'</div>';
+  const fil='<div class="vt14-fil" role="group" aria-label="Mostrar">'+[["todas","Todas"],["faltan","Me faltan"],["tengo","Tengo"]].map(f=>'<button data-a="vt14F" data-p="'+f[0]+'" aria-pressed="'+(VT14_F===f[0])+'">'+f[1]+'</button>').join("")+'</div>';
+  let L=ids.filter(id=>rareza(id)===COL_R&&!SKINS[id].perlas); if(COL_R==="comun") L.sort((a,b)=>(SKINS[a].nivel||0)-(SKINS[b].nivel||0));
+  if(VT14_F==="faltan") L=L.filter(id=>!S.skins.includes(id)); if(VT14_F==="tengo") L=L.filter(id=>S.skins.includes(id));
+  const C=vt14Col(COL_R), info='<p class="vt14-info" style="--b:'+C[1]+'"><b>'+esc((RAREZAS[COL_R]||{n:""}).n)+'</b> · '+esc(RZ_COMO[COL_R]||"")+'</p>';
+  return '<section class="vt14-col" aria-label="Tu colección"><div class="vt14-cab"><div><small>Tu colección</small><b>'+mias+' de '+tot+' vestimentas</b></div><span class="vt14-bar"><i style="width:'+Math.round(mias/Math.max(1,tot)*100)+'%"></i></span></div>'+
+    tabs+fil+info+(L.length?'<div class="vt14-g">'+L.map(vt14Carta).join("")+'</div>':'<p class="vt14-vacio">'+(VT14_F==="tengo"?"Todavía no tenés ninguna de esta rareza.":"¡Ya tenés todas las de esta rareza!")+'</p>')+'</section>'; }
+function vt14Excl(){ const L=Object.keys(SKINS).filter(id=>SKINS[id].perlas); if(!L.length) return "";
+  return '<section class="vt14-ex" aria-label="Exclusivas"><div class="vt14-cab"><div><small>Solo con perlas</small><b>Exclusivas</b></div></div><div class="vt14-fila">'+L.map(vt14Carta).join("")+'</div></section>'; }
+tiendaVest=function(){ let packs=""; try{ packs=tn11Packs("santos"); }catch(e){} return '<div class="vt14">'+vt14Destacada()+packs+vt14Coleccion()+vt14Excl()+'</div>'; };
+ACC.vt14F=function(p){ VT14_F=["todas","faltan","tengo"].includes(String(p))?String(p):"todas"; try{ son("toque"); }catch(e){} pintar(); };
+/* la rareza elegida, a la vista en la tira */
+{ const _pi14=pintar; pintar=function(){ const r=_pi14.apply(this,arguments); try{ const t=document.getElementById("vt14Tabs"); if(t){ const b=t.querySelector('[aria-pressed="true"]'); if(b){ const L=b.offsetLeft, W=b.offsetWidth; if(L<t.scrollLeft||L+W>t.scrollLeft+t.clientWidth) t.scrollLeft=Math.max(0,L-(t.clientWidth-W)/2); } } }catch(e){} return r; }; }
+
+/* ───────── v10.4 · el pase de santidad, más largo y más entretenido (Lorenzo: «tiene que valer la pena comprar cosas en el juego; gratis
+   se le da muy poco a los usuarios; es nuestra principal fuente de ingreso»).
+   · 50 niveles por mes (parches.py, paso 23). Cada nivel son 100 de experiencia.
+   · La pista gratis da poco: un premio cada cinco niveles más o menos (talentos, tres cofres, dos fragmentos y la insignia del mes).
+   · La pista Premium da algo en cada nivel: talentos, cofres, festejos, dos mascotas, dos efectos y dos vestimentas que se arman con
+     fragmentos (una especial, que se completa en el nivel 20, y una épica, en el 38); al final, la vestimenta y el fondo del mes y una perla.
+   · Desafíos: tres del día (35 de experiencia cada uno) y tres de la semana (150), con su barrita; se cobran en el pase.
+     Entrar cada día sigue sumando un nivel ───────── */
+const PASE14_N=PASE_N;
+function pase14Fes(k){ const L=FESTEJOS.filter(q=>q[2]>0&&!fesOwn().includes(q[0])); return L[k]||L[L.length-1]||null; }
+function pase14Masc(k){ const m=new Date().getMonth(), L=Object.keys(COMPAS).filter(x=>COMPAS[x].mascota&&!S.compas.includes(x)); return L.length?L[(m+k)%L.length]:null; }
+function pase14Sk(rz,k){ const m=new Date().getMonth(), L=Object.keys(SKINS).filter(id=>enCofre(id)&&rareza(id)===rz); return L.length?L[(m+(k||0))%L.length]:null; }
+function pase14Frag(rz,n,k){ const id=pase14Sk(rz,k); if(!id||S.skins.includes(id)) return {t:"tal",n:n*40,txt:(n*40)+" talentos"}; return {t:"frag",id:id,n:n,txt:n+(n===1?" fragmento":" fragmentos")+" de "+SKINS[id].n}; }
+function pase14Tal(n){ return {t:"tal",n:n,txt:n+" talentos"}; }
+const PASE14_L={3:["tal",10],6:["cofre",1],10:["tal",15],15:["frag",1],20:["cofre",1],25:["tal",25],30:["tal",30],35:["cofre",1],40:["frag",1],45:["tal",40]};
+function pase14Libre(n){ const m=new Date().getMonth(); if(n===PASE14_N) return {t:"icono",id:"ins"+m,txt:"Insignia de "+MES_LARGO[m]};
+  const x=PASE14_L[n]; if(!x) return {t:"nada",txt:""};
+  if(x[0]==="tal") return pase14Tal(x[1]); if(x[0]==="cofre") return {t:"cofre",n:x[1],txt:"Un cofre extra"}; if(x[0]==="frag") return pase14Frag("especial",x[1],0); return {t:"nada",txt:""}; }
+function pase14Prem(n){ const m=new Date().getMonth();
+  if(n===PASE14_N){ const sk=PASE_SKIN[m]; return {t:"final",id:sk,txt:"Vestimenta de "+SKINS[sk].n+" y fondo exclusivo · y 1 perla"}; }
+  const fr={4:2,8:2,13:3,18:3,20:2}, ep={24:3,28:3,34:3,38:3}, le={44:4,48:4}, co={2:1,7:1,12:2,17:1,22:2,27:2,32:2,35:3,37:3,42:3,47:3};
+  if(fr[n]) return pase14Frag("especial",fr[n],0); if(ep[n]) return pase14Frag("epica",ep[n],0); if(le[n]) return pase14Frag("legendaria",le[n],0);
+  if(co[n]) return {t:"cofre",n:co[n],txt:co[n]===1?"Un cofre extra":co[n]+" cofres extra"};
+  if(n===10) return {t:"efecto",id:PASE_FX[m],txt:"Efecto «"+EFECTOS[PASE_FX[m]].n+"»"};
+  if(n===40){ const f=PASE_FX[(m+5)%12]; return f!==PASE_FX[m]&&EFECTOS[f]?{t:"efecto",id:f,txt:"Efecto «"+EFECTOS[f].n+"»"}:pase14Tal(300); }
+  if(n===5||n===25){ const f=pase14Fes(n===5?0:1); return f?{t:"fes",id:f[0],txt:"Festejo «"+f[1]+"»"}:pase14Tal(150); }
+  if(n===15||n===45){ const k=pase14Masc(n===15?0:1); return k?{t:"compa",id:k,txt:"Mascota: "+COMPAS[k].n}:pase14Tal(250); }
+  return pase14Tal(Math.round((40+n*2)/5)*5); }
+premioPase=function(n,prem){ try{ return prem?pase14Prem(n):pase14Libre(n); }catch(e){ return pase14Tal(10); } };
+{ const _dp14=darPremioPase; darPremioPase=function(r){ if(r&&r.t==="nada") return; return _dp14.apply(this,arguments); }; }
+pasePendientes=function(){ const P=paseEstado(), n=paseNivel(), o=[]; for(let i=1;i<=n;i++){ if(!P.l.includes(i)&&premioPase(i,false).t!=="nada") o.push(["l",i]); if(S.premium&&!P.p.includes(i)) o.push(["p",i]); } return o; };
+{ const _pc14=pase9Celda; pase9Celda=function(i,prem,n,P){ if(!prem&&premioPase(i,false).t==="nada") return '<span class="p9c free nada'+(i<=n?"":" fut")+'" aria-hidden="true"></span>'; return _pc14.apply(this,arguments); }; }
+
+/* ── los desafíos ── */
+const DES14_C=k=>()=>(S.mes&&S.mes.id===mesId()&&S.mes.c&&S.mes.c[k])||0, DES14_H=k=>()=>(S.hi&&S.hi[k])||0;
+const DES14_D=[
+ {id:"hab",n:"Tachá 2 hábitos de tu día",f:DES14_C("diaria"),m:2,mes:1},
+ {id:"som",n:"Vencé 6 sombras en la Historia",f:DES14_C("enemigo"),m:6,mes:1},
+ {id:"jg",n:"Jugá un minijuego",f:DES14_C("juego"),m:1,mes:1},
+ {id:"ros",n:"Rezá el Rosario",f:DES14_C("rosario"),m:1,mes:1},
+ {id:"mj",n:"Cumplí una misión con Jesús",f:DES14_H("mj"),m:1},
+ {id:"obra",n:"Anotá una obra de misericordia",f:DES14_C("obra"),m:1,mes:1}];
+const DES14_S=[
+ {id:"som",n:"Vencé 40 sombras",f:DES14_C("enemigo"),m:40,mes:1},
+ {id:"hab",n:"Tachá 12 hábitos",f:DES14_C("diaria"),m:12,mes:1},
+ {id:"ros",n:"Rezá el Rosario 3 veces",f:DES14_C("rosario"),m:3,mes:1},
+ {id:"jg",n:"Jugá 5 minijuegos",f:DES14_C("juego"),m:5,mes:1},
+ {id:"mj",n:"Cumplí 5 misiones con Jesús",f:DES14_H("mj"),m:5},
+ {id:"cap",n:"Terminá un capítulo de la Historia",f:DES14_C("historia"),m:1,mes:1}];
+const DES14_XP={d:35,s:150};
+function des14Sem(){ const d=new Date(); d.setHours(0,0,0,0); d.setDate(d.getDate()-((d.getDay()+6)%7)); return iso(d); }
+function des14Elegir(L,clave,n){ let h=0; for(let i=0;i<clave.length;i++) h=(h*31+clave.charCodeAt(i))>>>0; const o=L.slice(), r=[]; while(r.length<n&&o.length){ h=(h*1103515245+12345)>>>0; r.push(o.splice(h%o.length,1)[0]); } return r; }
+function des14Estado(){ if(!S.des14) S.des14={}; const D=S.des14, hoy=iso(), sem=des14Sem();
+  if(D.dia!==hoy){ D.dia=hoy; D.dc={}; D.db={}; des14Elegir(DES14_D,hoy,3).forEach(x=>{ D.db[x.id]={b:x.f(),mes:mesId()}; }); D.dl=Object.keys(D.db); }
+  if(D.sem!==sem){ D.sem=sem; D.sc={}; D.sb={}; des14Elegir(DES14_S,"s"+sem,3).forEach(x=>{ D.sb[x.id]={b:x.f(),mes:mesId()}; }); D.sl=Object.keys(D.sb); }
+  return D; }
+function des14Prog(x,base){ let b=base.b; if(x.mes&&base.mes!==mesId()) b=0; return Math.max(0,Math.min(x.m,x.f()-b)); }
+function des14Lista(){ const D=des14Estado(), o=[];
+  (D.dl||[]).forEach(id=>{ const x=DES14_D.find(q=>q.id===id); if(x) o.push({t:"d",x:x,p:des14Prog(x,D.db[id]),cob:!!(D.dc&&D.dc[id])}); });
+  (D.sl||[]).forEach(id=>{ const x=DES14_S.find(q=>q.id===id); if(x) o.push({t:"s",x:x,p:des14Prog(x,D.sb[id]),cob:!!(D.sc&&D.sc[id])}); });
+  return o; }
+function des14Listos(){ try{ return des14Lista().filter(d=>!d.cob&&d.p>=d.x.m).length; }catch(e){ return 0; } }
+ACC.des14Cobrar=function(p){ const [t,id]=String(p).split("|"), D=des14Estado(), L=des14Lista(), d=L.find(q=>q.t===t&&q.x.id===id); if(!d||d.cob||d.p<d.x.m) return;
+  if(t==="d") D.dc[id]=1; else D.sc[id]=1; const xp=DES14_XP[t]; try{ son("nivel"); }catch(e){} pasePts(xp/100,"desafío"); guardar(); try{ pase9Pintar(); }catch(e){} pintar(); avisar("Desafío cumplido: +"+xp+" de experiencia del pase."); };
+function des14HTML(){ const L=des14Lista(), hoy=new Date(), fin=new Date(hoy); fin.setDate(hoy.getDate()+(7-((hoy.getDay()+6)%7))); const dias=Math.max(1,Math.round((fin-hoy)/864e5));
+  const fila=d=>{ const ok=d.p>=d.x.m, pct=Math.round(d.p/d.x.m*100);
+    return '<div class="des14-f'+(d.cob?" cob":ok?" listo":"")+'"><div class="des14-b"><b>'+esc(d.x.n)+'</b><span class="des14-bar"><i style="width:'+pct+'%"></i></span><small class="num">'+d.p+' / '+d.x.m+'</small></div>'+
+      (d.cob?'<span class="des14-ok">✓</span>':ok?'<button class="des14-go" data-a="des14Cobrar" data-p="'+d.t+'|'+d.x.id+'">+'+DES14_XP[d.t]+'</button>':'<span class="des14-xp num">+'+DES14_XP[d.t]+'</span>')+'</div>'; };
+  return '<h3 class="p9x-sec">Desafíos</h3><div class="des14"><div class="des14-cab"><b>De hoy</b><small>Se renuevan a la medianoche</small></div>'+L.filter(d=>d.t==="d").map(fila).join("")+
+    '<div class="des14-cab"><b>De la semana</b><small>Quedan '+dias+' día'+(dias===1?"":"s")+'</small></div>'+L.filter(d=>d.t==="s").map(fila).join("")+'</div>'; }
+{ const _ph14=pase9HTML; pase9HTML=function(){ let o=_ph14.apply(this,arguments); try{
+      o=o.replace(/Cada día que entrás sube un nivel\. Mañana: [^<]*\./,"Entrar cada día sube un nivel; los desafíos, más. Cada nivel: 100 de experiencia.");
+      o=o.replace("Premium · nivel 12","Premium · nivel 10");
+      const k=o.indexOf('<div class="p9x-cols">'); if(k>=0) o=o.slice(0,k)+des14HTML()+o.slice(k); }catch(e){ errAnotar(e,"desafíos"); } return o; }; }
+
+/* ───────── v10.4 · la Historia, más ardua (Lorenzo: «modo historia más arduo, que lleve su tiempo completarlo»).
+   · Las sombras aguantan un 45 % más y pegan un 20 % más fuerte.
+   · Subir de nivel pide un 35 % más de experiencia.
+   · En los capítulos hay más sombras: en cada sala con sombras comunes aparece la mitad más (siempre en el mismo lugar, y las que
+     vencés no vuelven).
+   · El final del capítulo: cinco preguntas y hacen falta cuatro bien (vah.js) ───────── */
+{ const _ce14=capEsc; capEsc=function(){ const r=_ce14.apply(this,arguments); try{ if(RP&&!["arena","jefemes"].includes(RP.cap)){ r.hp*=1.45; r.atk*=1.2; } }catch(e){} return r; }; }
+{ const _hr14=herReq; herReq=function(n){ return Math.round(_hr14(n)*1.35); }; }
+function mas14Sala(){ try{ if(!RP||!RP.cap||["mundo","parroquia","arena","jefemes"].includes(RP.cap)) return false; return !!(HS_CAPS.some(c=>c.id===RP.cap)); }catch(e){ return false; } }
+function mas14Libre(M,x,y){ if(x<1||y<1||y>=M.t.length-1||x>=M.t[0].length-1) return false; if(RSOL.includes(rpgTile(x,y))) return false;
+  return !M.ents.some(e=>{ const ex=e.px===undefined?e.x:e.px, ey=e.py===undefined?e.y:e.py; return x>=ex&&x<ex+(e.w||1)&&y>=ey&&y<ey+(e.h||1); })&&!(RP&&RP.x===x&&RP.y===y); }
+{ const _ap14=rpgAccPrep; rpgAccPrep=function(){ const r=_ap14.apply(this,arguments); try{ if(!mas14Sala()) return r; const M=rpgMapa(); if(M._mas14) return r; M._mas14=1;
+      const L=M.ents.filter(e=>e.k==="ene"&&rpgHostil(e)&&!/_m14$/.test(e.id||"")), n=Math.ceil(L.length*.5); let h=0; String(RP.map).split("").forEach(ch=>{ h=(h*31+ch.charCodeAt(0))>>>0; });
+      for(let i=0;i<n;i++){ const e=L[(h+i)%L.length]; if(!e) continue; let hecho=false;
+        for(let r2=2;r2<=4&&!hecho;r2++) for(const [dx,dy] of [[r2,0],[-r2,0],[0,r2],[0,-r2],[r2,r2],[-r2,-r2],[r2,-r2],[-r2,r2]]){ const x=e.x+dx, y=e.y+dy; if(!mas14Libre(M,x,y)) continue;
+          const c=Object.assign({},e,{id:(e.id||"e")+"_"+i+"_m14",x:x,y:y,px:x,py:y,us:[],hit:0,tel:0}); M.ents.push(c); hecho=true; break; } }
+      /* las que ya venciste no vuelven */
+      M.ents=M.ents.filter(e=>!(/_m14$/.test(e.id||"")&&rpgF("v_"+e.id))); }catch(e){ errAnotar(e,"más sombras"); } return r; }; }
 
 
 let COMPRA=null;
